@@ -2,33 +2,44 @@
 
 Electricity Material Flow Analysis (energy + exergy) of the Holmen Hallsta paper mill, 2023, with Monte Carlo uncertainty. Made for a Material Flow Analysis course.
 
-Start with `notebooks/hallsta_electricity_mfa.ipynb`. It explains every step: intuition first, then the formula, then the code, with a glossary at the top. GitHub renders it with all outputs, so you can read it without running anything.
+Start with `notebooks/02_model.ipynb`. It explains every step: intuition first, then the formula, then the code, with a glossary at the top. GitHub renders it with all outputs, so you can read it without running anything.
 
 ## Run it
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh   # once, if you do not have uv
 uv sync                                          # installs Python 3.12 and every dependency
-uv run jupyter lab notebooks/hallsta_electricity_mfa.ipynb
+uv run python analysis/run_model.py              # Monte Carlo, all tables (reports/tables) and figures (reports/figures)
+uv run jupyter lab notebooks/02_model.ipynb      # the explained walkthrough
 uv run pytest                                    # tests for the model
 ```
 
-Re-execute and save the notebook from the command line:
+Re-execute and save the notebook from the command line (it also rewrites the tables and figures):
 
 ```bash
-cd notebooks && uv run jupyter nbconvert --to notebook --execute --inplace hallsta_electricity_mfa.ipynb
+cd notebooks && uv run jupyter nbconvert --to notebook --execute --inplace 02_model.ipynb
 ```
 
-The static Sankey picture needs Chrome or Chromium installed (used by kaleido). Without it, comment out the `write_image` lines and use `fig_E.show()`.
+The static Sankey PNGs need Chrome (used by kaleido). Install one with `uv run plotly_get_chrome`. Without Chrome everything still runs, the PNG is skipped and the Sankey HTML is written.
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `notebooks/hallsta_electricity_mfa.ipynb` | The analysis, step by step |
-| `src/hallsta_mfa/model.py` | The model: base inputs, uncertainty ranges, exergy maths, `run()` |
-| `tests/test_model.py` | Balance checks, exergy checks, headline numbers |
-| `notebooks/outputs/` | CSV and PNG results written by the notebook |
+| `notebooks/02_model.ipynb` | The model, step by step (intuition, formula, code) |
+| `notebooks/01_eda.ipynb` | Exploratory data analysis |
+| `src/hallsta_mfa/model.py` | The balance: base inputs, uncertainty ranges (`DIST`), exergy maths, `run()` |
+| `src/hallsta_mfa/mc.py` | Constrained Monte Carlo (`sample`, `run_mc`) |
+| `src/hallsta_mfa/measures.py` | Improvement measures M1-M4 |
+| `src/hallsta_mfa/outputs.py` | All tables and figures of the model |
+| `src/hallsta_mfa/plotstyle.py` | Shared figure style |
+| `analysis/run_model.py` | One script that writes every model output |
+| `tests/test_model.py` | Balance, physical-bound, closure, measure and reproducibility tests |
+| `data/` | Source register `sources.csv` (every source value with an id) |
+| `reports/tables/model_*.csv`, `headline.csv` | Model results |
+| `reports/figures/model_*` | Model figures (PNG, Sankey also HTML) |
+| `docs/assumptions.md` | Every class C/D assumption and modelling decision |
+| `docs/review/` | Model audit and change log |
 
 ## Sources and data
 

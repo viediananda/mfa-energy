@@ -1,0 +1,138 @@
+flow,group,value,unit
+k_oth,other,1.0,-
+E_tot,other,1450.0,GWh/y
+el_TMP,electricity,1014.9999999999999,GWh/y
+el_TMP_aux,electricity,63.28245,GWh/y
+el_TMP_ref,electricity,951.7175499999998,GWh/y
+el_PM,electricity,195.9,GWh/y
+el_bleach,electricity,21.6,GWh/y
+el_EB,electricity,145.0,GWh/y
+el_wood,electricity,18.0,GWh/y
+el_wwtp,electricity,21.9,GWh/y
+el_util,electricity,18.1,GWh/y
+el_dist,electricity,14.5,GWh/y
+el_PM11line,electricity,138.4090909090909,GWh/y
+el_PM12line,electricity,79.0909090909091,GWh/y
+dh,steam,0.6537173810320119,MWh/t steam
+fx_steam,steam,0.31466015814546644,GWh/y
+eff_EB,steam,0.98,-
+st_rec,steam,470.6765143430486,GWh/y
+st_EB,steam,142.1,GWh/y
+loss_EB,steam,2.9000000000000057,GWh/y
+st_supply,steam,612.7765143430486,GWh/y
+st_PM,steam,447.1426886258962,GWh/y
+st_wood,steam,7.060147715145729,GWh/y
+st_loss,steam,24.511060573721945,GWh/y
+st_HW,steam,134.0626174282847,GWh/y
+TMP_waste,other,544.3234856569513,GWh/y
+PM_waste,exergy,643.0426886258962,GWh/y
+rec_ratio,steam,0.7681046895990393,-
+y_EB_implied,steam,1.4991187758429974,t/MWh
+TMP_rec_eff,steam,0.46372070378625485,-
+SEC_mill,other,3262.1362718056935,kWh/t
+SEC_TMP,other,2405.8803033068407,kWh/t
+SEC_PM,other,489.3204407708541,kWh/t
+sink_water,sinks,232.87284264166667,GWh/y
+sink_cool,sinks,46.333333333333336,GWh/y
+sink_DH,sinks,11.877,GWh/y
+E_in,sinks,1452.82,GWh/y
+sink_air,sinks,1161.736824025,GWh/y
+Xin|TMP plant,exergy,1014.9999999999999,GWh/y
+Xuse|TMP plant,exergy,148.1031464385406,GWh/y
+Xwaste|TMP plant,exergy,60.59366335685496,GWh/y
+Xdest|TMP plant,exergy,806.3031902046043,GWh/y
+psi|TMP plant,exergy,0.14591442998870996,-
+IP|TMP plant,exergy,740.4040933150327,GWh/y
+Xin|Paper machines,exergy,336.5979891166136,GWh/y
+Xuse|Paper machines,exergy,0.0,GWh/y
+Xwaste|Paper machines,exergy,44.81826185255796,GWh/y
+Xdest|Paper machines,exergy,291.7797272640556,GWh/y
+psi|Paper machines,exergy,0.0,-
+IP|Paper machines,exergy,336.5979891166136,GWh/y
+Xin|Electric boilers,exergy,145.0,GWh/y
+Xuse|Electric boilers,exergy,44.71320847247078,GWh/y
+Xwaste|Electric boilers,exergy,0.0,GWh/y
+Xdest|Electric boilers,exergy,100.28679152752922,GWh/y
+psi|Electric boilers,exergy,0.3083669549825571,-
+IP|Electric boilers,exergy,69.36165899921451,GWh/y
+Xin|Steam network,exergy,192.81635491101136,GWh/y
+Xuse|Steam network,exergy,185.1037007145709,GWh/y
+Xwaste|Steam network,exergy,0.0,GWh/y
+Xdest|Steam network,exergy,7.712654196440468,GWh/y
+psi|Steam network,exergy,0.96,-
+IP|Steam network,exergy,0.308506167857619,GWh/y
+Xin|Hot water & heating,exergy,42.184164401379235,GWh/y
+Xuse|Hot water & heating,exergy,11.27912725160424,GWh/y
+Xwaste|Hot water & heating,exergy,0.0,GWh/y
+Xdest|Hot water & heating,exergy,30.905037149774994,GWh/y
+psi|Hot water & heating,exergy,0.26737823094666924,-
+IP|Hot water & heating,exergy,22.641702989327065,GWh/y
+Xin|Bleaching,exergy,21.6,GWh/y
+Xuse|Bleaching,exergy,0.0,GWh/y
+Xwaste|Bleaching,exergy,0.0,GWh/y
+Xdest|Bleaching,exergy,21.6,GWh/y
+psi|Bleaching,exergy,0.0,-
+IP|Bleaching,exergy,21.6,GWh/y
+Xin|WWTP,exergy,21.9,GWh/y
+Xuse|WWTP,exergy,0.0,GWh/y
+Xwaste|WWTP,exergy,0.0,GWh/y
+Xdest|WWTP,exergy,21.9,GWh/y
+psi|WWTP,exergy,0.0,-
+IP|WWTP,exergy,21.9,GWh/y
+Xin|Wood handling,exergy,20.221547196578108,GWh/y
+Xuse|Wood handling,exergy,0.0,GWh/y
+Xwaste|Wood handling,exergy,0.0,GWh/y
+Xdest|Wood handling,exergy,20.221547196578108,GWh/y
+psi|Wood handling,exergy,0.0,-
+IP|Wood handling,exergy,20.221547196578108,GWh/y
+Xin|Utilities & other,exergy,18.1,GWh/y
+Xuse|Utilities & other,exergy,0.0,GWh/y
+Xwaste|Utilities & other,exergy,0.0,GWh/y
+Xdest|Utilities & other,exergy,18.1,GWh/y
+psi|Utilities & other,exergy,0.0,-
+IP|Utilities & other,exergy,18.1,GWh/y
+Xin|Internal grid losses,exergy,14.5,GWh/y
+Xuse|Internal grid losses,exergy,0.0,GWh/y
+Xwaste|Internal grid losses,exergy,0.0,GWh/y
+Xdest|Internal grid losses,exergy,14.5,GWh/y
+psi|Internal grid losses,exergy,0.0,-
+IP|Internal grid losses,exergy,14.5,GWh/y
+Xdest_total,exergy,1333.3089475389827,GWh/y
+Xwaste_total,exergy,105.41192520941291,GWh/y
+X_eff,exergy,10.786894615963352,GWh/y
+X_cool,exergy,0.8077717027253557,GWh/y
+X_DH,exergy,2.025663062760987,GWh/y
+f_TMPw,exergy,0.11131921541787537,-
+f_PMw,exergy,0.06969717974451917,-
+f_HW,exergy,0.08413327643433399,-
+f_DH,exergy,0.1705534278657057,-
+f_eff,exergy,0.04687463654793034,-
+save_rec90,measures,82.47178425070929,GWh/y
+gap_SEC,measures,107.95154999999987,MWh/t paper
+gap_SEC_net,measures,56.870561488962096,GWh/y
+M1,measures,48.02821574929068,GWh/y
+M1b,measures,82.47178425070929,GWh/y
+M2,measures,97.63333333333333,GWh/y
+M3,measures,37.71815876844298,GWh/y
+M3b,measures,23.43420748299322,GWh/y
+M4,measures,125.643815675793,GWh/y
+M4_steam_left,measures,58.068552972621006,GWh/y
+M1_MWh_t,measures,0.10805143770060041,MWh/t paper
+M1_SEC,measures,3.1540848341050935,MWh/t paper
+M1b_MWh_t,measures,0.18554082676191194,MWh/t paper
+M1b_SEC,measures,3.076595445043782,MWh/t paper
+M2_MWh_t,measures,0.21965050896825003,MWh/t paper
+M2_SEC,measures,3.042485762837444,MWh/t paper
+M3_MWh_t,measures,0.0848563957408716,MWh/t paper
+M3_SEC,measures,3.1772798760648224,MWh/t paper
+M3b_MWh_t,measures,0.0527210884353742,MWh/t paper
+M3b_SEC,measures,3.2094151833703197,MWh/t paper
+M4_MWh_t,measures,0.2826670678924642,MWh/t paper
+M4_SEC,measures,2.97946920391323,MWh/t paper
+dW_frac,other,0.08266666666666675,-
+rec_pct,steam,76.81046895990393,GWh/y
+air_pct,other,79.96426426019741,GWh/y
+water_pct,other,16.02902235938841,GWh/y
+cool_pct,other,3.1891998549946545,GWh/y
+Xdest_pct,exergy,91.95234120958501,GWh/y
+psi_EB_pct,exergy,30.83669549825571,GWh/y

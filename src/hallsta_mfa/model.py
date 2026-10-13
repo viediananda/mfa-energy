@@ -6,16 +6,24 @@ All flows are in GWh/y. `run(params)` is a pure function: give it a dict of inpu
 import numpy as np
 import CoolProp.CoolProp as CP
 
-# Base-case inputs (see notebook section 1 for where each number comes from)
+# Base-case inputs. Source ids refer to data/sources.csv; docs/assumptions.md lists every
+# class C/D assumption. Optional scenario switches read with p.get(): `dh_override`
+# (MWh steam heat per tonne, replaces the property-based value) and `sec_TMP_override`
+# (kWh/t, forces TMP electricity; the difference moves to "unexplained/other").
 BASE = dict(
-    E_tot=1450.0, paper_t=444494.0, pulp_t=421883.0, DH_export=11.877,
-    V_wwtp=18300*365, V_ff=7288861-18300*365,
+    E_tot=1450.0, paper_t=444494.0, pulp_t=421883.0, DH_export=11.877, diesel=2.82,
+    V_wwtp=18300*365, V_ff=7288861-18300*365, V_cool=4.0e6, dT_cool=10.0,
     sh_TMP=0.70, sh_PM=0.15, sh_EB=0.10, sh_OTH=0.05,
     P_wood=2.5, P_bleach=3.0, P_wwtp=2.5, aux_TMP=150.0,
-    m_rec=100.0, y_EB=1.5, m_PM=95.0, m_wood=1.5, PM11_frac=14/22,
+    m_rec=100.0, eff_EB=0.98, m_PM=95.0, m_wood=1.5, PM11_frac=14/22,
     h_prod=7200.0, h_wwtp=8760.0, f_dist=0.01, f_steamloss=0.04,
-    p_steam=3.4e5, T_cond=90.0, T_TMPwaste=80.0, T_PMwaste=55.0, T_HW=60.0,
-    T_DHs=85.0, T_DHr=45.0, T_eff=35.0, T_ff=30.0, T0=7.0, T_ref=7.0, cpv=4.17)
+    p_steam=3.4e5, T_cond=90.0, T_TMPwaste=80.0, T_PMwaste=50.0, T_HW=60.0,
+    T_DHs=85.0, T_DHr=45.0, T_eff=35.0, T_ff=30.0, T0=7.0, T_ref=7.0, cpv=4.17,
+    # improvement-measure inputs (used by measures.py only)
+    dm_rec_M1=10.0, cop_hp=3.0, press_dry=0.48, d_press_dry=0.02, fin_moist=0.07, h_evap=2.4)
+
+STEAM_LATENT_ONLY_MWH = 2.15/3.6   # scenario: latent heat only, 2.15 GJ/t
+SEC_TMP_NORMAL = 2150.0            # kWh/t: Holmen "normal" 2,000 refining + 150 auxiliaries
 
 def f_sens(Th, T0):
     # exergy factor of sensible heat released from Th down to T0 (°C)
@@ -36,31 +44,41 @@ def run(p):
     r = {}; E = p['E_tot']
     tot = p['sh_TMP'] + p['sh_PM'] + p['sh_EB'] + p['sh_OTH']               # rescale shares to 100 %
     TMP, PMtot, EB, OTH = (E*p[k]/tot for k in ['sh_TMP','sh_PM','sh_EB','sh_OTH'])
+    if p.get('sec_TMP_override') is not None:                               # scenario: TMP at a given kWh/t
+        TMP = p['sec_TMP_override']*p['pulp_t']/1e6
+        OTH = E - TMP - PMtot - EB                                          # difference -> unexplained/other
     # ---- layer 1: electricity end uses
     bleach = p['P_bleach']*p['h_prod']/1000; PM = PMtot - bleach
     wood = p['P_wood']*p['h_prod']/1000; wwtp = p['P_wwtp']*p['h_wwtp']/1000; dist = p['f_dist']*E
     k = np.minimum(1.0, OTH/(wood + wwtp + dist))                           # named items must fit in bucket
     wood, wwtp, dist = wood*k, wwtp*k, dist*k
     util = OTH - wood - wwtp - dist                                         # GAP 1 (residual)
+    r['k_oth'] = k                                                          # < 1 when the guard binds
     aux = p['aux_TMP']*p['pulp_t']/1e6
-    r.update(el_TMP=TMP, el_TMP_aux=aux, el_TMP_ref=TMP-aux, el_PM=PM, el_bleach=bleach, el_EB=EB,
+    r.update(E_tot=E, el_TMP=TMP, el_TMP_aux=aux, el_TMP_ref=TMP-aux, el_PM=PM, el_bleach=bleach, el_EB=EB,
              el_wood=wood, el_wwtp=wwtp, el_util=util, el_dist=dist,
              el_PM11line=PMtot*p['PM11_frac'], el_PM12line=PMtot*(1-p['PM11_frac']))
     # ---- layer 2: steam loop
     dh, fx = steam_v(p['p_steam'], p['T_cond'], p['T0'])
+    if p.get('dh_override') is not None:                                    # scenario: latent heat only
+        fx = fx*dh/p['dh_override']                                         # same exergy per tonne of steam
+        dh = p['dh_override'] + 0*dh
     st_rec = p['m_rec']*p['h_prod']*dh/1000
-    eff_EB = np.minimum(p['y_EB']*dh, 0.995)
+    eff_EB = p['eff_EB'] + 0*dh                                             # sampled directly (audit B2)
     st_EB = EB*eff_EB; supply = st_rec + st_EB
     st_PM = p['m_PM']*p['h_prod']*dh/1000; st_wood = p['m_wood']*p['h_prod']*dh/1000
     st_loss = p['f_steamloss']*supply
     st_HW = supply - st_PM - st_wood - st_loss                              # GAP 2 (residual)
     r.update(dh=dh, fx_steam=fx, eff_EB=eff_EB, st_rec=st_rec, st_EB=st_EB, loss_EB=EB-st_EB,
              st_supply=supply, st_PM=st_PM, st_wood=st_wood, st_loss=st_loss, st_HW=st_HW,
-             TMP_waste=TMP-st_rec, PM_waste=PM+st_PM, rec_ratio=st_rec/supply, TMP_rec_eff=st_rec/TMP,
+             TMP_waste=TMP-st_rec, PM_waste=PM+st_PM, rec_ratio=st_rec/supply, y_EB_implied=eff_EB/dh, TMP_rec_eff=st_rec/TMP,
              SEC_mill=E/p['paper_t']*1e6, SEC_TMP=TMP/p['pulp_t']*1e6, SEC_PM=PMtot/p['paper_t']*1e6)
     # ---- layer 3: final sinks
     water = (p['V_wwtp']*p['cpv']*(p['T_eff']-p['T_ref']) + p['V_ff']*p['cpv']*(p['T_ff']-p['T_ref']))/3.6e6
-    r.update(sink_water=water, sink_DH=p['DH_export'], sink_air=E - water - p['DH_export'])   # GAP 3 (residual)
+    cool = p['V_cool']*p['cpv']*p['dT_cool']/3.6e6                         # cooling water, class-D temperature rise
+    E_in = E + p['diesel']                                                  # diesel heat ends in air
+    r.update(sink_water=water, sink_cool=cool, sink_DH=p['DH_export'], E_in=E_in,
+             sink_air=E_in - water - cool - p['DH_export'])                # GAP 3 (residual)
     # ---- exergy (section 6)
     T0 = p['T0']
     fTMP, fPM, fHW = f_sens(p['T_TMPwaste'], T0), f_sens(p['T_PMwaste'], T0), f_sens(p['T_HW'], T0)
@@ -83,28 +101,49 @@ def run(p):
     r['Xwaste_total'] = sum(r[f'Xwaste|{n}'] for n in X)
     r['X_eff'] = (p['V_wwtp']*p['cpv']*np.maximum(p['T_eff']-T0,0)*f_sens(p['T_eff'],T0) +
                   p['V_ff']*p['cpv']*np.maximum(p['T_ff']-T0,0)*f_sens(p['T_ff'],T0))/3.6e6
+    r['X_cool'] = p['V_cool']*p['cpv']*p['dT_cool']*f_sens(p['T0']+p['dT_cool'], T0)/3.6e6
     r['X_DH'] = p['DH_export']*fDH
     r.update(f_TMPw=fTMP, f_PMw=fPM, f_HW=fHW, f_DH=fDH, f_eff=f_sens(p['T_eff'], T0))
-    # ---- levers
-    r['save_rec90'] = np.maximum(0, 0.90*supply - st_rec)/eff_EB
-    r['gap_SEC'] = np.maximum(0, r['SEC_TMP'] - 2150)*p['pulp_t']/1e6
+    # ---- levers (gap_SEC is conditional on the 70 % TMP share being right, audit S1)
+    r['save_rec90'] = np.minimum(np.maximum(0, 0.90*supply - st_rec), st_EB)/eff_EB
+    r['gap_SEC'] = np.maximum(0, r['SEC_TMP'] - SEC_TMP_NORMAL)*p['pulp_t']/1e6
     r['gap_SEC_net'] = r['gap_SEC']*(1 - r['TMP_rec_eff']/eff_EB)
     return {k: (float(v) if np.ndim(v) == 0 else v) for k, v in r.items()}
+
+PROC_LABEL = {'Hot water & heating': 'Steam to hot water, heating and venting (unallocated)',
+              'Utilities & other': 'Utilities & other (residual / unexplained)'}
+label = lambda n: PROC_LABEL.get(n, n)
 
 PROCS = ['TMP plant','Paper machines','Electric boilers','Hot water & heating','Steam network',
          'Bleaching','WWTP','Wood handling','Utilities & other','Internal grid losses']
 
-# Uncertainty ranges used by the Monte Carlo step (notebook section 7a).
+# Uncertainty ranges used by the Monte Carlo step (see mc.py).
 # name: (distribution, a, b, c)
 #   norm: mean, sd | tri: low, mode, high | uni: low, high
 DIST = {
  'E_tot': ('norm', 1450, 14.5, None), 'pulp_t': ('norm', 421883, 4218.83, None), 'paper_t': ('norm', 444494, 4444.94, None),
- 'DH_export': ('norm', 11.877, 0.59385, None), 'V_wwtp': ('norm', BASE['V_wwtp'], 0.05*BASE['V_wwtp'], None),
+ 'DH_export': ('norm', 11.877, 0.59385, None), 'diesel': ('norm', 2.82, 0.0564, None),
+ 'V_wwtp': ('norm', BASE['V_wwtp'], 0.05*BASE['V_wwtp'], None),
  'V_ff': ('norm', BASE['V_ff'], 0.10*BASE['V_ff'], None),
- 'sh_TMP': ('tri', 0.65, 0.70, 0.75), 'sh_PM': ('tri', 0.12, 0.15, 0.22), 'sh_EB': ('tri', 0.05, 0.10, 0.12), 'sh_OTH': ('tri', 0.02, 0.05, 0.08),
+ 'V_cool': ('norm', 4.0e6, 0.4e6, None), 'dT_cool': ('uni', 5.0, 15.0, None),
+ 'sh_TMP': ('tri', 0.65, 0.70, 0.75), 'sh_PM': ('tri', 0.12, 0.15, 0.22), 'sh_EB': ('tri', 0.05, 0.10, 0.12),
+ 'sh_OTH': ('tri', 0.045, 0.05, 0.07),
  'P_wood': ('tri', 2.0, 2.5, 3.0), 'P_bleach': ('tri', 2.4, 3.0, 3.6), 'P_wwtp': ('tri', 2.0, 2.5, 3.0), 'aux_TMP': ('tri', 120, 150, 180),
- 'm_rec': ('tri', 85, 100, 115), 'y_EB': ('tri', 1.45, 1.50, 1.53), 'm_PM': ('uni', 80, 110, None), 'm_wood': ('tri', 1.2, 1.5, 1.8),
+ 'm_rec': ('tri', 85, 100, 115), 'eff_EB': ('tri', 0.95, 0.98, 0.995), 'm_PM': ('uni', 80, 110, None), 'm_wood': ('tri', 1.2, 1.5, 1.8),
  'PM11_frac': ('uni', 0.525, 0.66, None), 'h_prod': ('tri', 6800, 7200, 7600), 'f_dist': ('uni', 0.005, 0.02, None),
  'f_steamloss': ('uni', 0.02, 0.06, None), 'p_steam': ('uni', 3.3e5, 3.6e5, None), 'T_cond': ('uni', 80, 100, None),
- 'T_TMPwaste': ('uni', 70, 100, None), 'T_PMwaste': ('uni', 45, 65, None), 'T_HW': ('uni', 50, 70, None),
- 'T_eff': ('uni', 28, 40, None), 'T_ff': ('uni', 20, 40, None)}
+ 'T_TMPwaste': ('uni', 70, 100, None), 'T_PMwaste': ('uni', 45, 60, None), 'T_HW': ('uni', 50, 70, None),
+ 'T_eff': ('uni', 30, 40, None), 'T_ff': ('uni', 20, 40, None),
+ # measure inputs
+ 'cop_hp': ('uni', 2.5, 3.5, None), 'press_dry': ('tri', 0.45, 0.48, 0.51)}
+
+
+def ppf(name, q):
+    """Quantile q of the DIST entry `name` (one convention for every distribution)."""
+    from scipy import stats
+    d, a, b, c = DIST[name]
+    if d == 'norm':
+        return float(stats.norm.ppf(q, a, b))
+    if d == 'tri':
+        return float(stats.triang.ppf(q, (b - a)/(c - a), loc=a, scale=c - a))
+    return float(stats.uniform.ppf(q, a, b - a))
