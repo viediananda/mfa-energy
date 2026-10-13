@@ -1,0 +1,182 @@
+{
+  "changes": [
+    {
+      "id": "chg:steam-basis",
+      "title": "Steam heat value: 2.15 → 2.35 GJ per tonne",
+      "draft": "2.15 GJ/t (latent heat only). TMP steam 430, boiler steam 130, PM drying 408 GWh/y",
+      "now": "2.35 GJ/t (138 °C steam condensed to 90 °C). TMP steam 471, boiler steam 142, PM drying 447 GWh/y",
+      "verdict": "Adopt",
+      "argument": [
+        "Holmen says condensate leaves the paper machines at about 90 °C. Each tonne of steam therefore gives up its latent heat (2.15 GJ) plus the heat from cooling 138 → 90 °C (about 0.2 GJ).",
+        "At 2.35 GJ/t, Holmen's 1.5 t steam per MWh means a 98 % efficient electric boiler, which is normal for electrode boilers. At 2.15 it means 90 %: one tenth of boiler electricity would vanish with no explanation.",
+        "The Holmen slide pairs 1.8 t of steam with 1.2 MWh per tonne of paper, which is about 2.4 GJ/t.",
+        "Exergy per tonne of steam does not depend on this choice. The draft's 0.315, 0.318 and 0.345 factors were the same exergy divided by different heat values; using one basis everywhere removes that inconsistency."
+      ],
+      "risk": "If condensate actually returns hotter than 90 °C, the right value sits between the two. Scenario S5 keeps 2.15 GJ/t for comparison.",
+      "source_ids": ["condensate_temp_pm_2019", "steam_temp_2p4bar_2019", "steam_per_MW_2025", "pptx_steam_mass", "pptx_steam_recovered"]
+    },
+    {
+      "id": "chg:effluent",
+      "title": "Effluent temperature: 32 °C and 35 °C mixed → 35 °C everywhere",
+      "draft": "Table 2 used 32 °C (212 GWh). The exergy table and Appendix A used 35 °C. The wastewater range was given as both 110–212 and 125–214",
+      "now": "35 °C (range 30–40 °C). Heat to effluent 233 GWh/y (P5–P95 193–274)",
+      "verdict": "Adopt, flagged",
+      "argument": [
+        "The 2019 answer is ambiguous. It was asked as a temperature difference to the sea, but \"roughly 32 degrees\" could be read either way.",
+        "Read as 32 K above the sea, the effluent would be near 50 °C in summer. That is too hot for the biological treatment plant, so an absolute 32–35 °C is the more plausible reading.",
+        "The draft used two values in different sections. One value is used everywhere now, and the ambiguity is carried as a 30–40 °C range.",
+        "The 20 °C figure applies during long shutdowns, not normal operation, so it is no longer the lower end of the normal range."
+      ],
+      "risk": "The data are from 2019, before the treatment plant was rebuilt in 2020. Scenario S7 (39 °C) shows the high reading. Worth a one-line data request to Holmen.",
+      "source_ids": ["effluent_dT_sea_2019", "effluent_dT_sea_shutdown_2019", "effluent_total_2023"]
+    },
+    {
+      "id": "chg:cooling",
+      "title": "New exit: heat leaving with cooling water",
+      "draft": "Not quantified. Part of the 769 GWh 'by difference'",
+      "now": "46 GWh/y (P5–P95 25–70), from 4 Mm³/y at 10 K (5–15 K)",
+      "verdict": "Adopt, flagged",
+      "argument": [
+        "Holmen's 2024 water balance shows 4 Mm³/y of cooling water and other unaffected water released without treatment. The draft only guessed at this from intake minus effluent.",
+        "No source gives the temperature rise. 5–15 K is a typical range for once-through cooling. Leaving the sink out would amount to assuming 0 K, which is certainly wrong.",
+        "Effluent plus cooling water (11.29 Mm³) is 2 % above raw water intake. One outlet may be counted in both, which is flagged in the cross-checks."
+      ],
+      "risk": "The temperature rise is an assumption. Ask Holmen for the cooling-water outlet temperature.",
+      "source_ids": ["img_wb_cooling", "img_wb_in", "water_raw_total_2023"]
+    },
+    {
+      "id": "chg:exits",
+      "title": "How the exits are presented",
+      "draft": "684 GWh 'traced' to named exits (47 %) and 769 'by difference'. The figure also appears as 766 and 765 in other sections",
+      "now": "Water 233 + cooling water 46 + district heat 12 sized from data. Air 1,162 GWh is what remains (80 %)",
+      "verdict": "Adopt",
+      "argument": [
+        "The draft's 'traced' 47 % counted the dryer exhaust (408 GWh) as a named exit, but that number is itself an estimate built from the 95 t/h steam figure, not a measurement.",
+        "Only exits sized from a measured volume or delivery now count as named. Everything else leaves with air, and the Sankey shows which process each part comes from.",
+        "In the report, keep evaporation heat (≈278 GWh) as a lower bound for the dryer exhaust. Do not call it a measured exit."
+      ],
+      "risk": "The residual is large by nature. The report should say so plainly and list the measurements that would shrink it.",
+      "source_ids": ["dh_export_2023", "effluent_total_2023"]
+    },
+    {
+      "id": "chg:diesel",
+      "title": "Diesel included in the energy balance",
+      "draft": "Included in the 1,453 GWh input, but not followed through to an exit",
+      "now": "2.82 GWh/y enters and leaves as heat to air. Left out of the exergy analysis",
+      "verdict": "Adopt",
+      "argument": [
+        "Diesel is 0.2 % of input. It powers vehicles outside the electricity–steam system, so it belongs in the energy balance but adds nothing to the exergy hotspot question.",
+        "The report needs one sentence saying why diesel is excluded from exergy."
+      ],
+      "risk": "None material.",
+      "source_ids": ["diesel_gwh_2023_t13"]
+    },
+    {
+      "id": "chg:mc",
+      "title": "Monte Carlo: ranges reported and consistency filter applied",
+      "draft": "Distributions and tornado charts were shown, but no output ranges, and 'macro results are robust' was asserted without support",
+      "now": "10,000 runs with a fixed seed. Runs are kept only if TMP supplies 70–90 % of steam (Holmen) and no flow goes negative; 99.2 % pass. Every headline number has P5–P95",
+      "verdict": "Adopt",
+      "argument": [
+        "The old code computed a consistency filter but never applied it, so 0.8 % of runs had negative steam flows or negative exergy destruction.",
+        "The 70–90 % condition never removes a run. The model agrees with Holmen's figure without being forced to, which is evidence in its favour.",
+        "TMP > paper machines > electric boilers in exergy destroyed holds in 100 % of accepted runs. The report can now state this as a measured result."
+      ],
+      "risk": "The ranges are only as good as the input distributions. Several are judgement and marked class C/D in the inputs list.",
+      "source_ids": ["steam_recovery_rate_2025"]
+    },
+    {
+      "id": "chg:boiler",
+      "title": "Electric boiler efficiency sampled directly",
+      "draft": "Not modelled. Boiler losses were 145 − 130 = 15 GWh",
+      "now": "Efficiency 0.95–0.995 (base 0.98). Implied yield 1.499 t/MWh against Holmen's 1.5. Losses 3 GWh",
+      "verdict": "Adopt",
+      "argument": [
+        "The old model drew yield and steam heat independently, so their product went above 100 % efficiency in 6 % of runs.",
+        "Sampling efficiency directly keeps every run physical, and the base case reproduces Holmen's 1.5 t/MWh."
+      ],
+      "risk": "None material.",
+      "source_ids": ["steam_per_MW_2025"]
+    },
+    {
+      "id": "chg:pmwaste",
+      "title": "Paper machine waste-heat temperature: 55 → 50 °C",
+      "draft": "55 °C (PM heat 'carries only 50 GWh of exergy')",
+      "now": "50 °C (range 45–60 °C), as Holmen states for PM wastewater",
+      "verdict": "Adopt",
+      "argument": ["The source says around 50 °C. Total exergy destroyed rises by 4.7 GWh, and the ranking is unchanged."],
+      "risk": "None material.",
+      "source_ids": ["pm_wastewater_T_2019"]
+    },
+    {
+      "id": "chg:measures",
+      "title": "Improvement measures: ranges and definitions",
+      "draft": "M1 48, M2 93–108, M3 38, combined ~126 GWh/y as single values",
+      "now": "M1 48 (46–50), M2 98 (63–109), M3 38 (32–44), combined 126 (91–135) GWh/y. All labelled as full-year upper bounds",
+      "verdict": "Adopt",
+      "argument": [
+        "The base values match the draft, so the draft's arithmetic was right. What is new is the uncertainty range and a cap: no measure can displace more steam than the boilers make.",
+        "M3 is now '+2 points of press dryness from wherever the baseline sits'. A fixed 50 % target mixed the measure with baseline uncertainty and gave a misleading 0–75 GWh range.",
+        "The heat pump COP of 2.5–3.5 is now tied to Arpagaus et al. (2018), which reports 2.2–2.8 at a 70 K lift and higher at smaller lifts. Our lift is about 58 K. The full paper still needs reading before it is cited.",
+        "Savings assume the boilers run all year. Holmen says steam is sometimes vented in summer, so the real annual saving is lower. Keep the 'upper bound' label."
+      ],
+      "risk": "The size of the seasonal reduction is not modelled. Boiler run-hours from Holmen would settle it.",
+      "source_ids": ["steam_recovery_rate_2025"]
+    },
+    {
+      "id": "chg:residual-steam",
+      "title": "134 GWh of steam with no documented use",
+      "draft": "130 GWh of 'other heat uses'. Its size was not questioned",
+      "now": "134 GWh (P5–P95 36–206), labelled unallocated: hot water, heating and summer venting",
+      "verdict": "Keep as a finding",
+      "argument": [
+        "Documented heat uses add up to about 16 GWh: district heat of 11.9 GWh plus about 4.4 GWh of domestic heating in 2019.",
+        "Allocating the rest to a named use would invent data. It stays a labelled residual, and the report states it as a gap.",
+        "If PM drying uses 110 t/h (the top of Holmen's range), the residual falls to 63 GWh. The two estimated flows explain most of it."
+      ],
+      "risk": "This is the least certain flow in the steam loop. It is the first item on the data-request list.",
+      "source_ids": ["dh_export_2023", "dh_2019", "pm_steam_2025"]
+    },
+    {
+      "id": "chg:tmp-sec",
+      "title": "TMP specific electricity: 2,406 kWh/t vs Holmen's 'normal' 1,650–2,150",
+      "draft": "Not discussed. The 70 % share was used without checking it",
+      "now": "Keep the 70 % share. Holmen's normal range is shown as scenario S6. See the TMP section for the full argument",
+      "verdict": "Keep 70 %, flagged",
+      "argument": [
+        "Two independent sources put the TMP plant at about 2,320 kWh per tonne of pulp: the Holmen slide and the metered August 2019 values.",
+        "2023 is 4 % above that, which fits Holmen's own description of 2023: extra refining for pulp quality on L12, price-driven stops, and rising per-tonne use even at full production.",
+        "Moving to 2,150 would leave 126 GWh of electricity with no consumer, against Holmen's 'about 5 %' for everything else."
+      ],
+      "risk": "Holmen's metered 2023 TMP electricity would settle this.",
+      "source_ids": ["tmp_el_spec_2025", "tmp_aux_el_2025", "narr_l12_quality_2023", "pptx_tmp_in", "el_tmp3_aug2019", "el_tmp12_aug2019"]
+    }
+  ],
+  "tmp": {
+    "summary": "Keep Holmen's 70 % TMP share. Treat 'normal' 1,500–2,000 kWh/t as a statement about refining in normal operation, not about the plant's annual average.",
+    "figures": [
+      {"label": "Model 2023 (70 % × 1,450 GWh ÷ 421,883 t)", "value": 2406, "kind": "model"},
+      {"label": "Holmen slide (undated): 2.20 MWh per tonne paper ÷ 0.949 t pulp per t paper", "value": 2318, "kind": "independent"},
+      {"label": "Aug 2019 metered TMP3 + TMP12 (84 GWh/month) ÷ est. 2019 pulp per month", "value": 2328, "kind": "independent"},
+      {"label": "Holmen 'normal', upper end (2,000 refining + 150 auxiliaries)", "value": 2150, "kind": "claim"},
+      {"label": "Holmen 'normal', midpoint (1,750 + 150)", "value": 1900, "kind": "claim"}
+    ],
+    "steps": [
+      {"h": "What conflicts", "p": "Holmen (2025) gave two statements that cannot both describe 2023. The TMP plant uses 'about 70 %' of 1,450 GWh, which is 1,015 GWh or 2,406 kWh per tonne of pulp. Refining 'normally' takes 1,500–2,000 kWh/t, plus 150 kWh/t for auxiliaries, which is 1,650–2,150 kWh/t. At the upper end the TMP plant would use 907 GWh (63 %); at the midpoint 802 GWh (55 %)."},
+      {"h": "What the other sources say", "p": "Two independent figures land near 2,320 kWh/t. The Holmen slide gives 2.20 MWh into TMP per tonne of paper. At 2023's pulp-to-paper ratio of 0.949 that is 2,318 kWh per tonne of pulp. The slide is undated, but its 565 kt/yr output suggests 2015–2018. The August 2019 line meters show TMP3 and TMP12 using 84 GWh in one month. Against estimated 2019 pulp output (about 36 kt per month) that is 2,328 kWh/t. Both are plant-level figures, the same basis as the model."},
+      {"h": "Why 2023 sits higher", "p": "The Miljörapport gives three reasons that point the same way. Refining electricity on line L12 was raised on purpose to hold pulp quality. Planned stops driven by electricity prices raised use per tonne. And specific electricity rose even in periods of full production. A 4 % rise over the historical ~2,320 is consistent with all three."},
+      {"h": "What Holmen's 'normal' range probably means", "p": "The answer was about the refiner ('depends on the refiner, wood chip characteristics, required pulp quality'). It reads as the energy a refiner line takes in steady operation for a typical grade. A plant's annual average also includes reject refining, idling, start-ups after stops, and the harder grades. So the plant average should sit above a refiner's normal range, as all three plant-level figures do."},
+      {"h": "What breaks if we use 2,150 instead", "p": "Scenario S6 takes 2,150 kWh/t and keeps the other shares. Then 126 GWh of electricity (9 %) has no named consumer, against Holmen's 'about 5 %' for everything outside TMP, PM and boilers. The scenario also keeps TMP steam recovery at 100 t/h. Physically, less refining electricity means less heat to recover, so the scenario is optimistic about steam."},
+      {"h": "What this means for the measures", "p": "The lever 'TMP at Holmen's normal SEC' saves 108 GWh/y gross. About half comes back as extra boiler load, because less refining heat means less recovered steam, so it is about 57 GWh/y net. It is conditional on the 70 % share being right. Present it as 'refining at the top of Holmen's normal span', not as a firm saving."},
+      {"h": "What would settle it", "p": "Holmen meters TMP3 and TMP12 separately; the August 2019 figures came from those meters. One request for the 2023 annual totals per line would replace the 70 % estimate with a measurement and close this question."}
+    ],
+    "report_text": "TMP specific electricity in the model is 2,406 kWh per tonne of pulp (70 % of 1,450 GWh). This is above Holmen's stated 'normal' refining range of 1,500–2,000 kWh/t plus 150 kWh/t for auxiliaries. Two independent plant-level figures, an undated Holmen energy-flow slide and metered August 2019 line data, both give about 2,320 kWh/t. That suggests the normal range describes refiner operation rather than the plant's annual average. The 2023 value is about 4 % higher, consistent with the Miljörapport's account of extra refining on L12 for pulp quality and price-driven production stops. We therefore keep the 70 % share and show Holmen's normal range as a sensitivity case (S6). Metered 2023 electricity per TMP line would resolve the difference."
+  },
+  "questions": [
+    {"id": "q:tmp-meter", "q": "Ask Holmen for 2023 metered electricity per TMP line (TMP3, TMP12)?", "why": "Replaces the 70 % estimate and closes the 2,406 vs 2,150 question."},
+    {"id": "q:effluent", "q": "Ask Holmen for the post-2020 effluent temperature and the cooling-water outlet temperature?", "why": "Narrows the two water exits (233 and 46 GWh) and their 30–40 °C and 5–15 K ranges."},
+    {"id": "q:boiler-hours", "q": "Ask Holmen for electric boiler run hours or monthly boiler electricity?", "why": "Turns the measures' 'full-year upper bound' into a seasonal estimate."},
+    {"id": "q:cop", "q": "Who reads Arpagaus et al. (2018) in full to confirm the heat pump COP range?", "why": "Only abstract-level figures were checked."},
+    {"id": "q:slide-year", "q": "Does anyone know the year of the 'Viktiga energiflöden' slide?", "why": "It supports two key arguments (steam recovery decline, TMP specific electricity)."}
+  ]
+}
