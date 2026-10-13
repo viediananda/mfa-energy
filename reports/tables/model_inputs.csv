@@ -1,45 +1,47 @@
 param,description,value,unit,distribution,source_id,data_class
-E_tot,Electricity use 2023,1450.0,GWh/y,"normal(mean 1450, sd 14.5)",el_total_2023_t13,A
+E_tot,Electricity use 2023,1450.0,GWh/y,"normal(mean 1450, sd 29)",el_total_2023_t13,A
 paper_t,Paper production,444494.0,t/y,"normal(mean 444494, sd 4444.94)",prod_paper_2023,A
 pulp_t,TMP pulp production (ADT),421883.0,t/y,"normal(mean 421883, sd 4218.83)",prod_tmp_2023,A
 DH_export,District heat to Norrtalje Energi,11.877,GWh/y,"normal(mean 11.877, sd 0.59385)",dh_export_2023,A
-diesel,"Diesel, internal transport (energy input, heat ends in air)",2.82,GWh/y,"normal(mean 2.82, sd 0.0564)",diesel_gwh_2023_t13,A
-V_wwtp,"WWTP effluent volume (18,300 m3/d x 365)",6679500.0,m3/y,"normal(mean 6.6795e+06, sd 333975)",effluent_wwtp_daily_2023,A
-V_ff,Second outlet FF PM2 = total effluent - WWTP,609361.0,m3/y,"normal(mean 609361, sd 60936.1)",effluent_total_2023,A
+diesel,"Diesel, internal transport (energy input, heat ends in air)",2.82,GWh/y,"normal(mean 2.82, sd 0.141)",diesel_gwh_2023_t13,A
+V_wwtp,"WWTP effluent volume (18,300 m3/d x 365)",6679500.0,m3/y,"normal(mean 6.6795e+06, sd 133590)",effluent_wwtp_daily_2023,A
+V_ff,Second outlet FF PM2 = total effluent - WWTP,609361.0,m3/y,"normal(mean 609361, sd 12187.2)",effluent_total_2023,A
 V_cool,Release of cooling water and other non-affected process waters,4000000.0,m3/y,"normal(mean 4e+06, sd 400000)",img_wb_cooling,B
 dT_cool,Temperature rise of cooling water (NOT in any source),10.0,K,"uniform(5, 15)",assumption,D
-sh_TMP,TMP share of electricity,0.7,-,"triangular(0.65, 0.7, 0.75)",el_split_tmp_2025,B
-sh_PM,Paper machines share (incl. bleaching),0.15,-,"triangular(0.12, 0.15, 0.22)",el_split_pm_2025,B
-sh_EB,Electric boilers share,0.1,-,"triangular(0.05, 0.1, 0.12)",el_split_boiler_2025,B
-sh_OTH,Other users share (remainder; not stated by Holmen),0.05,-,"triangular(0.045, 0.05, 0.07)",assumption,D
+sh_TMP,TMP share of electricity,0.7,-,"normal(mean 0.7, sd 0.07)",el_split_tmp_2025,B
+sh_PM,Paper machines share (incl. bleaching),0.15,-,"normal(mean 0.15, sd 0.015)",el_split_pm_2025,B
+sh_EB,Electric boilers share,0.1,-,"normal(mean 0.1, sd 0.01)",el_split_boiler_2025,B
+sh_OTH,Other users share (remainder; not stated by Holmen),0.05,-,"normal(mean 0.05, sd 0.005)",assumption,D
 P_wood,Wood handling electric power,2.5,MW,"triangular(2, 2.5, 3)",wood_handling_el_2025,B
 P_bleach,Bleaching electric power,3.0,MW,"triangular(2.4, 3, 3.6)",bleaching_el_2025,B
 P_wwtp,WWTP electric power,2.5,MW,"triangular(2, 2.5, 3)",wwtp_el_2025,B
 aux_TMP,TMP auxiliary drives,150.0,kWh/t,"triangular(120, 150, 180)",tmp_aux_el_2025,B
 m_rec,Steam recovered from TMP,100.0,t/h,"triangular(85, 100, 115)",tmp_steam_recycled_2025,B
-eff_EB,Electric boiler efficiency (sampled directly; implied yield ~1.5 t/MWh),0.98,-,"triangular(0.95, 0.98, 0.995)",steam_per_MW_2025,C
-m_PM,Steam to paper-machine drying (midpoint of 80-110),95.0,t/h,"uniform(80, 110)",pm_steam_2025,B
+y_EB,Electric boiler steam yield (Holmen); boiler steam = electricity x yield x steam heat,1.5,t/MWh,"normal(mean 1.5, sd 0.075)",steam_per_MW_2025,B
+eff_EB,Electric boiler efficiency (used only in sensitivity case S5),0.98,-,fixed,assumption,C
+m_PM,Steam to paper-machine drying (midpoint of 80-110),95.0,t/h,"triangular(80, 95, 110)",pm_steam_2025,B
 m_wood,Steam to wood handling,1.5,t/h,"triangular(1.2, 1.5, 1.8)",wood_handling_steam_2025,B
 PM11_frac,PM11 share of PM+bleaching electricity (Aug 2019 month),0.6363636363636364,-,"uniform(0.525, 0.66)",el_pm11_aug2019,C
-h_prod,"Production hours (Table 4 weighted 7,174 h, rounded)",7200.0,h/y,"triangular(6800, 7200, 7600)",pm11_days_2023,C
+h_prod,"Production hours (Table 4 weighted 7,174 h, rounded)",7200.0,h/y,"triangular(6800, 7200, 7800)",pm11_days_2023,C
 h_wwtp,WWTP hours,8760.0,h/y,fixed,wwtp_days_2023,A
 f_dist,Internal electricity distribution loss (Holmen: no data),0.01,-,"uniform(0.005, 0.02)",assumption,D
 f_steamloss,Steam network loss (Holmen: no data),0.04,-,"uniform(0.02, 0.06)",assumption,D
+dh_override,"Steam heat counted per tonne: latent heat at 2.4 bar(g), 2.15 GJ/t",0.5972222222222222,MWh/t,"normal(mean 0.597222, sd 0.0179167)",steam_temp_2p4bar_2019,C
 p_steam,"Steam pressure, 2.4 bar(g) = 3.4 bar abs",340000.0,Pa,"uniform(330000, 360000)",steam_pressure_pm_2019,C
 T_cond,Condensate return temperature,90.0,degC,"uniform(80, 100)",condensate_temp_pm_2019,C
 T_TMPwaste,Temperature of unrecovered TMP heat,80.0,degC,"uniform(70, 100)",assumption,D
-T_PMwaste,PM waste heat temperature,50.0,degC,"uniform(45, 60)",pm_wastewater_T_2019,C
+T_PMwaste,PM waste heat temperature (wastewater ~50 C and warmer exhaust air),55.0,degC,"uniform(50, 60)",pm_wastewater_T_2019,C
 T_HW,Hot water temperature,60.0,degC,"uniform(50, 70)",assumption,D
 T_DHs,District heat supply temperature,85.0,degC,fixed,assumption,D
 T_DHr,District heat return temperature,45.0,degC,fixed,assumption,D
-T_eff,WWTP effluent temperature (absolute),35.0,degC,"uniform(30, 40)",effluent_dT_sea_2019,D
-T_ff,FF PM2 outlet temperature,30.0,degC,"uniform(20, 40)",assumption,D
-T0,Dead state (annual mean surroundings),7.0,degC,fixed,assumption,D
+T_eff,Effluent temperature (Holmen: roughly 32; about 20 in long shutdowns),32.0,degC,"triangular(20, 32, 32)",effluent_dT_sea_2019,C
+T_ff,Second outlet temperature (same draw as T_eff),32.0,degC,fixed,effluent_dT_sea_2019,C
+T0,Dead state (annual mean surroundings),7.0,degC,"uniform(5, 10)",assumption,D
 T_ref,Reference temperature for heat in water,7.0,degC,fixed,assumption,D
-cpv,Volumetric heat capacity of water,4.17,MJ/m3K,fixed,physical constant,A
+cpv,Volumetric heat capacity of water,4.18,MJ/m3K,fixed,physical constant,A
 dm_rec_M1,M1: extra TMP steam recovery,10.0,t/h,fixed,assumption (group draft),D
 cop_hp,M2: COP of high-temperature heat pump,3.0,-,"uniform(2.5, 3.5)",Arpagaus et al. 2018 (see docs/assumptions.md),C
 press_dry,M3: dryness after press section (baseline),0.48,-,"triangular(0.45, 0.48, 0.51)",assumption (group draft),D
 d_press_dry,M3: dryness gain from the measure,0.02,-,fixed,assumption (group draft: 48 -> 50 %),D
 fin_moist,Final paper moisture,0.07,-,fixed,paper_water_aq,B
-h_evap,Evaporation heat in dryer section,2.4,GJ/t,fixed,assumption (group draft),D
+h_evap,Evaporation heat in dryer section,2.4,GJ/t,"normal(mean 2.4, sd 0.048)",assumption (group draft),D

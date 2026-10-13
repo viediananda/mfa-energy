@@ -1,15 +1,15 @@
 quantity,model,independent,unit,source_id,note,diff_pct
 TMP electricity,1014.9999999999999,1008.0,GWh/y,el_tmp3_aug2019+el_tmp12_aug2019,one month (Aug 2019) x 12,0.694444444444442
 PM + bleaching electricity,217.5,264.0,GWh/y,el_pm11_aug2019+el_pm12_aug2019,one month (Aug 2019) x 12,-17.613636363636363
-Recovered TMP steam,470.6765143430486,483.3333333333333,GWh/y,steam_tmp_net_2019,"145,000 GJ read as per month (period not stated in source; conflicts with steam_tmp3_use_aq)",-2.6186522048864957
-PM drying steam,447.1426886258962,516.6666666666666,GWh/y,steam_pm_2019,"155,000 GJ read as per month (period not stated)",-13.456253814342666
+Recovered TMP steam,430.0,483.3333333333333,GWh/y,steam_tmp_net_2019,"145,000 GJ read as per month (period not stated in source; conflicts with steam_tmp3_use_aq)",-11.03448275862069
+PM drying steam,408.5,516.6666666666666,GWh/y,steam_pm_2019,"155,000 GJ read as per month (period not stated)",-20.93548387096774
 WWTP share of electricity,1.5103448275862068,1.25,%,el_wwtp_share_2019,midpoint of 1-1.5 %,20.827586206896555
-Share of steam from TMP,76.81046895990393,80.0,%,steam_recovery_rate_2025,midpoint of 70-90 %,-3.9869138001200843
+Share of steam from TMP,76.80000000000001,80.0,%,steam_recovery_rate_2025,midpoint of 70-90 %,-3.9999999999999813
 Mill specific electricity,3.2621362718056934,3.3,MWh/t paper,spec_energy_2023_t13,NOT independent: same electricity and tonnage,-1.1473857028577727
 Total energy input (electricity + diesel),1452.82,1453.0,GWh/y,energy_sum_2023_t13,NOT independent: built from the same table,-0.012388162422583004
 TMP specific energy vs upper normal range,2405.8803033068407,2150.0,kWh/t,tmp_el_spec_2025+tmp_aux_el_2025,"Holmen normal 1,500-2,000 + 150 aux; model above the range (audit S1)",11.901409456132118
 TMP specific energy vs range midpoint,2405.8803033068407,1900.0,kWh/t,tmp_el_spec_2025+tmp_aux_el_2025,"midpoint 1,750 + 150",26.62527912141266
-Electric boiler yield (implied),1.4991187758429974,1.5,t/MWh,steam_per_MW_2025,implied = eff_EB / dh,-0.05874827713351349
+Electric boiler yield (implied),1.5,1.5,t/MWh,steam_per_MW_2025,implied = eff_EB / dh,0.0
 Production hours,7200.0,7174.0,h/y,pm11_days_2023+pm12_days_2023,production-weighted 298.9 d x 24 h,0.3624198494563746
-Steam residual vs documented heat use,134.0626174282847,16.321444444444445,GWh/y,dh_export_2023+dh_2019,DH export 11.9 GWh + ~4.4 GWh domestic heating (2019); rest is unallocated,721.3894173681266
+Steam residual vs documented heat use,122.54999999999994,16.321444444444445,GWh/y,dh_export_2023+dh_2019,DH export 11.9 GWh + ~4.4 GWh domestic heating (2019); rest is unallocated,650.852661461063
 Effluent + cooling water volume vs raw water intake,11.288861,11.047,Mm3/y,effluent_total_2023+img_wb_cooling vs water_raw_total_2023,FF PM2 may be part of the cooling-water stream (possible double count),2.1893817325970844

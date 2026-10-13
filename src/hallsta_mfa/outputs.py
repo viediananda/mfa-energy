@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
 
 from . import plotstyle
-from .model import BASE, DIST, PROCS, ppf, label
+from .model import BASE, DIST, PROCS, PROPERTY_BASED, TIED, ppf, label
 from .mc import evaluate, derive, run_mc, summary, MCResult
-from .measures import MEASURES
+from .measures import MEASURES, evaporated_water
 
 ROOT = Path(__file__).resolve().parents[2]
 TAB = ROOT / 'reports' / 'tables'
@@ -40,7 +40,9 @@ INPUT_META = {
  'P_wwtp': ('WWTP electric power', 'MW', 'wwtp_el_2025', 'B'),
  'aux_TMP': ('TMP auxiliary drives', 'kWh/t', 'tmp_aux_el_2025', 'B'),
  'm_rec': ('Steam recovered from TMP', 't/h', 'tmp_steam_recycled_2025', 'B'),
- 'eff_EB': ('Electric boiler efficiency (sampled directly; implied yield ~1.5 t/MWh)', '-', 'steam_per_MW_2025', 'C'),
+ 'y_EB': ('Electric boiler steam yield (Holmen); boiler steam = electricity x yield x steam heat', 't/MWh', 'steam_per_MW_2025', 'B'),
+ 'eff_EB': ('Electric boiler efficiency (used only in sensitivity case S5)', '-', 'assumption', 'C'),
+ 'dh_override': ('Steam heat counted per tonne: latent heat at 2.4 bar(g), 2.15 GJ/t', 'MWh/t', 'steam_temp_2p4bar_2019', 'C'),
  'm_PM': ('Steam to paper-machine drying (midpoint of 80-110)', 't/h', 'pm_steam_2025', 'B'),
  'm_wood': ('Steam to wood handling', 't/h', 'wood_handling_steam_2025', 'B'),
  'PM11_frac': ('PM11 share of PM+bleaching electricity (Aug 2019 month)', '-', 'el_pm11_aug2019', 'C'),
@@ -51,12 +53,12 @@ INPUT_META = {
  'p_steam': ('Steam pressure, 2.4 bar(g) = 3.4 bar abs', 'Pa', 'steam_pressure_pm_2019', 'C'),
  'T_cond': ('Condensate return temperature', 'degC', 'condensate_temp_pm_2019', 'C'),
  'T_TMPwaste': ('Temperature of unrecovered TMP heat', 'degC', 'assumption', 'D'),
- 'T_PMwaste': ('PM waste heat temperature', 'degC', 'pm_wastewater_T_2019', 'C'),
+ 'T_PMwaste': ('PM waste heat temperature (wastewater ~50 C and warmer exhaust air)', 'degC', 'pm_wastewater_T_2019', 'C'),
  'T_HW': ('Hot water temperature', 'degC', 'assumption', 'D'),
  'T_DHs': ('District heat supply temperature', 'degC', 'assumption', 'D'),
  'T_DHr': ('District heat return temperature', 'degC', 'assumption', 'D'),
- 'T_eff': ('WWTP effluent temperature (absolute)', 'degC', 'effluent_dT_sea_2019', 'D'),
- 'T_ff': ('FF PM2 outlet temperature', 'degC', 'assumption', 'D'),
+ 'T_eff': ('Effluent temperature (Holmen: roughly 32; about 20 in long shutdowns)', 'degC', 'effluent_dT_sea_2019', 'C'),
+ 'T_ff': ('Second outlet temperature (same draw as T_eff)', 'degC', 'effluent_dT_sea_2019', 'C'),
  'T0': ('Dead state (annual mean surroundings)', 'degC', 'assumption', 'D'),
  'T_ref': ('Reference temperature for heat in water', 'degC', 'assumption', 'D'),
  'cpv': ('Volumetric heat capacity of water', 'MJ/m3K', 'physical constant', 'A'),
@@ -149,17 +151,52 @@ def crosschecks(b):
 
 # ---------------------------------------------------------------- scenarios
 SCENARIOS = {
- 'S0 Base': {},
+ 'S0 Base (draft-aligned)': {},
  'S1 2019 electricity split': dict(sh_TMP=0.72*0.9625, sh_PM=0.22*0.9625, sh_EB=0.06*0.9625, sh_OTH=0.0375),
  'S2 T0 = 25 C': dict(T0=25.0),
  'S3 PM steam 110 t/h': dict(m_PM=110.0),
  'S4 stress: 85 t/h recovery + 110 t/h PM': dict(m_rec=85.0, m_PM=110.0),
- 'S5 steam basis: latent heat only (2.15 GJ/t)': dict(dh_override=2.15/3.6),
+ 'S5 steam to 90 C condensate (2.35 GJ/t, boiler 98 %)': dict(PROPERTY_BASED),
  "S6 TMP at Holmen's normal SEC (2,150 kWh/t)": dict(sec_TMP_override=2150.0),
- 'S7 effluent 39 C (32 K above sea)': dict(T_eff=39.0),
+ 'S7 effluent 39 C (read as 32 K above 7 C)': dict(T_eff=39.0, T_ff=39.0),
  'S8 hours 8,760 h': dict(h_prod=8760.0),
- 'S9 PM waste heat 55 C (old base)': dict(T_PMwaste=55.0),
+ 'S9 PM waste heat 50 C (PM wastewater value)': dict(T_PMwaste=50.0),
+ 'S10 effluent 20 C (long-shutdown value)': dict(T_eff=20.0, T_ff=20.0),
 }
+
+
+EXITS = [  # key, label (group draft Table 2 structure)
+ ('DH', 'District heat to Norrtälje Energi'), ('evap', 'Dryer exhaust air: latent heat in evaporated water'),
+ ('dryer_rest', 'Dryer exhaust air and hood losses: residual drying heat'), ('water', 'Wastewater to Edeboviken'),
+ ('EB_rest', 'Electric boiler residual (condensate heat not counted at latent basis)'),
+ ('st_loss', 'Steam distribution losses'), ('grid', 'Internal electrical grid losses'),
+ ('subtotal', 'Subtotal, individually quantified'), ('by_diff', 'Not individually quantified (by difference)'),
+ ('cool', '  of which: cooling water, estimated (4 Mm3/y, 5-15 K)'), ('total', 'Total = energy input')]
+
+
+def exits_draft(p, r):
+    """Exit table in the group draft's Table 2 structure (works on scalars and MC arrays)."""
+    evap = evaporated_water(p['paper_t'], p['press_dry'], p['fin_moist'])*p['h_evap']/3600
+    d = {'DH': p['DH_export'] + 0*r['E_in'], 'evap': evap, 'dryer_rest': r['st_PM'] - evap, 'water': r['sink_water'],
+         'EB_rest': r['loss_EB'], 'st_loss': r['st_loss'], 'grid': r['el_dist']}
+    d['subtotal'] = sum(d[k] for k in ['DH', 'evap', 'dryer_rest', 'water', 'EB_rest', 'st_loss', 'grid'])
+    d['by_diff'] = r['E_in'] - d['subtotal']; d['cool'] = r['sink_cool']; d['total'] = r['E_in']
+    return d
+
+
+def exits_table(mc, b):
+    base = exits_draft(BASE, b)
+    P = dict(BASE); P.update({k: mc.X[k].values for k in mc.X.columns})
+    for k, src in TIED.items():
+        P[k] = P[src]
+    ok = mc.ok.values
+    dm = exits_draft(P, mc.Y)
+    rows = []
+    for k, lab in EXITS:
+        v = np.asarray(dm[k])[ok]
+        rows.append({'exit': lab, 'base_GWh': base[k], 'share_pct': base[k]/b['E_in']*100,
+                     'P5': np.percentile(v, 5), 'P95': np.percentile(v, 95)})
+    return pd.DataFrame(rows)
 
 
 def scenarios_table():
@@ -258,7 +295,8 @@ def tornado_table():
     base = evaluate(dict(BASE)); rows = []
     for k in DIST:
         lo, hi = ppf(k, .05), ppf(k, .95)
-        rl, rh = evaluate({**BASE, k: lo}), evaluate({**BASE, k: hi})
+        tie = lambda v: {k: v, **{t: v for t, src in TIED.items() if src == k}}
+        rl, rh = evaluate({**BASE, **tie(lo)}), evaluate({**BASE, **tie(hi)})
         for m in TORNADO_METRICS:
             rows.append(dict(metric=m, input=k, P5_value=lo, P95_value=hi, at_P5=rl[m], at_P95=rh[m], base=base[m],
                              swing=abs(rh[m] - rl[m])))
@@ -467,6 +505,7 @@ def build_all(N=10_000, seed=2023, mc=None, verbose=True):
     MT = measures_table(mc, b); write(MT, 'model_measures.csv', False); out['MT'] = MT
     out['xc'] = crosschecks(b); write(out['xc'], 'model_crosschecks.csv', False)
     out['sc'] = scenarios_table(); write(out['sc'], 'model_scenarios.csv')
+    out['exits'] = exits_table(mc, b); write(out['exits'], 'model_exits_draft_format.csv', False)
     out['head'] = headline_table(mc, b); write(out['head'], 'headline.csv')
     out['links_E'], _, ok1 = fig_sankey_energy(b); out['links_X'], _, ok2 = fig_sankey_exergy(b)
     out['sankey_png'] = ok1 and ok2

@@ -1,0 +1,196 @@
+# Report edits for the group draft (12 Oct 2026)
+
+Generated from analysis/review_content.py. Model baseline is aligned with the draft; only invalid or inconsistent items are fixed, and missing support is added.
+
+| # | Section | Type | Current | Change to | Why |
+|---|---|---|---|---|---|
+| 1 | 1 Introduction | Fix | "The pulp and building industry is one of Sweden's biggest industrial electricity users" | "The pulp and paper industry is one of Sweden's biggest industrial electricity users" | Typo. |
+| 2 | 1 Introduction | Fix | "...supports Sweden's national electrification goals (Holmen Q&A, 2025)" | "...supports Sweden's national electrification goals (Swedish Government, 2022)" | A policy claim needs the policy source, not the mill Q&A. |
+| 3 | 3.3 System boundary | Add | (end of section) | "Energy in the wood raw material and in the bark sold as fuel (about 204 GWh in 2023) is outside the scope; the analysis follows purchased electricity and diesel." | A reader will ask where the wood energy is. One sentence closes it. |
+| 4 | 3.4 Reference year | Fix | "The most recent year with comprehensive government statistics is 2023 (Holmen, 2023)." | "2023 is the most recent year covered by the mill's environmental report (Holmen Paper, 2024)." | The Miljörapport is a company report to the authority, not a government statistic. |
+| 5 | 3.4 Reference year | Add | (after the first paragraph) | "2023 was not a typical year: production (444 kt) was the second lowest of 2019–2023 and specific electricity use (3.26 MWh/t) the highest, because of price-driven and market-related stops, a three-month outage of the biological treatment stage and increased refining for pulp quality on line L12 (Miljörapport 2023, section 1.2.1). Specific figures are therefore somewhat above a typical year." | Supported by the EDA; protects the per-tonne results. |
+| 6 | 3.4 Reference year | Add | "The model is annualised using 7,200 operational hours" | "...7,200 operational hours (the production-weighted running time of PM11 and PM12 in 2023, 7,174 h, rounded; Miljörapport Table 4)" | Shows where 7,200 comes from. |
+| 7 | 3.4 Limitations | Fix | "...taken into qualitative consideration by the screening LCA [check with Miao]." | Delete "[check with Miao]". | Draft leftover. |
+| 8 | 4.1 Data sources | Add | (end of section) | "Electricity shares and steam flows are Holmen's estimates given in 2025 and applied to 2023; some temperatures date from 2019. Where sources disagree, the value used and the reason are listed in Appendix A." | States the data vintage. |
+| 9 | 4.3 Steam | Fix | "post-dryer paper moisture of 48%" | "post-press dryness of 48% (final moisture 7%)" | 48 % is the dryness after the press, not the moisture after the dryer. |
+| 10 | 4.3 Steam | Add | (end of section) | "Steam flows are expressed as latent heat (2.15 GJ/t at 2.4 bar(g)). Counting the full heat down to 90 °C condensate (2.35 GJ/t) raises all steam flows by 9 % but leaves the exergy results and the measure savings unchanged (sensitivity case S5)." | Makes the steam convention explicit. |
+| 11 | 4.4 Exergy | Fix | Table 1: "Ex - mCp[...]", "law value heat", "nex" | "Ex = mcp[(T − T0) − T0 ln(T/T0)]", "low-value heat", "ηex" | Typos. |
+| 12 | 4.4 Exergy | Add | (end of section) | "Diesel (0.2 % of the energy input, used by vehicles) is included in the energy balance but not in the exergy analysis." | Explains why diesel is missing from Figure 2. |
+| 13 | 4.5 / 6.3 | Fix | "each trail", "fulling independent", "There are around 10,000 trials", "should all share one sampled value each trial (or be sampled with correlation)", Table 6.2 footnote "should be agreed and justified by the group" | "each trial", "fully independent", "10,000 trials are performed", "share one sampled value in each trial", delete the footnote sentence | Typos and draft leftovers. |
+| 14 | 5.1 Energy | Fix | "Ein = Eout + Ecirculating" | "Ein = Eout (steady state; steam circulating inside the mill is an internal flow)" | Internal flows do not appear in the external balance. |
+| 15 | 5.1 Electric boilers | Fix | "The electric boilers provide steam when recovered TMP steam is sufficient." | "...when recovered TMP steam is insufficient." | Reverses the meaning. |
+| 16 | 5.1 Electric boilers | Fix | "Based on this there is 15 GWh/y as boiler residual." / Table 2 "Electric boiler losses" | "The remaining 15 GWh/y is not a boiler loss (electric boilers are about 98 % efficient). It is the heat used to raise the feedwater from 90 °C condensate to saturation, which the latent-heat convention does not count as steam." In Table 2, rename the row "Electric boiler residual (condensate heat, see 5.1)". | Electric boilers are about 98 % efficient; 15 GWh is condensate heat, not a loss. |
+| 17 | 5.1 PM drying | Fix | "Homen using Valmet", "At 100C normal boiling point, hevap = 2.4 Gj/t water" | "Holmen uses Valmet", "With hevap ≈ 2.4 GJ/t water (evaporation at about 100 °C including heating)" | Typos and units. |
+| 18 | 5.1 Steam supply | Add | (after "excess steam may be released during summer...") | "Only about 16 GWh/y of this 130 GWh/y is documented (district heat and domestic heating). The rest covers warm-water production and summer venting, for which no figures are available. Its size depends mainly on the drying steam, which is known only as 80–110 t/h; at 110 t/h it falls to about 60 GWh/y." | Says how uncertain the 130 GWh is. |
+| 19 | 5.1 Steam supply | Add | (after "estimated steam supply is approximately 560 GWh/y") | "TMP thus supplies 77 % of the steam, within the 70–90 % recovery rate Holmen reports, which supports the estimated flows." | Independent check the draft does not use. |
+| 20 | Table 2 | Fix | "212 (110–212)" | "212 (123–214)" with a footnote "P5–P95 from the Monte Carlo analysis (section 6)" | Same range as 6.4. |
+| 21 | Table 2 | Add | (footnote and under "Not individually quantified") | add a footnote "Dryer rows are estimated from the drying steam flow, not measured." Under "Not individually quantified", add a line "of which cooling water, estimated: about 46 GWh/y (4 Mm³/y at 5–15 K; Holmen water balance 2024)". | The dryer rows are estimates; cooling water is now sized. |
+| 22 | 5.2 SEC | Add | (new paragraph) | The "Suggested text for section 5.2" in step 3. | Answers the obvious question about Holmen's 1,500–2,000 kWh/t. |
+| 23 | 5.3 Exergy | Fix | Steam row "0.315"; effluent row "35 °C, 0.047" | "0.344 (per unit of latent heat)"; "32 °C, 0.042" | One steam factor, consistent with the latent-heat steam numbers; one effluent temperature. |
+| 24 | 5.3 Exergy | Fix | "1,329 GWh (92%) is destroyed inside the mill. 119 GWh leaves with waste heat (109GWh to air, 11GWh to water)" | "1,328 GWh (92 %) is destroyed inside the mill. 120 GWh leaves with waste heat (111 GWh to air, 9 GWh to water)" | Consistent with 32 °C effluent. |
+| 25 | 5.3 Exergy | Add | (under the exergy table) | "Paper-machine waste heat is taken at 55 °C, between the ~50 °C of the PM wastewater (Holmen) and the warmer dryer exhaust air." | The only source value is 50 °C. |
+| 26 | 5.4 Hotspots | Add | (under the hotspot table) | "Improvement potential IP = (1 − ψ)(Exin − Exuseful); it ranks where exergy is lost, it is not an achievable saving. Units without a useful exergy output (paper machines, bleaching, WWTP, wood handling) have ψ = 0 by convention." | States the formula and the convention. |
+| 27 | 5.5 Figure 1 | Fix | "The remaining 766 GWh/y (53%)" | "The remaining 769 GWh/y (53 %)" | Same number as Table 2. |
+| 28 | 5.5 Figure 2 | Fix | Figure 2 (1,324.8 destroyed, 123.2 waste) and caption "factor 0.318" | Replace with reports/figures/model_sankey_exergy.png; caption factor "0.344" | Figure and text must agree. |
+| 29 | 6 Uncertainty | Add | (new subsection 6.5 Results) | Section 6: add a results table with base and P5–P95 for the headline results (from reports/tables/headline.csv), one sentence on the acceptance rule and rate, and "TMP refining ranks first in exergy destroyed in 100 % of accepted runs, followed by the paper machines and the electric boilers." Replace the tornado figure. Delete the leftovers "should be agreed and justified by the group" and "(or be sampled with correlation)". | The draft gives no output ranges. |
+| 30 | 6.4 (c) | Fix | "the loss could be anywhere from about 125 to 214 GWh/y" | "the loss lies between about 123 and 214 GWh/y (P5–P95)" | Matches Table 2. |
+| 31 | 7 Measures | Fix | Measure 2 "93–108 GWh/y (0.21–0.24 MWh/t)" (text, table, 7.1, 8.3) | "88–104 GWh/y (0.20–0.23 MWh/t)" | The draft's combined case already does it this way: it divides the boiler electricity, not the latent steam, by the COP. M2 and the combined case used two different conventions, and this fix makes them agree. |
+| 32 | 7 Measures | Add | (text and table) | Section 7 table: add a column "Seasonal lower bound (75 %)" next to each saving. Text: "Savings assume the electric boilers would otherwise run all year. Holmen reports occasional summer steam surplus, so a lower bound with no saving in June–August is also given." Conclusions: "about 2.98 MWh/t" → "2.98–3.05 MWh/t". | Every saving assumes the boilers run all year. |
+| 33 | 7 Measures | Add | Measure 2: "A high-temperature heat pump could upgrade waste heat..." | Add the source of the COP range: "(Arpagaus et al., 2018)". | COP range needs a citation. |
+| 34 | 7 Measures | Add | Measure 3: "This saves about 7.9 t/h of steam" | "This saves about 7.9 t/h of steam, assuming drying steam scales with the water evaporated (counting only the evaporation heat gives about 5 t/h)" | States the assumption behind 7.9 t/h. |
+| 35 | 9.3 Limitations | Fix | "Insufficient monitoring data for the secondary metering points in the factory" (sentence ends) | Replace with the limitation list in step 9. | Incomplete sentence; limitations are a marking point. |
+| 36 | 10 Conclusions | Fix | "more than half of the energy outflow (765GWh/y)" | "more than half of the energy outflow (769 GWh/y)" | Same number as Table 2. |
+| 37 | 10 Conclusions | Fix | "Improvement scenarios and preliminary screening-level LCA were also assessed" | Keep, but in the LCA sentence say "a qualitative screening LCA" | Section 8.1 says no quantitative LCA was done. |
+| 38 | 10 Conclusions | Fix | "could reduce electricity consumption to approximately 2.98 MWh/t paper" | "could reduce specific electricity use from 3.26 to 2.98–3.05 MWh/t" | Seasonal range. |
+| 39 | 12 References | Fix | "Holmen. (2019). Hallsta mill steam audit 2019. Unpublished technical audit report." | "Holmen Paper AB (2019). Answers to compiled student questions, Hallsta paper mill. Personal communication." | The source is a Q&A, not an audit report. |
+| 40 | 12 References | Fix | "Holmen. (2023). Sustainability and environmental report 2023. Holmen Group." | "Holmen Paper AB (2024). Miljörapport 2023, Hallsta pappersbruk. Annual environmental report." | All 2023 data come from the mill's Miljörapport. |
+| 41 | 12 References | Add | (new entries) | "Arpagaus, C., Bless, F., Uhlmann, M., Schiffmann, J. and Bertsch, S.S. (2018). High temperature heat pumps: Market overview, state of the art, research status, refrigerants, and application potentials. Energy, 152, 985–1010." Also the 2025 Q&A, the study-visit answers and the Viktiga energiflöden slide as personal communication. | Cited sources must be listed. |
+| 42 | 12 References | Fix | Morris et al. "(Accessed: 4 October 2026)"; Spirax Sarco URL "?utm_source" | Remove "Accessed" for the printed book; remove "?utm_source" from the URL. | Citation format. |
+| 43 | Appendix A | Fix | "Effluent temperature 35 °C, Holmen 2019 (32 K above sea)" | "Effluent temperature 32 °C (about 20 °C in long shutdowns), Holmen 2019" | Same as Table 2. |
+| 44 | Appendix A | Add | (new rows) | "Cooling water 4 Mm³/y, Holmen water balance 2024"; "Steam recovery rate 70–90 % of need, Holmen 2025" | Sources used in the text. |
+| 45 | New 4.2 Data screening | Add | (new short section, about one page) | The EDA figures (eda_context, eda_electricity_split, eda_tmp_steam, eda_water_heat) with captions from reports/tables/eda_report_map.csv. | Shows the data were screened; supports 3.4, 5.1 and 5.2. |
+
+## Decision cards
+
+### Steam counted at its latent heat, 2.15 GJ per tonne — Keep + support
+
+**Draft:** Section 4.3 and 5.1 convert steam flows with 2.15 GJ/t, "the useful latent thermal energy released when the steam condenses". TMP steam 430 GWh, boiler steam 130, drying 408.
+
+**What we checked:** The model uses the same convention and reproduces 430.0, 129.9 and 408.5 GWh. We also ran the alternative convention (full heat from 138 °C steam down to 90 °C condensate, 2.35 GJ/t) as sensitivity case S5.
+
+**Why:**
+- When steam heats something it first condenses and releases its latent heat, 2.15 GJ per tonne at 2.4 bar(g). The condensed water is still at 138 °C and can give off a further ~0.2 GJ/t if it cools to the 90 °C that Holmen reports for condensate. Counting only the latent part is a common convention for steam balances, because the condensate heat mostly returns to the steam system with the condensate. The draft states this convention clearly in section 5.1.
+- Both conventions are valid as long as the report uses one consistently. The latent convention keeps all the draft's steam numbers.
+- The convention does not change exergy. One tonne of steam holds 206 kWh of exergy whichever way its heat is counted, so the exergy results are the same in both. It does not change the improvement measures either: M1–M4 come out identical under both conventions (a test in the code checks this).
+- What it does change is the share of steam from TMP (76.8 % in both, because both sources scale equally) and the size of the "electric boiler residual" (next card). Under the 2.35 convention the steam flows are 9.4 % larger: TMP 471, drying 447 GWh.
+
+**Report text:** Section 4.3, after the steam parameters: "Steam flows are expressed as latent heat (2.15 GJ/t at 2.4 bar(g)). Counting the full heat down to 90 °C condensate (2.35 GJ/t) raises all steam flows by 9 % but leaves the exergy results and the measure savings unchanged (sensitivity case S5)."
+
+### The 15 GWh "boiler losses" are not a loss — Fix (label only)
+
+**Draft:** Section 5.1 says "there is 15 GWh/y as boiler residual", and Table 2 lists "Electric boiler losses 15 GWh (145 − 130)".
+
+**What we checked:** The number is right: 145 GWh × 1.5 t/MWh × 2.15 GJ/t = 130 GWh of latent heat, 15 GWh less than the electricity. The label is what is wrong.
+
+**Why:**
+- Electrode boilers turn about 98–99 % of their electricity into steam heat. Read as a loss, 15 GWh would mean 90 % efficiency, and a marker familiar with boilers will notice.
+- At the latent convention the 15 GWh is the heat that raises the feedwater from 90 °C condensate to 138 °C before it boils. It is inside the steam, but the latent convention does not count it as "steam". Check: 1.5 t/MWh × 2.35 GJ/t (full heat) ÷ 3.6 = 0.98, so the boiler is about 98 % efficient on the full-heat basis.
+- So the number stays and only its name changes.
+
+**Report text:** Section 5.1, replace "Based on this there is 15 GWh/y as boiler residual" with: "The remaining 15 GWh/y is not a boiler loss (electric boilers are about 98 % efficient). It is the heat used to raise the feedwater from 90 °C condensate to saturation, which the latent-heat convention does not count as steam." In Table 2, rename the row "Electric boiler residual (condensate heat, see 5.1)".
+
+### TMP uses 70 % of the electricity (2,406 kWh per tonne of pulp) — Keep + support
+
+**Draft:** Section 3.2 and 5.1 use Holmen's 70 % share without discussion.
+
+**What we checked:** Holmen also says refining "normally" takes 1,500–2,000 kWh/t plus 150 kWh/t for auxiliaries. 70 % of 1,450 GWh over 421,883 t of pulp is 2,406 kWh/t, above that range. A marker may spot the tension, so the report should address it. The full argument is in step 3.
+
+**Why:**
+- Two independent plant-level figures from other years give about 2,320 kWh/t: the Holmen energy-flow slide (2,318) and the August 2019 meter readings (2,328). 2023 is 4 % above them.
+- The Miljörapport gives three 2023-specific reasons for higher electricity use per tonne, all pointing the same way.
+- Holmen's "1,500–2,000" was an answer about refiners in normal operation, not the whole TMP plant over a year.
+- Using 2,150 kWh/t instead would leave 126 GWh of electricity with no consumer, against Holmen's split.
+
+**Report text:** Add the paragraph in step 3 ("Suggested text") to section 5.2.
+
+### 130 GWh of steam for "other heat uses" — Keep + support
+
+**Draft:** Section 5.1: "408 GWh is used by PM drying, while remaining steam is used for other thermal demands, including warm water production and heating, while excess steam may be released during summer". Section 5.1 (losses) gives it as 560 − 408 − 22 = 130 GWh.
+
+**What we checked:** The model gives the same: 122.5 GWh unallocated + 6.5 GWh wood handling = 129 GWh. Monte Carlo range for the unallocated part: 55–190 GWh.
+
+**Why:**
+- The draft's description is right and matches Holmen: steam goes first to the dryers, then to warm-water production and domestic heating, and surplus is vented "sometimes during summer months".
+- What the report should add is how uncertain this number is. Documented uses add up to only about 16 GWh (district heat 11.9 GWh in 2023, domestic heating about 4.4 GWh in 2019). The rest is warm-water production and venting, with no figures in the sources.
+- Most of the uncertainty comes from drying steam, which Holmen gives only as 80–110 t/h. At 110 t/h (scenario S3) the remainder falls to 58 GWh. The 2019 answer "PM's 155,000 GJ", if it is per month, corresponds to about 110 t/h, which points to the upper end.
+
+**Report text:** Section 5.1, after "excess steam may be released during summer where no heavy preheat of fresh water is needed": "Only about 16 GWh/y of this 130 GWh/y is documented (district heat and domestic heating). The rest covers warm-water production and summer venting, for which no figures are available. Its size depends mainly on the drying steam, which is known only as 80–110 t/h; at 110 t/h it falls to about 60 GWh/y."
+
+### Effluent temperature: 32 °C, and one value everywhere — Fix (consistency)
+
+**Draft:** Table 2 uses 32 °C (wastewater heat 212 GWh), but the exergy table in 5.3 and Appendix A use 35 °C. Table 2 gives the range as 110–212 GWh, section 6.4 as 125–214.
+
+**What we checked:** At 32 °C the model gives 211.6 GWh. The Monte Carlo with the draft's own distribution, triangular(20, 32, 32), gives P5–P95 123–214 GWh. That confirms the 125–214 in section 6.4.
+
+**Why:**
+- The source is the 2019 answer: "Roughly 32 degrees most of the time. During longer shut downs temp can drop down to approx 20 degrees." The question asked for the difference to the sea, but the answer reads more naturally as the effluent temperature itself. An effluent "dropping to 20 degrees" during a shutdown makes sense as a temperature. An effluent 32 K above the sea would be near 50 °C in summer, too hot for the biological treatment plant. So 32 °C, as in Table 2, is the right reading.
+- The draft's triangular(20, 32, 32) is well justified: 32 °C most of the time, falling toward 20 °C in long stops, and 2023 had many stops (price-driven stops, the MBBR outage in June–August).
+- The 35 °C in the exergy table and Appendix A has no source and contradicts Table 2. 110–212 is the 20–32 °C span at one fixed volume, while 125–214 is the Monte Carlo P5–P95. The report should use the Monte Carlo range in both places, since that is what section 6 describes.
+
+**Report text:** Section 5.3 exergy table: change "Effluent 35 °C, 0.047" to "Effluent 32 °C, 0.042". Appendix A: change "Effluent temperature 35 °C" to "32 °C (about 20 °C in long shutdowns)". Table 2: change "212 (110–212)" to "212 (123–214, P5–P95)". In 6.4(c), say the range is the Monte Carlo P5–P95.
+
+### Table 2: 684 GWh quantified, 769 GWh by difference — Keep + fix the typos
+
+**Draft:** Table 2 gives 684 quantified (47 %) and 769 by difference. Section 5.5 says 766, and the conclusions say 765.
+
+**What we checked:** The model reproduces Table 2 exactly: subtotal 684.0, by difference 768.9 GWh (P5–P95 716–882).
+
+**Why:**
+- 766 and 765 are rounding slips of 769. Use 769 everywhere.
+- One thing to state more carefully: the dryer exhaust rows (278 + 130) are not measured. They are the drying steam estimate (95 t/h) split into evaporation heat and the rest, so "individually quantified" should say "estimated individually" for those rows.
+- The draft already says cooling water "with a 10 K rise would carry about 50 GWh/y". Holmen's 2024 water balance confirms the volume: 4 Mm³/y of "cooling water and other non affected process waters". At 5–15 K that is 25–70 GWh (base 46), which can be named as part of the 769.
+
+**Report text:** Section 5.5: "766" → "769". Conclusions: "765GWh/y" → "769 GWh/y". Table 2: add a footnote "Dryer rows are estimated from the drying steam flow, not measured." Under "Not individually quantified", add a line "of which cooling water, estimated: about 46 GWh/y (4 Mm³/y at 5–15 K; Holmen water balance 2024)".
+
+### One steam exergy factor, and Figure 2 made consistent — Fix (consistency)
+
+**Draft:** The steam exergy factor appears as 0.315 (section 5.3 table), 0.318 (Figure 2 caption) and about 0.345 (hotspot table in 5.4). Figure 2 shows 1,324.8 GWh destroyed and 123.2 GWh waste heat, while the text says 1,329 and 119. Nobody could reproduce the Figure 2 values.
+
+**What we checked:** With steam counted at latent heat, the consistent factor is exergy per tonne ÷ latent heat per tonne = 206 ÷ 597 kWh = 0.344. That is the factor the hotspot table already uses (TMP 430 × 0.344 = 148, boilers 130 × 0.344 = 45). 0.315 is the same exergy divided by the full 2.35 GJ/t heat, and 0.318 is the Carnot factor at 138 °C.
+
+**Why:**
+- Three factors for one quantity looks like an error to a reader, even though each has a reason. With the latent convention, 0.344 is the one that fits the steam numbers.
+- The model gives: of 1,450 GWh of exergy, 1,328 GWh (92 %) is destroyed, 120 GWh leaves with waste heat (111 to air, 9 to water at 32 °C), and 2 GWh leaves as district heat. That is within 1–2 GWh of the draft text (1,329 / 119 / 2). The only real change is water, 11 → 9 GWh, because of 32 °C instead of 35 °C.
+- Figure 2 should be redrawn from these numbers so that the figure and the text agree. The model draws it in reports/figures/model_sankey_exergy.png.
+
+**Report text:** Section 5.3 table: steam row "0.315" → "0.344 (per unit of latent heat)". Figure 2 caption: "factor 0.318" → "factor 0.344"; replace the figure with model_sankey_exergy.png. Section 5.3 text: "1,329 GWh (92 %) is destroyed inside the mill. 119 GWh leaves with waste heat (109 GWh to air, 11 GWh to water)" → "1,328 GWh (92 %) is destroyed inside the mill. 120 GWh leaves with waste heat (111 GWh to air, 9 GWh to water)".
+
+### Paper-machine waste heat at 55 °C — Keep + support
+
+**Draft:** Section 5.3 uses 55 °C for paper-machine waste heat and section 5.4 says it "carries only 50 GWh of exergy".
+
+**What we checked:** Holmen gives paper-machine wastewater at "around 50 degrees". The rest of the paper-machine heat leaves with dryer exhaust air, which is warmer. 55 °C as a blend of the two is reasonable. The model gives 47 GWh of exergy at 55 °C. Scenario S9 (50 °C) changes exergy destroyed by 4 GWh.
+
+**Why:**
+- The value is defensible, but the report should say where it comes from, because the only source number is 50 °C.
+- The "50 GWh" in 5.4 comes from (218 + 408) × 0.077 = 48 GWh. The model, which excludes bleaching from the paper machines, gives 47 GWh. "About 50 GWh" is fine.
+
+**Report text:** Section 5.3, under the exergy table: "Paper-machine waste heat is taken at 55 °C, between the ~50 °C of the PM wastewater (Holmen) and the warmer dryer exhaust air."
+
+### Monte Carlo: show the results, not only the method — Add
+
+**Draft:** Section 6 describes the distributions (Table 6.2), 10,000 trials and the tornado charts, but gives no output ranges. Section 6.4 says "report how often TMP refining ranks first", but the number is not reported. Section 9.2 calls the macro results robust without a number. Two tornado charts have duplicated labels.
+
+**What we checked:** The model implements Table 6.2 exactly as written (CV 2 % electricity, CV 10 % shares renormalised, triangular steam flows, triangular(20, 32, 32) effluent, and so on). It keeps a run only if it is consistent with what is known: TMP supplies 70–90 % of the steam (Holmen), no steam flow is negative, no process destroys negative exergy, and the boilers do not deliver more steam heat than the electricity they use. 97.0 % of runs pass.
+
+**Why:**
+- Without output ranges the reader cannot judge the claim that the results are robust. With them the claim is a measured result.
+- Key results: TMP > paper machines > electric boilers in exergy destroyed in 100 % of accepted runs. The TMP share of steam stays at 73–81 %, inside Holmen's 70–90 %. The boiler share of electricity is the input that moves the savings most.
+- The draft's tornado charts came from a separate script, and two of them have duplicated labels. The model's tornado and Spearman figures can replace them (reports/figures/model_tornado.png, model_spearman.png).
+
+**Report text:** Section 6: add a results table with base and P5–P95 for the headline results (from reports/tables/headline.csv), one sentence on the acceptance rule and rate, and "TMP refining ranks first in exergy destroyed in 100 % of accepted runs, followed by the paper machines and the electric boilers." Replace the tornado figure. Delete the leftovers "should be agreed and justified by the group" and "(or be sampled with correlation)".
+
+### Heat pump saving (Measure 2): 93–108 → 88–104 GWh/y — Fix
+
+**Draft:** Measure 2: "Replacing all boiler steam with a COP of 2.5–3.5 would save 93–108 GWh/y", computed as 145 − 130/COP.
+
+**What we checked:** 130 GWh is the latent heat of the boiler steam. A heat pump has to deliver the full heat, including raising the feedwater from 90 °C, which is the 15 GWh the latent convention leaves out (see the boiler card). Full heat = 130 × 2.35/2.15 = 142 GWh. Saving = 145 − 142/COP = 88–104 GWh/y (COP 3.5 to 2.5), 98 at COP 3.
+
+**Why:**
+- The draft's combined case already does it this way: it divides the boiler electricity, not the latent steam, by the COP. M2 and the combined case used two different conventions, and this fix makes them agree.
+- The change is small (4 GWh) and the conclusion does not change: the heat pump still gives the largest single saving.
+
+**Report text:** Section 7, Measure 2 and the table: "93–108 GWh/y (0.21–0.24 MWh/t)" → "88–104 GWh/y (0.20–0.23 MWh/t)". Same in 7.1 and 8.3. Add the source of the COP range: Arpagaus et al. (2018).
+
+### The savings assume the boilers run all year — Add
+
+**Draft:** Section 7 notes for Measure 1 that "the saving is smaller in summer, when steam is already in surplus and vented". Section 8.2 says the same. The table and conclusions give single values.
+
+**What we checked:** Holmen says recovered steam covers 70–90 % of need "depending on what products are being produced, maintenance shut downs...", and that surplus steam is vented "sometimes during summer months but normally not or very rarely during winter". When steam is vented, the boilers are off and no measure saves anything.
+
+**Why:**
+- Without monthly data we take the worst case consistent with "sometimes during summer months": three months (June–August) with no saving. That gives a lower bound of 75 % of the full-year value. The true value lies between the two.
+- This turns each saving into a range: M1 36–48, M2 73–98, M3 28–38, combined 94–126 GWh/y. The specific electricity after all measures is 2.98–3.05 MWh/t.
+- The draft already names the issue for Measure 1. Applying it to all measures and putting it in the table makes the comparison fair and protects the conclusions from an obvious objection.
+
+**Report text:** Section 7 table: add a column "Seasonal lower bound (75 %)" next to each saving. Text: "Savings assume the electric boilers would otherwise run all year. Holmen reports occasional summer steam surplus, so a lower bound with no saving in June–August is also given." Conclusions: "about 2.98 MWh/t" → "2.98–3.05 MWh/t".

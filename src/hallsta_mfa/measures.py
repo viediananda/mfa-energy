@@ -40,12 +40,15 @@ def measures(p, r):
     d3b = np.minimum(dW*p['h_evap']/3600, st_EB)                    # (b) only the evaporation heat (GJ/t -> GWh)
     # M1b: raise recovery to 90 % of supply
     d1b = np.minimum(np.maximum(0.90*r['st_supply'] - r['st_rec'], 0), st_EB)
-    out = {'M1': d1/eff, 'M1b': d1b/eff, 'M2': EB - st_EB/cop, 'M3': d3a/eff, 'M3b': d3b/eff}
+    # A heat pump must supply the full heat to raise steam from condensate (dh_prop per tonne), not only the
+    # latent heat counted in the steam balance, so the heat it delivers is scaled by dh_prop/dh.
+    full = r['dh_prop']/dh
+    out = {'M1': d1/eff, 'M1b': d1b/eff, 'M2': EB - st_EB*full/cop, 'M3': d3a/eff, 'M3b': d3b/eff}
     # M4: sequential, all caps on remaining boiler steam
     s1 = st_EB - d3a
     d1s = np.minimum(p['dm_rec_M1']*p['h_prod']*dh/1000, s1)
     s2 = s1 - d1s
-    out['M4'] = EB - s2/cop
+    out['M4'] = EB - s2*full/cop
     out['M4_steam_left'] = s2
     for k in list(MEASURES):
         out[k + '_MWh_t'] = out[k]*1000/p['paper_t']                # MWh per tonne paper

@@ -6,21 +6,28 @@ All flows are in GWh/y. `run(params)` is a pure function: give it a dict of inpu
 import numpy as np
 import CoolProp.CoolProp as CP
 
-# Base-case inputs. Source ids refer to data/sources.csv; docs/assumptions.md lists every
-# class C/D assumption. Optional scenario switches read with p.get(): `dh_override`
-# (MWh steam heat per tonne, replaces the property-based value) and `sec_TMP_override`
-# (kWh/t, forces TMP electricity; the difference moves to "unexplained/other").
+# Base-case inputs, aligned with the group report draft (12 Oct 2026): steam counted at its latent
+# heat (2.15 GJ/t), boiler steam from Holmen's 1.5 t/MWh, effluent 32 C, PM waste heat 55 C.
+# Source ids refer to data/sources.csv; docs/assumptions.md lists every class C/D assumption.
+# Switches read with p.get(): `dh_override` (MWh steam heat per tonne; None = property-based
+# enthalpy drop to condensate), `y_EB` (t steam per MWh; None = use eff_EB) and
+# `sec_TMP_override` (kWh/t, forces TMP electricity; the difference moves to "unexplained/other").
 BASE = dict(
     E_tot=1450.0, paper_t=444494.0, pulp_t=421883.0, DH_export=11.877, diesel=2.82,
     V_wwtp=18300*365, V_ff=7288861-18300*365, V_cool=4.0e6, dT_cool=10.0,
     sh_TMP=0.70, sh_PM=0.15, sh_EB=0.10, sh_OTH=0.05,
     P_wood=2.5, P_bleach=3.0, P_wwtp=2.5, aux_TMP=150.0,
-    m_rec=100.0, eff_EB=0.98, m_PM=95.0, m_wood=1.5, PM11_frac=14/22,
+    m_rec=100.0, y_EB=1.5, eff_EB=0.98, m_PM=95.0, m_wood=1.5, PM11_frac=14/22,
     h_prod=7200.0, h_wwtp=8760.0, f_dist=0.01, f_steamloss=0.04,
-    p_steam=3.4e5, T_cond=90.0, T_TMPwaste=80.0, T_PMwaste=50.0, T_HW=60.0,
-    T_DHs=85.0, T_DHr=45.0, T_eff=35.0, T_ff=30.0, T0=7.0, T_ref=7.0, cpv=4.17,
+    dh_override=2.15/3.6,
+    p_steam=3.4e5, T_cond=90.0, T_TMPwaste=80.0, T_PMwaste=55.0, T_HW=60.0,
+    T_DHs=85.0, T_DHr=45.0, T_eff=32.0, T_ff=32.0, T0=7.0, T_ref=7.0, cpv=4.18,
     # improvement-measure inputs (used by measures.py only)
     dm_rec_M1=10.0, cop_hp=3.0, press_dry=0.48, d_press_dry=0.02, fin_moist=0.07, h_evap=2.4)
+
+# Property-based alternative (sensitivity case): enthalpy drop from saturated steam at 3.4 bar(a)
+# to 90 C condensate (2.35 GJ/t) with a 98 % efficient boiler.
+PROPERTY_BASED = dict(dh_override=None, y_EB=None, eff_EB=0.98)
 
 STEAM_LATENT_ONLY_MWH = 2.15/3.6   # scenario: latent heat only, 2.15 GJ/t
 SEC_TMP_NORMAL = 2150.0            # kWh/t: Holmen "normal" 2,000 refining + 150 auxiliaries
@@ -60,16 +67,18 @@ def run(p):
              el_PM11line=PMtot*p['PM11_frac'], el_PM12line=PMtot*(1-p['PM11_frac']))
     # ---- layer 2: steam loop
     dh, fx = steam_v(p['p_steam'], p['T_cond'], p['T0'])
+    dh_prop = dh                                                            # full heat to make steam from condensate
     if p.get('dh_override') is not None:                                    # scenario: latent heat only
         fx = fx*dh/p['dh_override']                                         # same exergy per tonne of steam
         dh = p['dh_override'] + 0*dh
     st_rec = p['m_rec']*p['h_prod']*dh/1000
-    eff_EB = p['eff_EB'] + 0*dh                                             # sampled directly (audit B2)
+    y = p.get('y_EB')                                                       # Holmen: 1.5 t steam per MWh
+    eff_EB = (y*dh if y is not None else p['eff_EB']) + 0*dh
     st_EB = EB*eff_EB; supply = st_rec + st_EB
     st_PM = p['m_PM']*p['h_prod']*dh/1000; st_wood = p['m_wood']*p['h_prod']*dh/1000
     st_loss = p['f_steamloss']*supply
     st_HW = supply - st_PM - st_wood - st_loss                              # GAP 2 (residual)
-    r.update(dh=dh, fx_steam=fx, eff_EB=eff_EB, st_rec=st_rec, st_EB=st_EB, loss_EB=EB-st_EB,
+    r.update(dh=dh, dh_prop=dh_prop, fx_steam=fx, eff_EB=eff_EB, st_rec=st_rec, st_EB=st_EB, loss_EB=EB-st_EB,
              st_supply=supply, st_PM=st_PM, st_wood=st_wood, st_loss=st_loss, st_HW=st_HW,
              TMP_waste=TMP-st_rec, PM_waste=PM+st_PM, rec_ratio=st_rec/supply, y_EB_implied=eff_EB/dh, TMP_rec_eff=st_rec/TMP,
              SEC_mill=E/p['paper_t']*1e6, SEC_TMP=TMP/p['pulp_t']*1e6, SEC_PM=PMtot/p['paper_t']*1e6)
@@ -121,21 +130,27 @@ PROCS = ['TMP plant','Paper machines','Electric boilers','Hot water & heating','
 # name: (distribution, a, b, c)
 #   norm: mean, sd | tri: low, mode, high | uni: low, high
 DIST = {
- 'E_tot': ('norm', 1450, 14.5, None), 'pulp_t': ('norm', 421883, 4218.83, None), 'paper_t': ('norm', 444494, 4444.94, None),
- 'DH_export': ('norm', 11.877, 0.59385, None), 'diesel': ('norm', 2.82, 0.0564, None),
- 'V_wwtp': ('norm', BASE['V_wwtp'], 0.05*BASE['V_wwtp'], None),
- 'V_ff': ('norm', BASE['V_ff'], 0.10*BASE['V_ff'], None),
+ # Group draft Table 6.2 (distributions as stated there)
+ 'E_tot': ('norm', 1450, 29.0, None), 'diesel': ('norm', 2.82, 0.141, None), 'paper_t': ('norm', 444494, 4444.94, None),
+ 'V_wwtp': ('norm', BASE['V_wwtp'], 0.02*BASE['V_wwtp'], None), 'V_ff': ('norm', BASE['V_ff'], 0.02*BASE['V_ff'], None),
+ 'T_eff': ('tri', 20.0, 32.0, 32.0),
+ 'sh_TMP': ('norm', 0.70, 0.07, None), 'sh_PM': ('norm', 0.15, 0.015, None), 'sh_EB': ('norm', 0.10, 0.01, None),
+ 'sh_OTH': ('norm', 0.05, 0.005, None),
+ 'm_rec': ('tri', 85, 100, 115), 'm_PM': ('tri', 80, 95, 110), 'y_EB': ('norm', 1.5, 0.075, None),
+ 'h_prod': ('tri', 6800, 7200, 7800), 'dh_override': ('norm', 2.15/3.6, 0.03*2.15/3.6, None),
+ 'h_evap': ('norm', 2.4, 0.048, None), 'press_dry': ('tri', 0.45, 0.48, 0.51), 'T0': ('uni', 5.0, 10.0, None),
+ # not in Table 6.2: added for completeness
+ 'pulp_t': ('norm', 421883, 4218.83, None), 'DH_export': ('norm', 11.877, 0.59385, None),
  'V_cool': ('norm', 4.0e6, 0.4e6, None), 'dT_cool': ('uni', 5.0, 15.0, None),
- 'sh_TMP': ('tri', 0.65, 0.70, 0.75), 'sh_PM': ('tri', 0.12, 0.15, 0.22), 'sh_EB': ('tri', 0.05, 0.10, 0.12),
- 'sh_OTH': ('tri', 0.045, 0.05, 0.07),
  'P_wood': ('tri', 2.0, 2.5, 3.0), 'P_bleach': ('tri', 2.4, 3.0, 3.6), 'P_wwtp': ('tri', 2.0, 2.5, 3.0), 'aux_TMP': ('tri', 120, 150, 180),
- 'm_rec': ('tri', 85, 100, 115), 'eff_EB': ('tri', 0.95, 0.98, 0.995), 'm_PM': ('uni', 80, 110, None), 'm_wood': ('tri', 1.2, 1.5, 1.8),
- 'PM11_frac': ('uni', 0.525, 0.66, None), 'h_prod': ('tri', 6800, 7200, 7600), 'f_dist': ('uni', 0.005, 0.02, None),
- 'f_steamloss': ('uni', 0.02, 0.06, None), 'p_steam': ('uni', 3.3e5, 3.6e5, None), 'T_cond': ('uni', 80, 100, None),
- 'T_TMPwaste': ('uni', 70, 100, None), 'T_PMwaste': ('uni', 45, 60, None), 'T_HW': ('uni', 50, 70, None),
- 'T_eff': ('uni', 30, 40, None), 'T_ff': ('uni', 20, 40, None),
- # measure inputs
- 'cop_hp': ('uni', 2.5, 3.5, None), 'press_dry': ('tri', 0.45, 0.48, 0.51)}
+ 'm_wood': ('tri', 1.2, 1.5, 1.8), 'PM11_frac': ('uni', 0.525, 0.66, None),
+ 'f_dist': ('uni', 0.005, 0.02, None), 'f_steamloss': ('uni', 0.02, 0.06, None),
+ 'p_steam': ('uni', 3.3e5, 3.6e5, None), 'T_cond': ('uni', 80, 100, None),
+ 'T_TMPwaste': ('uni', 70, 100, None), 'T_PMwaste': ('uni', 50, 60, None), 'T_HW': ('uni', 50, 70, None),
+ 'cop_hp': ('uni', 2.5, 3.5, None)}
+# Tied draws (one value used in two places): the whole effluent shares one temperature (T_ff = T_eff),
+# and the wastewater reference temperature equals the exergy dead state (T_ref = T0).
+TIED = {'T_ff': 'T_eff', 'T_ref': 'T0'}
 
 
 def ppf(name, q):
