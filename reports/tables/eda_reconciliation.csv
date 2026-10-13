@@ -21,9 +21,9 @@ Steam pressure (bar),steam_pressure_2019,Compiled questions to Holmen 2019,2019 
 Steam pressure (bar),steam_pressure_pm_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),2.4 bar,2.4,bar (g/abs not stated),2.4 vs 2.5 bar; 3.4 bar abs is not in the register,3.4 bar abs
 Steam temperature,steam_temp_2p4bar_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),138 degC at 2.4 bar,138.0,degC,,138 degC
 Condensate temperature,condensate_temp_pm_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),approx 90 degC from PM,90.0,degC,Agrees with model,90 degC
-Effluent temperature,effluent_dT_sea_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),32 (asked as difference to sea),,degC or K,AMBIGUOUS: delta T vs absolute; model 35 degC is not in the register,35 degC
-Effluent temperature,effluent_dT_sea_shutdown_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),20 (long shutdowns),,degC or K,Same ambiguity,35 degC
-Effluent temperature,pm_wastewater_T_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),50 degC (PM wastewater),50.0,degC,Before mixing/WWTP; warmer than model effluent,35 degC
+Effluent temperature,effluent_dT_sea_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),32 (asked as difference to sea),,degC or K,AMBIGUOUS: delta T vs absolute; 32 degC is the chosen absolute-temperature interpretation; the source is ambiguous,32 degC
+Effluent temperature,effluent_dT_sea_shutdown_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),20 (long shutdowns),,degC or K,Same ambiguity,32 degC
+Effluent temperature,pm_wastewater_T_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),50 degC (PM wastewater),50.0,degC,Before mixing/WWTP; warmer than model effluent,32 degC
 Effluent volume,effluent_total_2023,Miljörapport 2023 Hallsta-1,2023 (doc 2023),"7,288,861 m³/yr",7.289,Mm³/yr,,7.289 Mm³/yr
 Effluent volume,eff_flow_2023_t6,Miljörapport 2023 Hallsta-1,2023 (doc 2023),"20,000 m³/d",7.3,Mm³/yr (x365),Rounded daily value,7.289 Mm³/yr
 Effluent volume,effluent_wwtp_daily_2023,Miljörapport 2023 Hallsta-1,2023 (doc 2023),"18,300 m³/d (WWTP outlet)",6.679,Mm³/yr (x365),Outlet of chemical treatment only; lower than total,7.289 Mm³/yr
