@@ -1,0 +1,7 @@
+basis,steam_MWh_per_t_paper,tmp_el_MWh_per_t_paper,period_assumed,steam_t_per_t_paper,steam_share_of_tmp_el_pct
+Holmen slide: 1.2 MWh/t,1.2,2.2,False,1.8383,54.5455
+Holmen slide: 1.8 t/t × 2.35 GJ/t,1.175,2.2,False,1.8,53.4091
+"2023 basis: 100 t/h x 7,200 h / 444,494 t",1.0574,2.2835,False,1.6198,46.3054
+"2019 145,000 GJ if per month (x12)",1.0593,2.2896,True,1.6227,46.2644
+"2019 145,000 GJ if per year",0.0883,2.2896,True,0.1352,3.8554
+"~10,000 GJ/month x12 (2023 prod.)",0.075,2.2835,True,0.1149,3.2841

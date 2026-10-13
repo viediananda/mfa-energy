@@ -1,0 +1,43 @@
+model_input,source_id,source,year,source_value,common_value,common_unit,flag,value_used_in_model
+Total electricity,el_total_2019_t13,Miljörapport 2023 Hallsta-1,2019 (doc 2023),1451 GWh,1451.0,GWh/yr,,1450 GWh/yr
+Total electricity,el_total_2023_t13,Miljörapport 2023 Hallsta-1,2023 (doc 2023),1450 GWh,1450.0,GWh/yr,,1450 GWh/yr
+Total electricity,el_total_2025,Student questions to Holmen 2025 (ANRA 251021),2025 (year not stated) (doc 2025),1.5 TWh/yr,1500.0,GWh/yr,Year not stated; rounded,1450 GWh/yr
+Total electricity,pptx_total_gwh,Viktiga Energiflöden-1 (1)-1,unknown (doc unknown),1707 GWh/yr total energy,1707.0,GWh/yr,"All energy, 565 kt basis; similar to sum of Holmen slide (undated) electricity boxes",1450 GWh/yr
+Total electricity,el_tmp3_aug2019,Compiled questions to Holmen 2019,2019-08 (doc 2019),"Aug 2019 sum 106,000 MWh/month",1272.0,GWh/yr (x12),"CONFLICT: x12 is below 2019 annual 1451 GWh (single month, no boilers/other)",1450 GWh/yr
+Electricity shares TMP/PM/EB/other %,el_split_tmp_2019,Questions for the study visit (Answers Hallsta),avg last 3 yrs (~2017-19) (doc 2019/2020),72/22/6,6.0,% EB,Average of last 3 years (~2017-19); EB 6 % vs 10 % in 2025 answer,70/15/10/5
+Electricity shares TMP/PM/EB/other %,el_split_tmp_2025,Student questions to Holmen 2025 (ANRA 251021),2025 (doc 2025),70/15/10/5 (remainder),10.0,% EB,"Stated shares sum to 95 %; 5 % is remainder, not a source value",70/15/10/5
+Electricity shares TMP/PM/EB/other %,pptx_ep,Viktiga Energiflöden-1 (1)-1,unknown (doc unknown),derived 73/23/4,3.974,% EB,Derived from MWh/t boxes / 3.02; EB ~4 %. CONFLICT with 6 and 10 %,70/15/10/5
+Electricity shares TMP/PM/EB/other %,el_tmp3_aug2019,Compiled questions to Holmen 2019,2019-08 (doc 2019),Aug 2019 line values 79/21/n.a.,,,Single month; no boiler value,70/15/10/5
+TMP recovered steam,tmp_steam_recycled_2025,Student questions to Holmen 2025 (ANRA 251021),2025 (doc 2025),~100 t/h,100.0,t/h,= 470 GWh/yr steam at 7200 h,100 t/h
+TMP recovered steam,pptx_steam_mass,Viktiga Energiflöden-1 (1)-1,unknown (doc unknown),1.8 t/F-ton (1.2 MWh/F-ton),141.25,"t/h (565 kt, 7,200 h)",= 111 t/h at 2023 production. Higher than 100 t/h; year unknown,100 t/h
+TMP recovered steam,steam_tmp_net_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),"145,000 GJ, period not stated",,,"CONFLICT: per month = 86 t/h; per year = 9 t/h (at 720 h/month, 7200 h/yr)",100 t/h
+TMP recovered steam,steam_tmp_10000GJ_month_unknown,Answers to questions-1,"""recently"" (doc unknown (~2025))","~10,000 GJ/month",5.91,t/h (720 h),"CONFLICT: ~17x below 100 t/h; ""steam production"", year ""recently""",100 t/h
+TMP recovered steam,steam_tmp3_use_aq,Answers to questions-1,not stated (doc unknown (~2025)),500-5000 GJ/month,,,TMP3 only: 0.3-3.0 t/h (720 h); range of 10x,100 t/h
+TMP recovered steam,steam_recovery_rate_2025,Student questions to Holmen 2025 (ANRA 251021),2025 (doc 2025),70-90 % of need,,,"Share of steam need, not an absolute flow",100 t/h
+PM drying steam,pm_steam_2025,Student questions to Holmen 2025 (ANRA 251021),2025 (doc 2025),80-110 t/h,,t/h,Range; model point value sits mid-range,95 t/h (80-110)
+PM drying steam,steam_pm_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),"155,000 GJ, period not stated",,,CONFLICT: per month = 92 t/h (fits 2025 range); per year = 9 t/h,95 t/h (80-110)
+Boiler steam yield / efficiency,steam_per_MW_2025,Student questions to Holmen 2025 (ANRA 251021),2025 (doc 2025),1.5 t steam per MW (per h),1.5,t/MWh,Implied efficiency at 2.35 GJ/t: 0.98. Efficiency itself not in register,eff 0.98 (yield 1.5 t/MWh)
+Steam pressure (bar),steam_pressure_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),2.5 bar,2.5,bar (g/abs not stated),"Gauge/absolute not stated; 138 degC saturation matches ~3.4 bar abs, i.e. 2.4 bar gauge",3.4 bar abs
+Steam pressure (bar),steam_pressure_pm_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),2.4 bar,2.4,bar (g/abs not stated),2.4 vs 2.5 bar; 3.4 bar abs is not in the register,3.4 bar abs
+Steam temperature,steam_temp_2p4bar_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),138 degC at 2.4 bar,138.0,degC,,138 degC
+Condensate temperature,condensate_temp_pm_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),approx 90 degC from PM,90.0,degC,Agrees with model,90 degC
+Effluent temperature,effluent_dT_sea_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),32 (asked as difference to sea),,degC or K,AMBIGUOUS: delta T vs absolute; model 35 degC is not in the register,35 degC
+Effluent temperature,effluent_dT_sea_shutdown_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),20 (long shutdowns),,degC or K,Same ambiguity,35 degC
+Effluent temperature,pm_wastewater_T_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),50 degC (PM wastewater),50.0,degC,Before mixing/WWTP; warmer than model effluent,35 degC
+Effluent volume,effluent_total_2023,Miljörapport 2023 Hallsta-1,2023 (doc 2023),"7,288,861 m³/yr",7.289,Mm³/yr,,7.289 Mm³/yr
+Effluent volume,eff_flow_2023_t6,Miljörapport 2023 Hallsta-1,2023 (doc 2023),"20,000 m³/d",7.3,Mm³/yr (x365),Rounded daily value,7.289 Mm³/yr
+Effluent volume,effluent_wwtp_daily_2023,Miljörapport 2023 Hallsta-1,2023 (doc 2023),"18,300 m³/d (WWTP outlet)",6.679,Mm³/yr (x365),Outlet of chemical treatment only; lower than total,7.289 Mm³/yr
+Effluent volume,wwtp_out_2024,Student questions to Holmen 2025 (ANRA 251021),not stated (~2024) (doc 2025),13.5 m³/min,7.096,Mm³/yr,Year not stated (~2024),7.289 Mm³/yr
+Effluent volume,img_wb_wwtp,Student questions to Holmen 2025 (ANRA 251021),2024 (doc 2025),7 Mm³/yr,7.0,Mm³/yr,2024 rough balance; excludes 4 Mm³ cooling/non-affected water,7.289 Mm³/yr
+Effluent volume,effluent_flow_wwtp_2019,Compiled questions to Holmen 2019,2019 (approx) (doc 2019),11.5-12 m³/min,,Mm³/yr,= 6.04-6.31 Mm³/yr; 2019 lower,7.289 Mm³/yr
+Operating hours,pm11_days_2023,Miljörapport 2023 Hallsta-1,2023 (doc 2023),285.3 d,6847.2,h/yr,,"7,200 h"
+Operating hours,pm12_days_2023,Miljörapport 2023 Hallsta-1,2023 (doc 2023),314 d,7536.0,h/yr,,"7,200 h"
+Operating hours,pm11_prod_2023,derived,2023 (doc 2023),production-weighted PM11/PM12,7174.235,h/yr,"Derived (weights = PM production, Tabell 4); model rounds up by ~26 h","7,200 h"
+Operating hours,wwtp_days_2023,Miljörapport 2023 Hallsta-1,2023 (doc 2023),365 d,8760.0,h/yr,WWTP runs all year; not the paper operating time,"7,200 h"
+TMP specific electricity,tmp_el_spec_2025,Student questions to Holmen 2025 (ANRA 251021),2025 (doc 2025),1500-2000 kWh/t,,kWh/t,Refining only,"2,406 kWh/t"
+TMP specific electricity,tmp_refining_el_2025,Student questions to Holmen 2025 (ANRA 251021),2025 (doc 2025),2000 + 150 aux kWh/t,2150.0,kWh/t,"Holmen upper end plus auxiliary: 2,150; model is ~12 % above","2,406 kWh/t"
+TMP specific electricity,el_split_tmp_2025,derived,2025 (doc 2025),70 % x 1450 GWh / TMP 2023 t,2405.88,kWh/t TMP,"Derived: reproduces the model value; above Holmen range (1,650-2,150 incl. aux)","2,406 kWh/t"
+TMP specific electricity,pptx_tmp_in,derived,unknown (doc unknown),2.2 MWh/t paper,2317.91,"kWh/t TMP (x paper/TMP, 2023)",Derived with 2023 paper/TMP ratio; Holmen slide (undated) year unknown,"2,406 kWh/t"
+TMP specific electricity,narr_l12_quality_2023,Miljörapport 2023 Hallsta-1,2023 (doc 2023),"qualitative: “Det har varit en utmaning att klara att hålla tillräcklig massakvalitet i främst L12 under 2023 och man har jobbat med åtgärder för att öka elförbrukningen i syfte att klara kvaliten.” (extra refining electricity to hold pulp quality, mainly L12, in 2023)",,,"Candidate explanation for 2,406 vs 1,650-2,150 kWh/t; not quantified","2,406 kWh/t"
+District heat,dh_export_2023,Miljörapport 2023 Hallsta-1,2023 (doc 2023),"11,877 MWh",11.877,GWh/yr,,11.877 GWh
+District heat,dh_2019,Questions for the study visit (Answers Hallsta),2019 (doc 2019/2020),"~16,000 GJ",4.444,GWh/yr,CONFLICT: 2019 is 2.7x lower; approximate,11.877 GWh
