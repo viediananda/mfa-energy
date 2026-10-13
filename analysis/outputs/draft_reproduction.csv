@@ -1,0 +1,124 @@
+section,item,draft_value,reproduced_value,abs_diff,formula,status
+5.1,E_in total (GWh/y),1452.82,1452.82,0.0,1450 + 2.82,match
+5.1,E_TMP electricity,1015.0,1015.0,0.0,70% x 1450,match
+5.1,E_PM electricity,218.0,217.5,0.5,15% x 1450 = 217.5,match
+5.1,E_EP electricity,145.0,145.0,0.0,10% x 1450,match
+5.1,E_other electricity,73.0,72.5,0.5,5% x 1450 = 72.5,match
+5.1,Sum of rounded shares 1015+218+145+73 (stated = 1450),1450.0,1451.0,1.0,arithmetic sum of the printed terms (=1451),match
+5.1,"E_TMP,steam",430.0,430.0,0.0,100 t/h x 7200 h x 2.15 GJ/t / 3600,match
+5.1,"E_TMP,residual",585.0,585.0,0.0,1015 - 430,match
+5.1,TMP electricity returned as steam (%),42.0,42.3645,0.3645,430 / 1015,match
+5.1,"E_EP,steam",130.0,129.8958,0.1042,"145,000 MWh x 1.5 t/MWh x 2.15 / 3600",match
+5.1,"E_EP,residual (boiler loss)",15.0,15.1042,0.1042,145 - 130,match
+5.1,Steam supply,560.0,559.8958,0.1042,430 + 130,match
+5.1,TMP share of steam supply (%),77.0,76.8,0.2,430 / 560 (Sec 5.5),match
+5.1,"E_PM,drying",408.0,408.5,0.5,95 t/h x 7200 x 2.15 / 3600,match
+5.1,Water evaporated (t/y),416700.0,416713.125,13.125,paper x 0.93 x (1/0.48 - 1) - paper x 0.07,match
+5.1,Q_evap,278.0,277.8,0.2,"416,700 t x 2.4 GJ/t / 3600",match
+5.1,PM drying residual steam,130.0,130.7,0.7,408 - 278 (unrounded 408.5 - 277.8),match
+5.1/T2,District heat,11.9,11.877,0.023,"11,877 MWh / 1000",match
+5.1/T2,Dryer exhaust latent,278.0,277.8,0.2,see Q_evap,match
+5.1/T2,Dryer exhaust residual,130.0,130.0,0.0,408 - 278,match
+5.1/T2,Wastewater (32 C),212.0,211.6125,0.3875,7.29 Mm3 x 4.18 x (32-7) K,match
+5.1/T2,Wastewater lower bound (20 C),110.0,110.0385,0.0385,7.29 Mm3 x 4.18 x (20-7) K,match
+5.1/T2,Electric boiler losses,15.0,15.0,0.0,145 - 130,match
+5.1/T2,Steam distribution losses,22.0,22.4,0.4,4% x 560,match
+5.1/T2,Internal grid losses,15.0,14.5,0.5,1% x 1450 = 14.5,match
+5.1/T2,Subtotal quantified,684.0,683.9,0.1,sum of printed exits (683.9),match
+5.1/T2,"Residual by difference (Table 2, text)",769.0,768.92,0.08,1452.82 - 683.9,match
+5.5,Residual in Sec 5.5 text,766.0,768.92,2.92,1452.82 - 683.9 (same formula as Table 2),mismatch
+10,Residual in Conclusions,765.0,768.92,3.92,1452.82 - 683.9 (same formula as Table 2),mismatch
+5.5/Fig1,Residual in Fig 1,768.92,768.92,0.0,1452.82 - 683.9,match
+5.1,Share traceable (%),47.0,47.074,0.074,683.9 / 1452.82,match
+5.1,Residual share (%),53.0,52.926,0.074,768.9 / 1452.82,match
+5.1,Residual if wastewater at 20 C,870.0,870.92,0.92,769 + (212 - 110),match
+5.1,Remaining steam 560-408-22,130.0,130.0,0.0,arithmetic,match
+5.1,"Cooling-water heat per K, 4 Mm3 (GWh/y)",5.0,4.6444,0.3556,4 Mm3 x 4.18 / 3.6,match
+5.1,Cooling-water heat for 10 K (GWh/y),50.0,46.4444,3.5556,10 x above,match
+5.1,"Raw water minus effluent (Mm3), 'about 4'",4.0,3.76,0.24,11.05 - 7.29,match
+5.5/Fig1,Fig 1 low-grade waste heat,980.92,980.92,0.0,residual + wastewater,match
+5.5/Fig1,Fig 1 paper machines,625.5,625.5,0.0,217.5 + 408,match
+5.2,SEC electricity (MWh/t),3.26,3.2621,0.0021,"1,450,000 / 444,494",match
+5.2,SEC TMP,2.28,2.2835,0.0035,"1,015,000 / 444,494",match
+5.2,SEC PM,0.49,0.4893,0.0007,"217,500 / 444,494",match
+5.2,SEC electric boilers,0.33,0.3262,0.0038,"145,000 / 444,494",match
+5.3,Steam exergy factor (table),0.315,0.3152,0.0002,CoolProp: [dh - T0 ds](sat vap 3.41 bar -> liq 90 C) / dh(to 90 C),match
+Fig2,Steam exergy factor (Fig 2 caption),0.318,0.319,0.001,Carnot 1 - 280/411.15 at 138 C,match
+5.4,Steam factor implied by hotspot table (148/430),0.345,0.345,0.0,same exergy but divided by latent heat only (hfg=2.15 GJ/t): 148.4/430,match
+5.3,District heat 85/45 C,0.171,0.171,0.0,Carnot at log-mean temperature of 85/45 C,match
+5.3,Unrecovered TMP heat 80 C,0.111,0.1116,0.0006,"1 - T0 ln(T/T0)/(T - T0), warm-water equation of Table 1",match
+5.3,Hot process water 60 C,0.084,0.0844,0.0004,"1 - T0 ln(T/T0)/(T - T0), warm-water equation of Table 1",match
+5.3,PM waste heat 55 C,0.077,0.0772,0.0002,"1 - T0 ln(T/T0)/(T - T0), warm-water equation of Table 1",match
+5.3,Effluent 35 C,0.047,0.0471,0.0001,"1 - T0 ln(T/T0)/(T - T0), warm-water equation of Table 1",match
+5.3,Exergy destroyed (%),92.0,91.6552,0.3448,1329 / 1450,match
+5.3,Exergy destroyed 1329,1329.0,1329.0,0.0,1450 - 119 - 2 (uses draft's own 119; identity only),match
+5.3,Waste exergy to air 109,109.0,109.5476,0.5476,"CANDIDATE only: 585*.111 + 408*.077 + 15*.345 + 22*.345; not unique, not confirmed",could_not_reproduce
+5.3,Waste exergy to water 11,11.0,11.171,0.171,"7.29 Mm3 x 4.18 x (35-7) K x 0.047 (35 C, not the 32 C of Table 2)",match
+5.3,Waste exergy total 119,119.0,,,109 + 11 = 120 in the draft itself; 119 not derivable,could_not_reproduce
+5.3,District-heat exergy 2,2.0,2.0349,0.0349,11.9 x 0.171,match
+Fig2,Fig 2 exergy destroyed,1324.8,,,no consistent route (1450 - 123.2 - 2.0 is only an identity),could_not_reproduce
+Fig2,Fig 2 waste-heat exergy,123.2,,,composition not stated,could_not_reproduce
+Fig2,Fig 2 steam supply,178.3,178.6307,0.3307,560 x 0.3189 (Carnot factor),match
+Fig2,Fig 2 paper machines,347.4,347.6452,0.2452,217.5 + 408 x 0.318,match
+Fig2,Fig 2 other heat uses,41.4,41.4678,0.0678,130 x 0.318,match
+Fig2,Fig 2 wastewater exergy,8.9,8.9704,0.0704,212 x 0.0424 (32 C),match
+5.4,PM exergy 'about 50 GWh' at 55 C,50.0,48.3156,1.6844,(217.5 + 408) x 0.077,mismatch
+5.4,TMP: exergy in,1015.0,1015.0,0.0,70% x 1450; useful = 430 x 0.345,match
+5.4,TMP: useful out,148.0,148.3622,0.3622,steam/heat x exergy factor,match
+5.4,TMP: psi (%),15.0,14.617,0.383,Ex_useful / Ex_in,match
+5.4,TMP: improvement potential,740.0,739.9617,0.0383,IP = (1-psi)(Ex_in - Ex_useful),match
+5.4,Paper machines: exergy in,337.0,336.8441,0.1559,195.9 (15% elec - 21.6 bleaching) + 408.5 x 0.345,match
+5.4,Paper machines: psi (%),0.0,0.0,0.0,Ex_useful / Ex_in,match
+5.4,Paper machines: improvement potential,337.0,336.8441,0.1559,IP = (1-psi)(Ex_in - Ex_useful),match
+5.4,Electric boilers: exergy in,145.0,145.0,0.0,10% x 1450; useful = 129.9 x 0.345,match
+5.4,Electric boilers: useful out,45.0,44.8177,0.1823,steam/heat x exergy factor,match
+5.4,Electric boilers: psi (%),31.0,30.9088,0.0912,Ex_useful / Ex_in,match
+5.4,Electric boilers: improvement potential,69.0,69.2171,0.2171,IP = (1-psi)(Ex_in - Ex_useful),match
+5.4,Hot water and heating: exergy in,42.0,41.4678,0.5322,130 x 0.318 (Carnot steam factor as in Fig 2); 0.345 would give 44.9; useful = 130 x 0.084,mismatch
+5.4,Hot water and heating: useful out,11.0,10.9701,0.0299,steam/heat x exergy factor,match
+5.4,Hot water and heating: psi (%),27.0,26.4545,0.5455,Ex_useful / Ex_in,mismatch
+5.4,Hot water and heating: improvement potential,23.0,22.4297,0.5703,IP = (1-psi)(Ex_in - Ex_useful),mismatch
+5.4,Bleaching/WWTP/wood/utilities/grid: exergy in,96.0,94.1,1.9,72.5 (5% other) + 21.6 bleaching = 94.1; Appendix B items sum to 95,mismatch
+5.4,Bleaching/WWTP/wood/utilities/grid: psi (%),0.0,0.0,0.0,Ex_useful / Ex_in,match
+5.4,Bleaching/WWTP/wood/utilities/grid: improvement potential,96.0,94.1,1.9,IP = (1-psi)(Ex_in - Ex_useful),mismatch
+5.4,Steam network: exergy in,193.0,193.1799,0.1799,560 x 0.345; useful = 96% (4% distribution loss),match
+5.4,Steam network: useful out,185.0,185.4528,0.4528,steam/heat x exergy factor,match
+5.4,Steam network: psi (%),96.0,96.0,0.0,Ex_useful / Ex_in,match
+5.4,Steam network: improvement potential,0.3,0.3091,0.0091,IP = (1-psi)(Ex_in - Ex_useful),match
+6/6.4c,Wastewater loss range low (GWh/y),125.0,124.6473,0.3527,"MC P5: V~N(7.289,2%), T~Tri(20,32,32), T0~U(5,10)",match
+6/6.4c,Wastewater loss range high (GWh/y),214.0,213.9113,0.0887,"MC P95, same setup",match
+7,1 t/h boiler steam avoided (GWh/y),4.8,4.8,0.0,7200 h / 1.5 t/MWh,match
+7,Boiler steam flow (t/h),30.0,30.2083,0.2083,"145,000 x 1.5 / 7200",match
+7,Cap on total saving (GWh/y),145.0,145.0,0.0,all boiler electricity,match
+7,M1 saving (GWh/y),48.0,48.0,0.0,10 t/h x 4.8,match
+7,M1 MWh/t,0.11,0.108,0.002,"48 GWh / 444,494 t",match
+7,M2 saving COP 2.5 (GWh/y),93.0,93.0,0.0,145 - 130/COP (heat pump electricity replaces 145 boiler GWh),match
+7,M2 saving COP 3.5 (GWh/y),108.0,107.8571,0.1429,145 - 130/COP,match
+7,M2 MWh/t low,0.21,0.2092,0.0008,"93 / 444,494",match
+7,M2 MWh/t high,0.24,0.2427,0.0027,"108 / 444,494",match
+7,M3 evaporation reduction (%),8.0,8.2667,0.2667,1 - evap(50%)/evap(48%),match
+7,M3 steam saved (t/h),7.9,7.8533,0.0467,8.27% x 95 t/h,match
+7,M3 saving (GWh/y),38.0,37.696,0.304,7.86 t/h x 4.8,match
+7,M3 MWh/t,0.09,0.0848,0.0052,"37.7 / 444,494 = 0.085 (draft rounds 38/444,494 = 0.0855 up to 0.09)",mismatch
+7,Combined saving (GWh/y),126.0,125.232,0.768,M1 + M3 + (30.2-10-7.86) t/h x 4.8 x (1 - 1/3.0); equals 145 - 59.3/3.0. COP 3.1 gives 125.9,match
+7,Combined MWh/t,0.28,0.2817,0.0017,"125.2 / 444,494",match
+7,SEC after combined (MWh/t),2.98,2.9804,0.0004,3.262 - 0.282,match
+7.1,Combined in Sec 7.1 (GWh/y),126.0,125.232,0.768,same as above,match
+7,10% refining cut saving (GWh/y),95.0,95.2,0.2,10% x 952 GWh TMP refiners (Appendix B); 10% of 1015 would be 101.5,match
+7,Extra boiler electricity to replace lost steam (GWh/y),47.5,48.0,0.5,10% x 430 GWh steam / (130/145 steam per boiler GWh); draft says 'about half of 95',match
+7,Fraction of saving lost (%),50.0,50.4202,0.4202,48 / 95,match
+App B,TMP auxiliary drives,63.0,63.2824,0.2824,"150 kWh/t x 421,883 t",match
+App B,TMP refiners,952.0,951.7175,0.2825,1015 - 63.3,match
+App B,Paper machines,196.0,195.9,0.1,217.5 - bleaching 21.6,match
+App B,WWTP,22.0,21.9,0.1,2.5 MW x 8760 h,match
+App B,Bleaching,22.0,21.6,0.4,3 MW x 7200 h,match
+App B,Wood handling,18.0,18.0,0.0,2.5 MW x 7200 h,match
+App B,Internal grid losses,15.0,14.5,0.5,1% x 1450,match
+App B,Utilities and other,18.0,18.1,0.1,72.5 - WWTP 21.9 - wood 18 - grid 14.5,match
+App B,Total of printed rows,1450.0,1451.0,1.0,sum of printed rows (=1451),match
+App B,TMP refiners share (%),65.6,65.6357,0.0357,951.7/1450,match
+App B,TMP aux share (%),4.4,4.3643,0.0357,63.3/1450,match
+App B,PM share (%),13.5,13.5103,0.0103,195.9/1450,match
+App B,Utilities share (%),1.2,1.2483,0.0483,18.1/1450,match
+App A,Effluent volume Mm3,7.29,7.29,0.0,6.68 + 0.61,match
+App A,Production hours,7200.0,7188.0,12.0,mean of PM11 285 d and PM12 314 d x 24 h (=7188),match

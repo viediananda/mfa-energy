@@ -1,0 +1,299 @@
+id,quantity,value,value_low,value_high,unit,source_file,location,source_year,data_year,quote,notes
+prod_paper_2023,paper production,444494,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 3,2023,2023,producerat 444 494 ton papper,
+prod_tmp_2023,TMP pulp production,421883,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 3,2023,2023,integrerad produktion av 421 883 ton termomekanisk massa,
+prod_purchased_pulp_2023,purchased TCF sulphate pulp,2352,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 3 / Tabell 12,2023,2023,Utöver detta har 2 352 ton inköpt cellulosa nyttjats,
+prod_permit_paper,permitted paper production,880000,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 3,2023,permit,årlig produktion av 880 000 ton papper,
+prod_permit_pulp,permitted pulp production (TMP/slipmassa/DIP),840000,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 3,2023,permit,sammanlagt 840 000 ton oblekt eller blekt slipmassa,
+prod_permit_dip,permitted DIP max,360000,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 3,2023,permit,varav högst 360 000 ton DIP,
+bleach_hydrosulfite_share_2023,share pulp bleached with hydrosulfite,47,,,%,Miljörapport 2023 Hallsta-1.pdf,Section 3,2023,2023,47 % av massan blekts med hydrosulfit,
+bleach_peroxide_share_2023,share pulp bleached with peroxide,53,,,%,Miljörapport 2023 Hallsta-1.pdf,Section 3,2023,2023,resterande 53 % med väteperoxid,
+pm11_prod_2023,PM11 production,233453,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 4,2023,2023,"PM11 233 453 285,3",
+pm11_days_2023,PM11 operating time,285.3,,,days,Miljörapport 2023 Hallsta-1.pdf,Tabell 4,2023,2023,"PM11 233 453 285,3",
+pm12_prod_2023,PM12 production,211041,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 4,2023,2023,PM12 211 041 314,
+pm12_days_2023,PM12 operating time,314,,,days,Miljörapport 2023 Hallsta-1.pdf,Tabell 4,2023,2023,PM12 211 041 314,
+wwtp_days_2023,WWTP operating days,365,,,days,Miljörapport 2023 Hallsta-1.pdf,Tabell 4,2023,2023,Driftdygn avloppsreningen – 365 dygn,
+water_target_spec_2023,target specific water consumption,12.8,,,m3/t,Miljörapport 2023 Hallsta-1.pdf,Section 1.2.1,2023,2023,"klara 12,8 m3/ton specifik vattenförbrukning",
+water_target_fresh_2023,target fresh water consumption,13,,,m3/min,Miljörapport 2023 Hallsta-1.pdf,Section 1.2.1,2023,2023,13m3/min renvattenförbrukning,
+water_spec_actual_2023,actual specific water consumption,15.2,,,m3/t,Miljörapport 2023 Hallsta-1.pdf,Section 1.2.1,2023,2023,"Utfallet blev 15,2m³/ton",Not the same metric as raw water 24.8 m3/t (water_raw_spec_2023); basis (process water vs raw water) not stated
+water_fresh_actual_2023,actual fresh (ren) water consumption,12.8,,,m3/min,Miljörapport 2023 Hallsta-1.pdf,Section 1.2.1,2023,2023,"resp. 12,8m³/min",12.8 m3/min = 6.7 Mm3/yr; compare water_process_2023 6 666 000 m3
+energy_target_dec2023,energy cost performance target Dec 2023,3.0,,,MWh/F-ton,Miljörapport 2023 Hallsta-1.pdf,Section 1.2.1,2023,2023,"nå 3,0 MWh/F-ton i dec 2023","Rolling-12-month key figure ""energikostnadsprestanda""; differs from 3.3 MWh/t in Tabell 13"
+energy_target_2024,energy cost performance target 2024,2.8,,,MWh/F-ton,Miljörapport 2023 Hallsta-1.pdf,Section 1.2.1,2023,2024,"målnivån för 2024 är beslutad till till 2,8 MWh/F-ton",
+wwtp_recirc_share,share of treated water reused in process,10,,,%,Miljörapport 2023 Hallsta-1.pdf,Section 8,2023,2023,Av det renade vattnet återtas ca 10 %,
+effluent_total_2023,total effluent to Edeboviken,7288861,,,m3/yr,Miljörapport 2023 Hallsta-1.pdf,Section 5.2,2023,2023,Totala avloppsvattenflödet ... ca 7 288 861 m³ år 2023,Both outlets (Utgående kemisk rening + FF PM2)
+effluent_total_daily_2023,total effluent to Edeboviken,20000,,,m3/d,Miljörapport 2023 Hallsta-1.pdf,Section 5.2,2023,2023,motsvarar ca 20 000 m³/dygn,
+effluent_wwtp_daily_2023,WWTP outlet flow (Utgående kemisk rening),18300,,,m3/d,Miljörapport 2023 Hallsta-1.pdf,Section 5.2,2023,2023,Flödet från reningsanläggningen ... ca 18 300m³/dygn,
+eff_flow_2019_t6,effluent flow annual mean emission,18100,,,m3/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2019,Tabell 6 row 2019: flow = 18100,
+eff_flow_2020_t6,effluent flow annual mean emission,17000,,,m3/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2020,Tabell 6 row 2020: flow = 17000,
+eff_flow_2021_t6,effluent flow annual mean emission,20150,,,m3/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2021,Tabell 6 row 2021: flow = 20150,
+eff_flow_2022_t6,effluent flow annual mean emission,21300,,,m3/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2022,Tabell 6 row 2022: flow = 21300,
+eff_flow_2023_t6,effluent flow annual mean emission,20000,,,m3/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2023,Tabell 6 row 2023: flow = 20000,Tabell 6 gives 20 000 m3/d vs 18 300 m3/d from WWTP outlet only (effluent_wwtp_daily_2023) and 7 288 861/365 = ~19 970
+eff_ss_2019_t6,suspended solids (SÄ) annual mean emission,0.47,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2019,Tabell 6 row 2019: ss = 0.47,
+eff_ss_2020_t6,suspended solids (SÄ) annual mean emission,1.9,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2020,Tabell 6 row 2020: ss = 1.9,
+eff_ss_2021_t6,suspended solids (SÄ) annual mean emission,0.36,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2021,Tabell 6 row 2021: ss = 0.36,
+eff_ss_2022_t6,suspended solids (SÄ) annual mean emission,1.19,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2022,Tabell 6 row 2022: ss = 1.19,
+eff_ss_2023_t6,suspended solids (SÄ) annual mean emission,0.67,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2023,Tabell 6 row 2023: ss = 0.67,
+eff_bod7_2019_t6,BOD7 annual mean emission,0.23,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2019,Tabell 6 row 2019: bod7 = 0.23,
+eff_bod7_2020_t6,BOD7 annual mean emission,0.37,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2020,Tabell 6 row 2020: bod7 = 0.37,
+eff_bod7_2021_t6,BOD7 annual mean emission,0.19,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2021,Tabell 6 row 2021: bod7 = 0.19,
+eff_bod7_2022_t6,BOD7 annual mean emission,0.3,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2022,Tabell 6 row 2022: bod7 = 0.3,
+eff_bod7_2023_t6,BOD7 annual mean emission,0.2,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2023,Tabell 6 row 2023: bod7 = 0.2,
+eff_cod_2019_t6,COD-Cr annual mean emission,8.3,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2019,Tabell 6 row 2019: cod = 8.3,
+eff_cod_2020_t6,COD-Cr annual mean emission,8.7,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2020,Tabell 6 row 2020: cod = 8.7,
+eff_cod_2021_t6,COD-Cr annual mean emission,8.6,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2021,Tabell 6 row 2021: cod = 8.6,
+eff_cod_2022_t6,COD-Cr annual mean emission,9.2,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2022,Tabell 6 row 2022: cod = 9.2,
+eff_cod_2023_t6,COD-Cr annual mean emission,7.8,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2023,Tabell 6 row 2023: cod = 7.8,
+eff_toc_2019_t6,TOC annual mean emission,2.4,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2019,Tabell 6 row 2019: toc = 2.4,
+eff_toc_2020_t6,TOC annual mean emission,2.3,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2020,Tabell 6 row 2020: toc = 2.3,
+eff_toc_2021_t6,TOC annual mean emission,2.8,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2021,Tabell 6 row 2021: toc = 2.8,
+eff_toc_2022_t6,TOC annual mean emission,3.1,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2022,Tabell 6 row 2022: toc = 3.1,
+eff_toc_2023_t6,TOC annual mean emission,2.6,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2023,Tabell 6 row 2023: toc = 2.6,
+eff_aox_2019_t6,AOX annual mean emission,3.6,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2019,Tabell 6 row 2019: aox = 3.6,
+eff_aox_2020_t6,AOX annual mean emission,5.1,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2020,Tabell 6 row 2020: aox = 5.1,
+eff_aox_2021_t6,AOX annual mean emission,3.5,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2021,Tabell 6 row 2021: aox = 3.5,
+eff_aox_2022_t6,AOX annual mean emission,7.4,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2022,Tabell 6 row 2022: aox = 7.4,
+eff_aox_2023_t6,AOX annual mean emission,4.6,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2023,Tabell 6 row 2023: aox = 4.6,
+eff_ptot_2019_t6,total P annual mean emission,7.3,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2019,Tabell 6 row 2019: ptot = 7.3,
+eff_ptot_2020_t6,total P annual mean emission,8.0,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2020,Tabell 6 row 2020: ptot = 8.0,
+eff_ptot_2021_t6,total P annual mean emission,5.7,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2021,Tabell 6 row 2021: ptot = 5.7,
+eff_ptot_2022_t6,total P annual mean emission,8.4,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2022,Tabell 6 row 2022: ptot = 8.4,
+eff_ptot_2023_t6,total P annual mean emission,6.7,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2023,Tabell 6 row 2023: ptot = 6.7,
+eff_ntot_2019_t6,total N annual mean emission,98,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2019,Tabell 6 row 2019: ntot = 98,
+eff_ntot_2020_t6,total N annual mean emission,121,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2020,Tabell 6 row 2020: ntot = 121,
+eff_ntot_2021_t6,total N annual mean emission,115,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2021,Tabell 6 row 2021: ntot = 115,
+eff_ntot_2022_t6,total N annual mean emission,135,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2022,Tabell 6 row 2022: ntot = 135,
+eff_ntot_2023_t6,total N annual mean emission,125,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2023,Tabell 6 row 2023: ntot = 125,
+eff_edta_2019_t6,EDTA annual mean emission,33.3,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2019,Tabell 6 row 2019: edta = 33.3,
+eff_edta_2020_t6,EDTA annual mean emission,50.9,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2020,Tabell 6 row 2020: edta = 50.9,
+eff_edta_2021_t6,EDTA annual mean emission,24.4,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2021,Tabell 6 row 2021: edta = 24.4,
+eff_edta_2022_t6,EDTA annual mean emission,23.3,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2022,Tabell 6 row 2022: edta = 23.3,
+eff_edta_2023_t6,EDTA annual mean emission,34,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 6,2023,2023,Tabell 6 row 2023: edta = 34,
+eff_ss_limit,SÄ limit,1.5,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6 Villkor,2023,2023,"Villkor - 1,5",
+eff_cod_limit,COD limit,12.0,,,t/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 6 Villkor,2023,2023,"Villkor 12,0",
+wwtp_ss_reduction_2019,SÄ reduction over WWTP,99,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2019,Tabell 8 2019: SÄ-reduktion 99 %,
+wwtp_toc_reduction_2019,TOC reduction over WWTP,88,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2019,Tabell 8 2019: TOC-reduktion 88 %,
+wwtp_ss_reduction_2020,SÄ reduction over WWTP,95,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2020,Tabell 8 2020: SÄ-reduktion 95 %,
+wwtp_toc_reduction_2020,TOC reduction over WWTP,87,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2020,Tabell 8 2020: TOC-reduktion 87 %,
+wwtp_ss_reduction_2021,SÄ reduction over WWTP,99,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2021,Tabell 8 2021: SÄ-reduktion 99 %,
+wwtp_toc_reduction_2021,TOC reduction over WWTP,88,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2021,Tabell 8 2021: TOC-reduktion 88 %,
+wwtp_ss_reduction_2022,SÄ reduction over WWTP,98,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2022,Tabell 8 2022: SÄ-reduktion 98 %,
+wwtp_toc_reduction_2022,TOC reduction over WWTP,88,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2022,Tabell 8 2022: TOC-reduktion 88 %,
+wwtp_ss_reduction_2023,SÄ reduction over WWTP,99,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2023,Tabell 8 2023: SÄ-reduktion 99 %,
+wwtp_toc_reduction_2023,TOC reduction over WWTP,88,,,%,Miljörapport 2023 Hallsta-1.pdf,Tabell 8,2023,2023,Tabell 8 2023: TOC-reduktion 88 %,
+eff_ss_2023_t9,SÄ emission total,245,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 9,2023,2023,Tabell 9 SÄ 245 ton/år,Annual total; Tabell 6/9 consistency not checked
+eff_bod7_2023_t9,BOD7 emission total,72,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 9,2023,2023,Tabell 9 BOD7 72 ton/år,Annual total; Tabell 6/9 consistency not checked
+eff_cod_2023_t9,COD-Cr emission total,2836,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 9,2023,2023,Tabell 9 COD-Cr 2836 ton/år,Annual total; Tabell 6/9 consistency not checked
+eff_toc_2023_t9,TOC emission total,950,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 9,2023,2023,Tabell 9 TOC 950 ton/år,Annual total; Tabell 6/9 consistency not checked
+eff_aox_2023_t9,AOX emission total,1.7,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 9,2023,2023,Tabell 9 AOX 1.7 ton/år,Annual total; Tabell 6/9 consistency not checked
+eff_ptot_2023_t9,Ptot emission total,2.4,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 9,2023,2023,Tabell 9 Ptot 2.4 ton/år,Annual total; Tabell 6/9 consistency not checked
+eff_ntot_2023_t9,Ntot emission total,46,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 9,2023,2023,Tabell 9 Ntot 46 ton/år,Annual total; Tabell 6/9 consistency not checked
+eff_edta_2023_t9,EDTA emission total,34,,,t/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 9,2023,2023,Tabell 9 EDTA 34 ton/år,Annual total; Tabell 6/9 consistency not checked
+water_raw_total_2023,raw water intake (Råvatten),11047000,,,m3/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 12,2023,2023,Råvatten 11 047 000 m3,Compare water_raw_daily_2023 30 266 m3/d x365 = 11.05 Mm3 (consistent)
+water_raw_daily_2023,raw water intake average,30266,,,m3/d,Miljörapport 2023 Hallsta-1.pdf,Section 8.1,2023,2023,i snitt ca 30 266 m³/dygn under 2023,
+water_raw_spec_2023,raw water per tonne paper,24.8,,,m3/t,Miljörapport 2023 Hallsta-1.pdf,Section 8.1,2023,2023,"Det totala behovet av råvatten var 24,8 m³/ton producerat papper",
+water_raw_spec_2022,raw water per tonne paper,24.1,,,m3/t,Miljörapport 2023 Hallsta-1.pdf,Section 8.1,2023,2022,"(24,1 m³/ton år 2022)",
+water_process_2023,water consumption manufacturing process,6666000,,,m3/yr,Miljörapport 2023 Hallsta-1.pdf,Tabell 12,2023,2023,Vattenförbrukning tillverkningsprocessen 6 666 000 m3,Difference to raw water 11 047 000 m3 and to effluent 7 288 861 m3 not explained in source
+wood_incl_sawmill_2023,wood incl. sawmill chips,983106,,,m3fub,Miljörapport 2023 Hallsta-1.pdf,Tabell 12,2023,2023,Ved inklusive sågverksflis 983 106 m3fub,
+wood_sawmill_chips_2023,sawmill chips share (Andels sågverksflis),242232,,,m3fub,Miljörapport 2023 Hallsta-1.pdf,Tabell 12,2023,2023,Andels sågverksflis 242 232 m3fub,
+el_total_2019_t13,electricity total,1451,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2019,Tabell 13 electricity total 2019: 1 451,"electricity total 2019 1451 vs 2025 doc ""approx 1,5 TWh/year""; Hallsta only? Tabell 13 presumed Hallsta mill"
+el_total_2020_t13,electricity total,1340,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2020,Tabell 13 electricity total 2020: 1 340,"electricity total 2019 1451 vs 2025 doc ""approx 1,5 TWh/year""; Hallsta only? Tabell 13 presumed Hallsta mill"
+el_total_2021_t13,electricity total,1607,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2021,Tabell 13 electricity total 2021: 1 607,"electricity total 2019 1451 vs 2025 doc ""approx 1,5 TWh/year""; Hallsta only? Tabell 13 presumed Hallsta mill"
+el_total_2022_t13,electricity total,1653,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2022,Tabell 13 electricity total 2022: 1 653,"electricity total 2019 1451 vs 2025 doc ""approx 1,5 TWh/year""; Hallsta only? Tabell 13 presumed Hallsta mill"
+el_total_2023_t13,electricity total,1450,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2023,Tabell 13 electricity total 2023: 1450,"Section 8.2 text: ""Totalt 1 450 GWh användes""; Summa 1 453 includes diesel 2.82 GWh; electricity total 2019 1451 vs 2025 doc ""approx 1,5 TWh/year""; Hallsta only? Tabell 13 presumed Hallsta mill"
+lpg_t_2019_t13,internal transport LPG,0.5,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2019,"Tabell 13 internal transport LPG 2019: 0,5",
+lpg_t_2020_t13,internal transport LPG,0.3,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2020,"Tabell 13 internal transport LPG 2020: 0,3",
+lpg_t_2021_t13,internal transport LPG,0.2,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2021,"Tabell 13 internal transport LPG 2021: 0,2",
+lpg_t_2022_t13,internal transport LPG,0.2,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2022,"Tabell 13 internal transport LPG 2022: 0,2",
+lpg_t_2023_t13,internal transport LPG,0.46,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2023,"Tabell 13 internal transport LPG 2023: 0,46",
+lpg_gwh_2019_t13,internal transport LPG energy,0.0,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2019,"Tabell 13 internal transport LPG energy 2019: 0,00",
+lpg_gwh_2020_t13,internal transport LPG energy,0.0,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2020,"Tabell 13 internal transport LPG energy 2020: 0,00",
+lpg_gwh_2021_t13,internal transport LPG energy,0.0,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2021,"Tabell 13 internal transport LPG energy 2021: 0,00",
+lpg_gwh_2022_t13,internal transport LPG energy,0.0,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2022,"Tabell 13 internal transport LPG energy 2022: 0,00",
+lpg_gwh_2023_t13,internal transport LPG energy,0.0,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2023,Tabell 13 internal transport LPG energy 2023: 0,
+diesel_m3_2019_t13,internal transport diesel,305,,,m3,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2019,Tabell 13 internal transport diesel 2019: 305,
+diesel_m3_2020_t13,internal transport diesel,295,,,m3,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2020,Tabell 13 internal transport diesel 2020: 295,
+diesel_m3_2021_t13,internal transport diesel,266,,,m3,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2021,Tabell 13 internal transport diesel 2021: 266,
+diesel_m3_2022_t13,internal transport diesel,319,,,m3,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2022,Tabell 13 internal transport diesel 2022: 319,
+diesel_m3_2023_t13,internal transport diesel,282,,,m3,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2023,Tabell 13 internal transport diesel 2023: 282,
+diesel_gwh_2019_t13,internal transport diesel energy,3.0,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2019,"Tabell 13 internal transport diesel energy 2019: 3,0",
+diesel_gwh_2020_t13,internal transport diesel energy,2.9,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2020,"Tabell 13 internal transport diesel energy 2020: 2,9",
+diesel_gwh_2021_t13,internal transport diesel energy,2.7,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2021,"Tabell 13 internal transport diesel energy 2021: 2,7",
+diesel_gwh_2022_t13,internal transport diesel energy,3.2,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2022,"Tabell 13 internal transport diesel energy 2022: 3,2",
+diesel_gwh_2023_t13,internal transport diesel energy,2.82,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2023,"Tabell 13 internal transport diesel energy 2023: 2,82",
+energy_sum_2019_t13,energy total (Summa),1454,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2019,Tabell 13 energy total (Summa) 2019: 1 454,
+energy_sum_2020_t13,energy total (Summa),1343,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2020,Tabell 13 energy total (Summa) 2020: 1 343,
+energy_sum_2021_t13,energy total (Summa),1610,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2021,Tabell 13 energy total (Summa) 2021: 1 610,
+energy_sum_2022_t13,energy total (Summa),1656,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2022,Tabell 13 energy total (Summa) 2022: 1 656,
+energy_sum_2023_t13,energy total (Summa),1453,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2023,Tabell 13 energy total (Summa) 2023: 1 453,
+spec_energy_2019_t13,specific energy consumption,3.18,,,MWh/F-ton paper,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2019,"Tabell 13 specific energy consumption 2019: 3,18",Implied paper production = Summa / spec: 2019 -> see README conflicts (2023: 1453 GWh/3.3 = 440 kt vs Tabell 3 444 494 t)
+spec_energy_2020_t13,specific energy consumption,3.1,,,MWh/F-ton paper,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2020,"Tabell 13 specific energy consumption 2020: 3,10",Implied paper production = Summa / spec: 2020 -> see README conflicts (2023: 1453 GWh/3.3 = 440 kt vs Tabell 3 444 494 t)
+spec_energy_2021_t13,specific energy consumption,3.21,,,MWh/F-ton paper,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2021,"Tabell 13 specific energy consumption 2021: 3,21",Implied paper production = Summa / spec: 2021 -> see README conflicts (2023: 1453 GWh/3.3 = 440 kt vs Tabell 3 444 494 t)
+spec_energy_2022_t13,specific energy consumption,3.19,,,MWh/F-ton paper,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2022,"Tabell 13 specific energy consumption 2022: 3,19",Implied paper production = Summa / spec: 2022 -> see README conflicts (2023: 1453 GWh/3.3 = 440 kt vs Tabell 3 444 494 t)
+spec_energy_2023_t13,specific energy consumption,3.3,,,MWh/F-ton paper,Miljörapport 2023 Hallsta-1.pdf,Tabell 13,2023,2023,"Tabell 13 specific energy consumption 2023: 3,3",Implied paper production = Summa / spec: 2023 -> see README conflicts (2023: 1453 GWh/3.3 = 440 kt vs Tabell 3 444 494 t)
+el_total_text_2023,electricity use total (text),1450,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Section 8.2 after Tabell 13,2023,2023,Totalt 1 450 GWh användes i bruket,
+spec_energy_text_2023,specific energy (text),3.3,,,MWh/F-ton paper,Miljörapport 2023 Hallsta-1.pdf,Section 8.2 after Tabell 13,2023,2023,"total specific energy consumption av 3,3 MWh/F-ton papper",
+bark_sold_energy_2023,bark sold (energy),204,,,GWh,Miljörapport 2023 Hallsta-1.pdf,Section 8.3.1,2023,2023,Såld bark under 2023 var ca204 GWh,
+bark_sold_mass_2023,bark sold (mass),109061,,,t,Miljörapport 2023 Hallsta-1.pdf,Section 8.3.1,2023,2023,motsvarar ca 109 061ton bark,Moisture basis not stated; implies 1.87 MWh/t; bark_2018 135 500 t (Q&A 2019) refers to 2018 bark losses
+sludge_normaplan_2023,sludge to Norra plan,45456,,,t,Miljörapport 2023 Hallsta-1.pdf,Section 8.3.2,2023,2023,Mängden slam uppkörd till Norra plan under 2023 var 45 456ton,
+sludge_bark_mix_2023,of which admixed bark,34094,,,t,Miljörapport 2023 Hallsta-1.pdf,Section 8.3.2,2023,2023,varav 34 094 ton utgjordes av inblandad bark,
+dh_export_2023,surplus heat delivered to Norrtälje Energi,11877,,,MWh,Miljörapport 2023 Hallsta-1.pdf,Section 8.3.3,2023,2023,levererades 11 877 MWh överskottsvärme till Norrtälje Energi,Compare dh_2019 16 000 GJ (=4.4 GWh)
+co2_fossil_2023,fossil CO2 emissions,4,,,t,Miljörapport 2023 Hallsta-1.pdf,Section 5.3,2023,2023,koldioxid ... cirka 4 ton,
+co2_fossil_2014,fossil CO2 emissions 2014,1143,,,t,Miljörapport 2023 Hallsta-1.pdf,Section 5.3,2023,2014,utsläpp från år 2014 (1 143 t on),
+boiler_stop_year,last solid fuel boiler (HP3) taken out of operation,2014,,,year,Miljörapport 2023 Hallsta-1.pdf,Section 1 / Tabell 5 / 5.3,2023,2014,Ingen fastbränslepanna har använts ... sedan 2014,Tabell 5 also says oil boilers not run since 2015; HP3 stopped May 2014
+permit_el_boilers_n,number of electric boilers,2,,,count,Miljörapport 2023 Hallsta-1.pdf,Section 1,2023,2023,"Två elpannor, EP1 och EP2",Count; no capacity stated
+tmp_lines_n,number of TMP units,3,,,count,Miljörapport 2023 Hallsta-1.pdf,Section 1,2023,2023,"TMP1, TMP2 och TMP3",
+pm_n,number of paper machines,2,,,count,Miljörapport 2023 Hallsta-1.pdf,Section 1,2023,2023,två pappersmaskiner PM11 och PM12,
+wwtp_since,current WWTP (BAS) operating since,2020,,,year,Miljörapport 2023 Hallsta-1.pdf,Section 1,2023,2020,Reningsanläggningen ... består sedan 2020 av BAS,
+mbbr_stop_days_2023,MBBR fully stopped 5 Jun - 24 Aug,81,,,days,Miljörapport 2023 Hallsta-1.pdf,Section 1.2,2023,2023,MBBR helt stoppades från 5 juni till och med 24 augusti,Day count is the date range; value 81 is a unit label of the stated range (5 Jun-24 Aug inclusive)
+mbbr_carrier_share,MBBR carrier volume after restart,40,,,%,Miljörapport 2023 Hallsta-1.pdf,Section 1.2,2023,2023,bärarmaterial i 40 % av bassängsvolymen,
+edta_consumed_2023,EDTA consumption,452,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 5 cond. 5a,2023,2023,452 ton EDTA förbrukats,
+edta_emitted_2023,EDTA emission,34,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 5 cond. 5a,2023,2023,Utsläpp var ca 34 ton,
+nutrient_ptot_2023_t5,mean P emission,6.7,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 5 cond. 5,2023,2023,"totalfosfor var 6,7 kg/dygn",
+nutrient_ntot_2023_t5,mean N emission,125,,,kg/d,Miljörapport 2023 Hallsta-1.pdf,Tabell 5 cond. 5,2023,2023,totalkväve var 125 kg/dygn,
+port_calls_2023,port calls,52,,,count,Miljörapport 2023 Hallsta-1.pdf,Tabell 14,2023,2023,Summa (lastat och lossat) 52 167 766,
+port_paper_loaded_2023,paper loaded onto ships,58308,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 14,2023,2023,Papper (lastat) 25 58 308,
+port_wood_2023,wood (Ved) delivered by ship,47763,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 14,2023,2023,Ved 13 47 763,
+port_logs_2023,saw logs delivered by ship,29825,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 14,2023,2023,Sågtimmer 8 29 825,
+port_chips_2023,chips unloaded,8325,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 14,2023,2023,Flis (lossat) 3 8325,
+waste_fuel_combustible_2023,combustible sorted waste (energy recovery),358,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 15,2023,2023,Brännbart källsorterat avfall 358,
+waste_clean_wood_2023,clean wood (energy recovery),279,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 15,2023,2023,Rent trä 279,
+waste_energy_recovery_total_2023,non-hazardous waste to energy recovery,636,,,t,Miljörapport 2023 Hallsta-1.pdf,Tabell 15,2023,2023,Totalt 960 636 109,
+wood_density_2019,wood mass per m3fub,900,,,kg/m3fub,Compiled questions to Holmen 2019.docx,Q: We know the wood amount used in 2018,2019,n/a,Approx 900 kg wood / m³fub,Same as 2025 (wood_density_2025)
+bark_2018,bark lost in debarking,135500,,,t/yr,Compiled questions to Holmen 2019.docx,Q: Regarding the bark losses,2019,2018,Approx 135 500 tonnes of bark for 2018,Moisture basis not stated; compare bark_sold_mass_2023 109 061 t and 12% of log (log_bark_share_2019)
+freshwater_prod_2019,freshwater consumption production incl. sealing water,6.3,,,m3/min,Compiled questions to Holmen 2019.docx,"Q: During the presentation, you mentioned",2019,2019 (approx),"Total freshwater consumption for production (incl sealingwater) approx 6,3 m³/min",Year not stated; compare 12.8 m3/min 2023 (water_fresh_actual_2023) and Mill raw water 30 266 m3/d=21 m3/min; boundary differs
+filler_pm11_2019,filler share PM11,6,,,%,Compiled questions to Holmen 2019.docx,Q: Is there any difference in the amount of fillings,2019,2019 (approx),PM11 avg 6 %,
+filler_pm12_2019,filler share PM12,11,,,%,Compiled questions to Holmen 2019.docx,Q: Is there any difference in the amount of fillings,2019,2019 (approx),PM12 avg 11 %,
+urea_2018,urea consumption,690000,,,t,Compiled questions to Holmen 2019.docx,Q: Apart from bilaga 8,2019,2018,Urea 690 000 tonnes,Implausible magnitude (690 000 t/yr); likely kg or other unit; compare 2025 doc N dosing 700 kg/d. Source unit as written
+el_tmp3_aug2019,electricity TMP3,46000,,,MWh/month,Compiled questions to Holmen 2019.docx,Q: What is the (direct) electricity usage for TMP 12,2019,2019-08,TMP3 approx 46 000 MWh/month,August 2019 only; 46 000x12=552 GWh
+el_tmp12_aug2019,electricity TMP12,38000,,,MWh/month,Compiled questions to Holmen 2019.docx,Q: What is the (direct) electricity usage for TMP 12,2019,2019-08,TMP12 approx 38 000 MWh/month,
+el_pm11_aug2019,electricity PM11 incl. bleaching plant,14000,,,MWh/month,Compiled questions to Holmen 2019.docx,Q: What is the (direct) electricity usage for TMP 12,2019,2019-08,PM11 incl. bleachingplant approx 14 000 MWh/month,
+el_pm12_aug2019,electricity PM12 incl. bleaching,8000,,,MWh/month,Compiled questions to Holmen 2019.docx,Q: What is the (direct) electricity usage for TMP 12,2019,2019-08,PM12 incl blecahing approx 8 000 MWh/month,Sum of the four Aug 2019 items = 106 000 MWh/month; annual 2019 total 1451 GWh/12 = 121 GWh/month; electric boilers not listed
+el_wwtp_share_2019,WWTP share of electricity,,1,1.5,%,Compiled questions to Holmen 2019.docx,Q: What is the (direct) electricity usage for the waste water,2019,2019 (approx),"About 1-1,5 %",Source gives range 1-1.5
+steam_pressure_2019,steam pressure,2.5,,,bar,Compiled questions to Holmen 2019.docx,Q: What are the volume/amount of steam used,2019,2019 (approx),"Steam pressure mostly approx 2,5 bar",bar vs bar(g) not stated
+steam_tmp_net_2019,net steam production TMP,145000,,,GJ,Compiled questions to Holmen 2019.docx,Q: What are the volume/amount of steam used,2019,2019 (approx),Net production steam TMP approx 145 000 GJ,Period not stated (maybe per month; 145 000 GJ/month = 1.74 PJ/yr = 483 GWh/yr; if per year = 40 GWh); compare steam_tmp_10000GJ_month_unknown and 100 t/h in 2025 doc
+steam_pm_2019,steam used by PMs,155000,,,GJ,Compiled questions to Holmen 2019.docx,Q: What are the volume/amount of steam used,2019,2019 (approx),PM's 155 000 GJ,Period not stated; same ambiguity as steam_tmp_net_2019
+steam_temp_2p4bar_2019,steam temperature at 2.4 bar,138,,,degC,Compiled questions to Holmen 2019.docx,Q: Dirty steams from the TMP process,2019,2019 (approx),"Temp at 2,4 bar = 138 c",
+steam_pressure_pm_2019,steam pressure PM,2.4,,,bar,Compiled questions to Holmen 2019.docx,Q: Dirty steams from the TMP process,2019,2019 (approx),"Temp at 2,4 bar = 138 c",
+condensate_temp_pm_2019,condensate temperature from PM,90,,,degC,Compiled questions to Holmen 2019.docx,Q: What is the temperature and amount of condensate,2019,2019 (approx),Temp approx 90 degrees from PM,
+debark_water_2019,net water use debarking,300,,,l/min,Compiled questions to Holmen 2019.docx,Q: How much water is used washing logs,2019,2019 (approx),Net use of water for debarking approx 300 l/min,
+effluent_flow_wwtp_2019,effluent flow from WWTP,,11.5,12.0,m3/min,Compiled questions to Holmen 2019.docx,Q: What are the volumes of the various inflows,2019,2019 (approx),"Effluent water flow from WWTP is 11,5-12,0 m³/min",Range
+evap_lost_2019,water evaporated or lost (student calc.),6.5,,,m3/min,Compiled questions to Holmen 2019.docx,Q: From our calculations,2019,2019 (approx),we got that about 6.5 m3/minute of water is either evaporated or lost,"Student calculation quoted in the question, not Holmen data"
+incoming_water_T_2019,incoming water temperature,,2,25,degC,Compiled questions to Holmen 2019.docx,Q: What is the temperature of the incoming water,2019,2019 (approx),2-25 degrees on incoming water,Range
+effluent_dT_sea_2019,temperature difference WWTP effluent vs sea,32,,,degC,Compiled questions to Holmen 2019.docx,Q: What is the (average) temperature difference between the water exiting,2019,2019 (approx),Roughly 32 degrees most of the time.,"AMBIGUOUS: question asks for difference, but 32 degC is high for a delta (absolute effluent temp implies sea 0-?); could be absolute temperature or delta"
+effluent_dT_sea_shutdown_2019,temperature during long shutdowns,20,,,degC,Compiled questions to Holmen 2019.docx,Q: What is the (average) temperature difference between the water exiting,2019,2019 (approx),During longer shut downs temp can drop down to approx 20 degrees.,Same delta/absolute ambiguity as effluent_dT_sea_2019
+pm_wastewater_T_2019,PM wastewater temperature,50,,,degC,Compiled questions to Holmen 2019.docx,Q: What is the (average) temperature of the waste water,2019,2019 (approx),Around 50 degrees,
+pm_wastewater_flow_2019,PM wastewater flow to WWTP per PM,,0.8,1.0,m3/min,Compiled questions to Holmen 2019.docx,Q: What are the volumes of the waste water flows from PM 11,2019,2019 (approx),"Waters going to WWTP approx 0,8 – 1,0 m³/min / PM","Range per PM; compare 900 and 1150 l/min (2023, Answers to questions-1)"
+toc_load_2018,total TOC load,24,,,t/d,Compiled questions to Holmen 2019.docx,Q: What is the TOC content in the waste water,2019,2018,Total TOC-load for 2018 was 24 tonnes/d,
+img_2019_1_tss_tmp,TSS in TMP stream,5.5,,,%,Compiled questions to Holmen 2019.docx,image1.png,2019,n/a,"TSS 5,5 %",Process figure; ambiguous point (TMP output)
+img_2019_1_tss_bleach,TSS bleaching plant,4,,,%,Compiled questions to Holmen 2019.docx,image1.png,2019,n/a,TSS 4 %,
+img_2019_1_tss_pm,TSS into paper machine,1,,,%,Compiled questions to Holmen 2019.docx,image1.png,2019,n/a,TSS 1 %,
+img_2019_1_tss_paper,TSS in paper,93,,,%,Compiled questions to Holmen 2019.docx,image1.png,2019,n/a,Paper TSS 93 %,
+img_2019_1_paper_adt,paper production,900,,,ADT/d,Compiled questions to Holmen 2019.docx,image1.png,2019,n/a,900 ADT/d,900x365 = 328 kt/yr vs Tabell 3 444 kt (2023); 2018 547 585 t (quoted in study visit doc)
+img_2019_2_warm_water_T,warm water to the process,56,,,degC,Compiled questions to Holmen 2019.docx,image2.png,2019,n/a,Warm water to the process approx 56 degrees,
+paper_2018,paper production (quoted from env. report 2018),547585,,,t/yr,Questions for the study visit (Answers Hallsta).docx,Q: In the environmental report from 2018,2019/2020,2018,produced 547 585 tonnes of paper,
+tmp_2018,TMP production (quoted),519517,,,t/yr,Questions for the study visit (Answers Hallsta).docx,Q: In the environmental report from 2018,2019/2020,2018,519 517 tonnes of thermomechanical mass,
+tcf_pulp_2018,TCF bleached sulphate pulp (quoted),4428000,,,kg/yr,Questions for the study visit (Answers Hallsta).docx,Q: According to the environmental report 2018,2019/2020,2018,"4,428,000 kg/year TCF bleached sulphur mass",Student quote; = 4 428 t vs 2 352 t in 2023
+sludge_wet_2019,wet sludge from WWTP,60000,,,t/yr,Questions for the study visit (Answers Hallsta).docx,Q: Regarding the sludge from the WWTP,2019/2020,2019/2020,Approx. 60 000 tonnes of wet sludge/year. Dryness about 27 %.,
+sludge_dryness_2019,sludge dryness,27,,,%,Questions for the study visit (Answers Hallsta).docx,Q: Regarding the sludge from the WWTP,2019/2020,2019/2020,Dryness about 27 %,
+log_bark_share_2019,share of log removed as bark,12,,,%,Questions for the study visit (Answers Hallsta).docx,Q: How much of the wood that goes in is lost,2019/2020,2019/2020,In average 12% of the log is removed as bark,
+recycled_fibre_end,recycled fibre process closed,2008,,,year,Questions for the study visit (Answers Hallsta).docx,Q: How much recycled paper fibres,2019/2020,n/a,closed down in November 2008,
+el_split_boiler_2019,electricity share electric boiler,6,,,%,Questions for the study visit (Answers Hallsta).docx,Q: What does the share of energy consumed,2019/2020,avg last 3 yrs (~2017-19),Electric boiler approx. 6%,CONFLICT with 2025 doc: 10% (el_split_boiler_2025)
+el_split_tmp_2019,electricity share TMP,72,,,%,Questions for the study visit (Answers Hallsta).docx,Q: What does the share of energy consumed,2019/2020,avg last 3 yrs (~2017-19),TMP-process approx. 72 %,CONFLICT: 2025 doc 70%
+el_split_pm_2019,electricity share PMs,22,,,%,Questions for the study visit (Answers Hallsta).docx,Q: What does the share of energy consumed,2019/2020,avg last 3 yrs (~2017-19),PM's approx. 22%,"CONFLICT: 2025 doc 15%; shares sum 100 in 2019, 95 in 2025"
+dh_2019,energy delivered as domestic (district) heating,16000,,,GJ,Questions for the study visit (Answers Hallsta).docx,Q: What is the energy content of water transferred,2019/2020,2019,In 2019 approx 16 000 GJ of energy was delivered via domestic heating.,16 000 GJ = 4.4 GWh; compare 11 877 MWh in 2023 (dh_export_2023)
+loss_debark_chip_2019,pulp losses debarking+chipping,1.5,,,t DS/d,Questions for the study visit (Answers Hallsta).docx,Q: What are the losses of pulp,2019/2020,2019/2020,"a+b= approx. 1,5 tonnes DS/d",
+loss_tmp_clean_2019,pulp losses TMP + bleaching,15,,,t DS/d,Questions for the study visit (Answers Hallsta).docx,Q: What are the losses of pulp,2019/2020,2019/2020,c+d = approx. 15 tonnes DS/d,Lettering a-e: a Debarking b Chipping c TMP d Bleaching e PM
+loss_pm_2019,pulp losses PM,7.5,,,t DS/d,Questions for the study visit (Answers Hallsta).docx,Q: What are the losses of pulp,2019/2020,2019/2020,"e = 7,5 tonnes of DS/d",
+n_added_2019,nitrogen added at WWTP,300,,,t/yr,Questions for the study visit (Answers Hallsta).docx,Q: What nutrients,2019/2020,2019/2020,approx. 300 tonnes of N and 30 tonnes of P per year,Compare 700 kg/d (255 t/yr) in 2023 (n_added_2023)
+p_added_2019,phosphorus added at WWTP,30,,,t/yr,Questions for the study visit (Answers Hallsta).docx,Q: What nutrients,2019/2020,2019/2020,30 tonnes of P per year,Compare 70 kg/d (25.6 t/yr) in 2023
+wwtp_new_since,new WWTP since,2020,,,year,Questions for the study visit (Answers Hallsta).docx,"Q: What nutrients (note ""New WWTP since June 2020"")",2019/2020,2020,New WWTP since June 2020,Month June 2020
+img_sv1_note,image1.png: WWTP 2018 process diagram; contains no numeric values,,,,,Questions for the study visit (Answers Hallsta).docx,image1.png,2019/2020,2018,Figur 1 Beskrivning av Hallstas avloppsvattenreningsanläggning 2018,"Counted for completeness; no data. Labels: TMP1, TMP2, TMP3, PM11 och 12, 2 st silbandspressar, 2 outlets (1. FF PM2, 2. Utg kem. rening)"
+img_sv2_note,"image2.png: WWTP 2020+ process diagram (LB1 MBBR, LB2, LB5, Kyltorn 1,2,4); no numeric values",,,,,Questions for the study visit (Answers Hallsta).docx,image2.png,2019/2020,2020,"LB1 MBBR, LB2 Aktivslam, LB5 Aktivslam","No data, labels only (Kyltorn 1, 2, 4 = cooling towers 1,2,4 where 4 is hatched)"
+wwtp_out_2024,WWTP outflow yearly average,13.5,,,m3/min,Student questions to Holmen 2025 (ANRA 251021).docx,Q: How much water is let out from the wastewater,2025,not stated (~2024),"Approx. 13,5 m³/min as yearly average",=7.1 Mm3/yr; compare effluent_wwtp_daily_2023 18 300 m3/d = 12.7 m3/min and 11.5-12.0 m3/min (2019)
+log_watering_2025,log watering flow,1,,,m3/min,Student questions to Holmen 2025 (ANRA 251021).docx,"Q: Anna, you said something about watering",2025,summer (Apr-Aug),Approx 1 m³/min average during that time,
+h2o2_conc_2025,hydrogen peroxide concentration,50,,,%,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What's the concentration of the hydrogen peroxide,2025,2025,50%,
+img_wb_in,water balance inflow: fresh water incl. chemicals and wood,11.8,,,Mm3/yr,Student questions to Holmen 2025 (ANRA 251021).docx,image1.png,2025,"2024 (per text ""rough water balance for 2024"")","Fresh water incl. chemicals and wood 11,8 Million m³/year","Compare raw water 11.047 Mm3 (2023, water_raw_total_2023)"
+img_wb_evap,"water balance: losses through evaporation, with paper (estimated)",0.8,,,Mm3/yr,Student questions to Holmen 2025 (ANRA 251021).docx,image1.png,2025,2024,"0,8 Million m³/year",
+img_wb_wwtp,water balance: treated effluent from WWTP,7,,,Mm3/yr,Student questions to Holmen 2025 (ANRA 251021).docx,image1.png,2025,2024,7 Million m³/year,Compare 13.5 m3/min = 7.1 Mm3; 7.29 Mm3 (2023)
+img_wb_cooling,water balance: release of cooling and other non-affected process waters,4,,,Mm3/yr,Student questions to Holmen 2025 (ANRA 251021).docx,image1.png,2025,2024,4 Million m³/year,Balance: 11.8 in vs 0.8+7+4+0.05 = 11.85 out
+img_wb_sludge,water balance: losses with sludge,0.05,,,Mm3/yr,Student questions to Holmen 2025 (ANRA 251021).docx,image1.png,2025,2024,"0,05 Million m³/year",
+el_total_2025,Hallsta total electricity,1.5,,,TWh/yr,Student questions to Holmen 2025 (ANRA 251021).docx,Q: We found it difficult to access energy consumption data,2025,2025 (year not stated),"Total electricity consumption for Hallsta is appox. 1,5 TWh/year",~1450 GWh 2023 Tabell 13; text says Hallsta only
+el_split_tmp_2025,electricity share TMP,70,,,%,Student questions to Holmen 2025 (ANRA 251021).docx,Q: We found it difficult to access energy consumption data,2025,2025,TMP-plant uses about 70%,CONFLICT with 72% (el_split_tmp_2019)
+el_split_pm_2025,electricity share PMs,15,,,%,Student questions to Holmen 2025 (ANRA 251021).docx,Q: We found it difficult to access energy consumption data,2025,2025,PMs about 15%,CONFLICT with 22% (el_split_pm_2019)
+el_split_boiler_2025,electricity share electric boilers,10,,,%,Student questions to Holmen 2025 (ANRA 251021).docx,Q: We found it difficult to access energy consumption data,2025,2025,electric boilers around 10%,CONFLICT with 6% (el_split_boiler_2019); also pptx EP 0.12/3.02=4%
+tmp_woodchip_density_2025,wood chip mass per m3fub,900,,,kg/m3fub,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What is the average amount of wood chips,2025,2025,1 m³ fub = 900 kg woodchips,
+tmp_moisture_2025,wood chip moisture,50,,,%,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What is the average amount of wood chips,2025,2025,Approx 50% moisture content,
+tmp_el_spec_2025,TMP refining specific electricity,,1500,2000,kWh/t,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What is the average electricity consumption for the TMP refining,2025,2025,somewhere between 1500 and 2000 kWh/tonne,Range; basis (adt vs odt) unstated
+tmp_fw_spec_2025,fresh water in TMP,,3.5,4.0,m3/ADT,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What is the water intake for the TMP line,2025,2025,"about 3,5-4,0 m³/ADT","Range; ""ie 10% water content in pulp"""
+tmp_pulp_moisture_2025,air-dry pulp water content,10,,,%,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What is the water intake for the TMP line,2025,2025,10% water content in pulp,
+tmp_yield_loss_2025,"log loss through refining, screening, bleaching",10,,,%,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What is the average pulp yield,2025,2025,"10% of the log (ex bark) is lost through refining, screening and bleaching",
+tmp_reject_2025,TMP fibre reject,,2,2.5,%,Student questions to Holmen 2025 (ANRA 251021).docx,Q: How much reject is generated,2025,2025,"About 2-2,5 % of the fibers are rejected",Range
+tmp_effluent_2025,TMP effluent water,,10,11,m3/ADT,Student questions to Holmen 2025 (ANRA 251021).docx,Q: How much effluent water is discharged from the TMP,2025,2025,10-11 m³/ADT of pulp,Range
+total_effluent_spec_2025,total waste water released per ADT pulp,15,,,m3/ADT,Student questions to Holmen 2025 (ANRA 251021).docx,Q: How much effluent water is discharged from the TMP,2025,2025,total waste water released about 15 m³/ADT pulp,"Compare 15.2 m3/t (water_spec_actual_2023, per tonne paper)"
+tmp_steam_recycled_2025,steam recycled,100,,,t/h,Student questions to Holmen 2025 (ANRA 251021).docx,Q: How much steam or heat is recovered,2025,2025,About 100 tonnes of steam/hour is recycled,"CONFLICT with ""10 000 GJ/month steam production"" (steam_tmp_10000GJ_month_unknown): 100 t/h is of the order 10^5 GJ/month (at ~2.2 GJ/t, ~160 000 GJ/month); same order as steam_tmp_net_2019 145 000 GJ if that is per month, two orders above 10 000 GJ/month"
+steam_per_MW_2025,steam per MW electric boiler,1.5,,,t steam/MW (per h),Student questions to Holmen 2025 (ANRA 251021).docx,Q: How much steam or heat is recovered,2025,2025,"you receive 1,5 tonnes of steam/MW",Unit as written; presumably t/h per MW. pptx: 1.8 t steam/F-ton ~ 1.2 MWh/F-ton = 1.5 t/MWh (consistent)
+tmp3_capacity_2025,TMP3 capacity,50,,,ADT/h,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What is the production capacity of each TMP line,2025,2025,Official capacity is 50 ADT/h (TMP3),Same as 2025/unknown doc
+tmp12_capacity_2025,TMP12 capacity,35,,,ADT/h,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What is the production capacity of each TMP line,2025,2025,35 ADT/h (TMP12),
+tmp_aux_el_2025,TMP auxiliary drives electricity,150,,,kWh/t,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What proportion of the TMP line's electricity,2025,2025,150 kWh/ton in relation to about 2000 kWh/tonne for refining,
+tmp_refining_el_2025,TMP refining electricity,2000,,,kWh/t,Student questions to Holmen 2025 (ANRA 251021).docx,Q: What proportion of the TMP line's electricity,2025,2025,about 2000 kWh/tonne for refining,
+steam_recovery_rate_2025,steam recovery rate of need,,70,90,%,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Is there a measure of how much recovered steam,2025,2025,the recovery rate is about 70-90% of the needed consumption,Range; steam need within TMP/mill unclear
+purchased_steam_2025,purchased steam,0,,,t or GJ,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Energy Supply,2025,2025,Purchased Steam (tons or GJ): 0,
+coal_2025,coal,0,,,t,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Energy Supply,2025,2025,Coal Consumption (tons): 0,
+fueloil_2025,fuel oil,0,,,kL,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Energy Supply,2025,2025,Fuel Oil Consumption (kL): 0,
+gas_2025,natural gas,0,,,Nm3,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Energy Supply,2025,2025,Natural Gas Consumption (Nm³): 0,
+biomass_fuel_2025,biomass fuel,0,,,t,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Energy Supply,2025,2025,Biomass Consumption (tons): 0,
+byproduct_fuel_2025,byproduct fuels,0,,,t or GJ,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Energy Supply,2025,2025,"Byproduct Fuels (Black Liquor, etc.) (tons or GJ): 0",
+wood_handling_el_2025,wood handling electricity,2.5,,,MW,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Wood Handling,2025,2025,"Electricity Used (kWh): 2,5 MW","Asked in kWh, answered in MW; load vs energy"
+wood_handling_steam_2025,wood handling steam,1.5,,,t/h,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Wood Handling,2025,2025,"Steam/Heat Used (GJ): 1,5 tonnes/h",
+wood_handling_fuel_2025,wood handling fuel,0,,,-,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Wood Handling,2025,2025,Fuel Used for Debarking/Chipping (type & quantity): 0,
+bleaching_steam_2025,bleaching steam,0,,,GJ,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Bleaching Plant,2025,2025,Steam Usage by Bleaching Stages (GJ): 0,
+bleaching_el_2025,bleaching electricity,3,,,MW,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Bleaching Plant,2025,2025,Electricity Consumption for Bleaching Equipment (kWh): 3MW,Load not energy
+pm_steam_2025,steam used for drying,,80,110,t/h,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Papermill (Drying & Pressing),2025,2025,Steam Used for Drying (GJ or tons): 80-110 tonnes/h,Range
+wwtp_el_2025,WWTP electricity,2.5,,,MW,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Wastewater Treatment,2025,2025,"Electricity Consumed (kWh): 2,5 MW",Load; 2.5 MW x 8760 h = 21.9 GWh (1.5% of 1450 GWh; consistent with 1-1.5% 2019)
+biogas_2025,biogas,0,,,Nm3,Student questions to Holmen 2025 (ANRA 251021).docx,Q: Wastewater Treatment,2025,2025,Biogas Production from Sludge Digestion (Nm³): 0,
+wood_density_aq,wood mass per m3fub,900,,,kg/m3fub,Answers to questions-1.docx,item 2,unknown (~2025),n/a,1 m³ fub =  900 kg,
+toc_loss_aq,organic loss as TOC in WWTP effluent,2.5,,,t/d,Answers to questions-1.docx,item 3,unknown (~2025),not stated,"Perhaps 2,5 tonnes/day measured as TOC","Compare Tabell 6 TOC 2.6 t/d (2023); 24 t/d in 2019 doc (toc_load_2018, TOC load in)"
+paper_fibre_aq,paper composition fibre,,80,88,%,Answers to questions-1.docx,item 5,unknown (~2025),not stated,Fiber: approx. 80-88 %,Range
+paper_water_aq,paper composition water,7,,,%,Answers to questions-1.docx,item 5,unknown (~2025),not stated,water: approx. 7 %,
+paper_filler_aq,paper composition fillers,,5,13,%,Answers to questions-1.docx,item 5,unknown (~2025),not stated,fillers (ash-content): approx.: 5-13 %,Range
+fw_ptot_aq,freshwater P-tot,0.3,,,mg/l,Answers to questions-1.docx,item 7,unknown (~2025),not stated,"approx. 0,3 mg/l of P-tot",
+fw_ntot_aq,freshwater N-tot,,1,2,mg/l,Answers to questions-1.docx,item 7,unknown (~2025),not stated,1-2 mg/l of N-tot,Range
+wwtp_in_ntot_aq,incoming N-tot to WWTP,12,,,mg/l,Answers to questions-1.docx,item 7,unknown (~2025),not stated,N-tot=7-20 mg/l (avg 12 mg/l),"Range 7-20, avg 12"
+wwtp_in_po4_aq,incoming PO4-P to WWTP,0.5,,,mg/l,Answers to questions-1.docx,item 7,unknown (~2025),not stated,"PO4-P: 0,1 – 1,0 mg/l (avg 0,5 mg/l)","Range 0.1-1.0, avg 0.5"
+n_added_2023,nitrogen added at WWTP,700,,,kg/d,Answers to questions-1.docx,item 7,unknown (~2025),2023,Nitrogen 700 kg/d,Compare 300 t/yr (822 kg/d) in n_added_2019
+p_added_2023,phosphorus added at WWTP,70,,,kg/d,Answers to questions-1.docx,item 7,unknown (~2025),2023,Phosphorous 70 kg/d,
+biosludge_aq,biosludge,11,,,t TS/d,Answers to questions-1.docx,item 7,unknown (~2025),not stated,Biosludge: approx. 11 tonnes TS/d,
+biosludge_p_aq,biosludge P-tot,0.35,,,%,Answers to questions-1.docx,item 7,unknown (~2025),not stated,"Content of P-tot: approx. 0,35%",
+biosludge_n_aq,biosludge N-tot,3.5,,,%,Answers to questions-1.docx,item 7,unknown (~2025),not stated,"N-tot approx. 3,5%",
+sludge_total_aq,total sludge to composting/incineration,33,,,t TS/d,Answers to questions-1.docx,item 7,unknown (~2025),not stated,approx. 33 tonnes TS/d,33x365 = 12 kt TS/yr vs 60 000 t wet at 27% = 16 kt TS (sludge_wet_2019)
+sludge_ts_before_aq,sludge TS before dewatering,1.5,,,%,Answers to questions-1.docx,item 7,unknown (~2025),not stated,"approx. 1,5 % TS content",
+sludge_ts_after_aq,sludge TS after dewatering,28,,,%,Answers to questions-1.docx,item 7,unknown (~2025),not stated,after dewatering approx.  28% TS content,
+sludge_p_aq,mixed sludge P-tot,1.5,,,g/kg TS,Answers to questions-1.docx,item 7,unknown (~2025),not stated,"P-tot: 1,5 g/kg TS",
+sludge_n_aq,mixed sludge N-tot,15,,,g/kg TS,Answers to questions-1.docx,item 7,unknown (~2025),not stated,N-tot 15 g/kg,
+reuse_tmp_aq,cleaned waste water reused in TMP,250,,,l/min,Answers to questions-1.docx,item 7,unknown (~2025),not stated,About 250 l/min of cleaned waste water is reused in TMP-plant,
+reuse_sludge_aq,cleaned waste water as spray water in sludge dewatering,1200,,,l/min,Answers to questions-1.docx,item 7,unknown (~2025),not stated,around 1200 l/min as spraying/cleaning water,
+steam_tmp3_use_aq,TMP3 steam use,,500,5000,GJ/month,Answers to questions-1.docx,Energy bullet 2,unknown (~2025),not stated,TMP3 uses between 500 – 5000 GJ / month of steam,"Range; ""uses"" ambiguous (consumption vs production)"
+steam_tmp_10000GJ_month_unknown,"TMP steam ""harvest""/production",10000,,,GJ/month,Answers to questions-1.docx,Energy bullet 3,unknown (~2025),"""recently""","recently the ""steam production"" has been around 10 000 GJ/ month","Source: ""approx"". CONFLICT with ~100 t/h (tmp_steam_recycled_2025) and 145 000 GJ (steam_tmp_net_2019): 10 000 GJ/month is ~6 t/h-equivalent (at ~2.2 GJ/t); 100 t/h would be ~160 000 GJ/month. Scale mismatch unresolved"
+tmp_in_T_aq,temperature into refiner,85,,,degC,Answers to questions-1.docx,Energy bullet 7,unknown (~2025),not stated,Temp in to refiner approx. 85 oC,
+tmp_out_T_aq,pulp temperature directly after refiners,,170,200,degC,Answers to questions-1.docx,Energy bullet 8,unknown (~2025),not stated,Temp pulp directly after refiners 170 – 200 oC,Range
+pulp_T_prebleach_aq,pulp temperature before bleaching plant,80,,,degC,Answers to questions-1.docx,Energy bullet 8,unknown (~2025),not stated,Pulp before bleaching plant 80 oC,
+tmp3_cap_aq,TMP3 max capacity,50,,,ADT/h,Answers to questions-1.docx,Energy bullet 10,unknown (~2025),not stated,TMP3 maximum around 50 ADT/h,
+tmp12_cap_aq,TMP12 capacity,35,,,ADT/h,Answers to questions-1.docx,Energy bullet 10,unknown (~2025),not stated,TMP12 approx 35 ADT/h,
+chip_moisture_aq,chip water content,50,,,%,Answers to questions-1.docx,Energy bullet 10,unknown (~2025),not stated,Wood chips contain approx. 50% water before refining,
+adt_moisture_aq,air-dry tonne moisture,10,,,%,Answers to questions-1.docx,Energy bullet 10,unknown (~2025),n/a,air dry tonnes = 10 % moister content,
+wwtp_net_pm11_aq,net wastewater PM11,900,,,l/min,Answers to questions-1.docx,Water group,unknown (~2025),2023 avg,PM11: 900 l/min,Compare 2019: 0.8-1.0 m3/min per PM
+wwtp_net_bl11_aq,net wastewater BL11,1700,,,l/min,Answers to questions-1.docx,Water group,unknown (~2025),2023 avg,BL11:  1700 l/min,
+wwtp_net_pm12_aq,net wastewater PM12,1150,,,l/min,Answers to questions-1.docx,Water group,unknown (~2025),2023 avg,PM12: 1150 l/min,
+wwtp_net_bl12_aq,net wastewater BL12,0,,,l/min,Answers to questions-1.docx,Water group,unknown (~2025),2023 avg,BL12: 0,
+img_aq1_note,"image1.png: Vattenförbrukning L11 chart (jan-23..dec-23, stacked PM11/BL11/TMP3 m3/min, line m3/ton). No numeric labels in the chart; only axes 0-10 m3/min, 0-20 m3/ton",,,,,Answers to questions-1.docx,image1.png,unknown (~2025),2023,Vattenförbrukning L11,Values only readable approximately off chart (not transcribed). Approx totals 5-7.5 m3/min; PM11 ~3.0-4.7 m3/min
+img_aq2_note,"image2.png: Vattenförbrukning L12 chart (jan-23..dec-23, PM12/ML12/TMP12 m3/min, line m3/ton). No numeric labels",,,,,Answers to questions-1.docx,image2.png,unknown (~2025),2023,Vattenförbrukning L12,Values not transcribed. Approx totals 4.6-6.3 m3/min
+pptx_total_spec,total energy into system,3.02,,,MWh/F-ton,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 total arrow,unknown,unknown,"3,02 MWh/F-ton, 565 kF-ton/år => 1707 GWh/år",F-ton = finished tonne paper; compare 3.3 MWh/t (Tabell 13 2023) and 3.18-3.21 earlier
+pptx_total_prod,production,565,,,kF-ton/yr,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 total arrow,unknown,unknown,565 kF-ton/år,CONFLICT with Tabell 13 implied ~440 kt (2023) and 444 kt (Tabell 3); 565 kt is close to 2018 547.6 kt
+pptx_total_gwh,total energy,1707,,,GWh/yr,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 total arrow,unknown,unknown,=>1707 GWh/år,3.02 x 565 = 1706.3
+pptx_tmp_in,energy into TMP,2.2,,,MWh/F-ton,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 arrow into TMP,unknown,unknown,"2,20 MWh/F-ton",2.20/3.02 = 73% (vs 70-72% el share TMP)
+pptx_steam_recovered,recovered steam TMP -> PM,1.2,,,MWh/F-ton,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 arrow TMP to PM,unknown,unknown,"1,2 MWh/F-ton ~ 1,8 ton ånga/F-ton",
+pptx_steam_mass,recovered steam TMP -> PM,1.8,,,t steam/F-ton,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 arrow TMP to PM,unknown,unknown,"~ 1,8 ton ånga/F-ton","1.8 t per 1.2 MWh = 1.5 t/MWh, matches steam_per_MW_2025"
+pptx_ep,electric boilers EP,0.12,,,MWh/F-ton,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 EP,unknown,unknown,"0,12 MWh/F-ton, 565 kF-ton/år => 69 GWh/år","EP share 0.12/3.02 = 4%, vs 6% (2019) and 10% (2025)"
+pptx_ep_prod,production (EP box),565,,,kF-ton/yr,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 EP,unknown,unknown,565 kF-ton/år,
+pptx_ep_gwh,EP energy,69,,,GWh/yr,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 EP,unknown,unknown,=>69 GWh/år,0.12 x 565 = 67.8
+pptx_pm,PM + övr,0.7,,,MWh/F-ton,Viktiga Energiflöden-1 (1)-1.pptx,slide 1 PM + övr,unknown,unknown,"0,70 MWh/F-ton",
+pptx_labels,"labels only: Energi i PM frånluft; Energi i avlopp; Hallsta PB, systemgräns",,,,,Viktiga Energiflöden-1 (1)-1.pptx,slide 1,unknown,unknown,,Labels without values
