@@ -2,69 +2,75 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one working column with a sticky tab bar; each reviewable row carries its own OK / Question / Wrong control and the group's marks. */
+/* Layout: a step list on the left (top strip on phones) and one review step at a time; every reviewable block carries OK / Question / Wrong and the group's marks. */
 :root{
   --bg:#f6f7f5; --panel:#ffffff; --ink:#15211c; --ink-2:#4a5650; --ink-3:#7c8782; --line:#dfe3df; --line-2:#eceeeb;
   --accent:#1f5c4a; --accent-soft:#e2eee9;
   --elec:#2a78d6; --steam:#eb6834; --water:#1baf7a; --resid:#9aa29e; --useful:#008300;
-  --ok:#0c7a3e; --ok-soft:#e1f2e8; --q:#a86400; --q-soft:#fbefd8; --bad:#c43737; --bad-soft:#f9e1e0;
+  --ok:#0c7a3e; --ok-soft:#e1f2e8; --q:#a86400; --q-soft:#fbefd8; --bad:#c43737; --bad-soft:#f9e1e0; --add:#2a5db0; --add-soft:#e3ecfa;
   --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#121715; --panel:#1a201d; --ink:#e8ede9; --ink-2:#b4bdb8; --ink-3:#86908b; --line:#2c3531; --line-2:#232a27;
   --accent:#6fc2a5; --accent-soft:#1f3a31; --elec:#3987e5; --steam:#d95926; --water:#199e70; --resid:#6f7873; --useful:#3fa83f;
-  --ok:#5fca8a; --ok-soft:#173526; --q:#e5a640; --q-soft:#3a2c12; --bad:#ef7777; --bad-soft:#3d1c1c; color-scheme:dark}}
+  --ok:#5fca8a; --ok-soft:#173526; --q:#e5a640; --q-soft:#3a2c12; --bad:#ef7777; --bad-soft:#3d1c1c; --add:#7aa7ef; --add-soft:#1b2a44; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#121715; --panel:#1a201d; --ink:#e8ede9; --ink-2:#b4bdb8; --ink-3:#86908b; --line:#2c3531; --line-2:#232a27;
   --accent:#6fc2a5; --accent-soft:#1f3a31; --elec:#3987e5; --steam:#d95926; --water:#199e70; --resid:#6f7873; --useful:#3fa83f;
-  --ok:#5fca8a; --ok-soft:#173526; --q:#e5a640; --q-soft:#3a2c12; --bad:#ef7777; --bad-soft:#3d1c1c; color-scheme:dark}
+  --ok:#5fca8a; --ok-soft:#173526; --q:#e5a640; --q-soft:#3a2c12; --bad:#ef7777; --bad-soft:#3d1c1c; --add:#7aa7ef; --add-soft:#1b2a44; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);margin:0}
-.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:28px 80px}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--f-body);margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:26px 80px}
 h1,h2,h3{text-wrap:balance;margin:0;line-height:1.25}
-h1{font-size:1.65rem;font-weight:700;letter-spacing:-.01em}
-h2{font-size:1.2rem;font-weight:650}
-h3{font-size:1rem;font-weight:650}
-p{margin:0}
-.mono,.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+h1{font-size:1.6rem;font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.25rem;font-weight:650}
+h3{font-size:1.02rem;font-weight:650;margin-top:6px}
+p{margin:0;max-width:78ch}
+.num,.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .muted{color:var(--ink-2)} .faint{color:var(--ink-3)}
 .eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);font-weight:600}
-header.top{display:grid;gap:10px;margin-bottom:18px}
-.lede{max-width:68ch;color:var(--ink-2)}
-.statusbar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:.85rem;color:var(--ink-2)}
+header.top{display:grid;gap:8px;margin-bottom:18px}
+.statusbar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:.85rem;color:var(--ink-2)}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font-size:.8rem}
 .pill .dot{width:8px;height:8px;border-radius:50%}
-.banner{padding:10px 14px;border-radius:8px;background:var(--q-soft);color:var(--ink);font-size:.88rem;border:1px solid var(--line)}
-nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-bottom:22px;overflow-x:auto}
-nav.tabs .row{display:flex;gap:2px;min-width:max-content}
-nav.tabs button{font:inherit;font-size:.88rem;border:0;background:none;color:var(--ink-2);padding:11px 12px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
-nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
-nav.tabs button:focus-visible,button:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-nav.tabs .count{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3);margin-left:4px}
-section.tab{display:grid;gap:18px}
+.banner{padding:10px 14px;border-radius:8px;background:var(--q-soft);font-size:.88rem;border:1px solid var(--line)}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px;align-items:start}
+nav.steps{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);display:grid;gap:2px}
+nav.steps button{font:inherit;text-align:left;border:0;background:none;color:var(--ink-2);padding:8px 10px;border-radius:7px;cursor:pointer;display:grid;grid-template-columns:24px 1fr auto;gap:6px;align-items:baseline;font-size:.88rem}
+nav.steps button:hover{background:var(--line-2)}
+nav.steps button[aria-current="true"]{background:var(--accent-soft);color:var(--ink);font-weight:600}
+nav.steps .n{font-family:var(--f-mono);font-size:.78rem;color:var(--ink-3)}
+nav.steps .prog{font-family:var(--f-mono);font-size:.7rem;color:var(--ink-3)}
+main{display:grid;gap:16px;min-width:0}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:grid;gap:12px;min-width:0}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.stephead{display:grid;gap:6px}
 .tablewrap{overflow-x:auto;min-width:0}
-table{border-collapse:collapse;width:100%;font-size:.88rem}
-th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:.87rem}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:bottom}
 td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top}
 td.r,th.r{text-align:right}
-.verdict{display:inline-block;font-size:.75rem;font-weight:600;padding:2px 9px;border-radius:5px;background:var(--accent-soft);color:var(--accent)}
-.verdict.flag{background:var(--q-soft);color:var(--q)}
-.change{display:grid;gap:12px}
-.change .head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;justify-content:space-between}
-.ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
-.ba div{padding:10px 12px;border-radius:8px;background:var(--line-2);font-size:.88rem;min-width:0}
-.ba .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:600;display:block;margin-bottom:2px}
-ul.args{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
-.risk{font-size:.86rem;color:var(--ink-2);border-left:2px solid var(--line);padding-left:10px}
+ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:80ch}
+.calc td{font-size:.85rem} .calc td.f{font-family:var(--f-mono);font-size:.78rem;color:var(--ink-2)} .calc td.v{font-family:var(--f-mono);text-align:right;white-space:nowrap;font-weight:500}
+.calc tr.total td{border-top:1px solid var(--line);font-weight:650}
+.badge{display:inline-block;font-size:.74rem;font-weight:650;padding:2px 9px;border-radius:5px;white-space:nowrap}
+.v-keep{background:var(--ok-soft);color:var(--ok)} .v-support{background:var(--accent-soft);color:var(--accent)} .v-fix{background:var(--bad-soft);color:var(--bad)} .v-add{background:var(--add-soft);color:var(--add)}
+.decision{border-left:3px solid var(--accent)}
+.decision.fix{border-left-color:var(--bad)} .decision.add{border-left-color:var(--add)}
+.decision .head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;justify-content:space-between}
+.kv{display:grid;gap:3px}
+.kv .k{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:600}
+.copybox{font-size:.9rem;background:var(--line-2);border-radius:8px;padding:12px 14px;max-width:84ch;white-space:pre-wrap}
+.copyrow{display:flex;gap:10px;align-items:center}
+button.btn{font:inherit;font-size:.8rem;padding:5px 11px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 details.cites summary{cursor:pointer;font-size:.8rem;color:var(--ink-2)}
 .cite{font-size:.8rem;color:var(--ink-2);padding:6px 0;border-top:1px dashed var(--line);display:grid;gap:2px}
 .cite q{font-style:italic;color:var(--ink)}
 .cls{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:5px;font-family:var(--f-mono);font-size:.75rem;font-weight:600;background:var(--line-2);color:var(--ink-2)}
 .cls.A{background:var(--ok-soft);color:var(--ok)} .cls.D{background:var(--q-soft);color:var(--q)}
+.check{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,260px);gap:14px;padding:12px 0;border-top:1px solid var(--line-2)}
+.check:first-of-type{border-top:0}
 /* review control */
-.rv{display:grid;gap:6px;min-width:0}
+.rv{display:grid;gap:6px;min-width:0;align-content:start}
 .rv .btns{display:flex;flex-wrap:wrap;gap:4px}
 .rv button.s{font:inherit;font-size:.76rem;padding:3px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);cursor:pointer}
 .rv button.s:hover{border-color:var(--ink-3)}
@@ -74,61 +80,49 @@ details.cites summary{cursor:pointer;font-size:.8rem;color:var(--ink-2)}
 .rv button.s:disabled{opacity:.5;cursor:not-allowed}
 .rv textarea{font:inherit;font-size:.82rem;width:100%;min-height:52px;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
 .rv .marks{display:flex;flex-wrap:wrap;gap:4px}
-.mark{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;padding:2px 8px 2px 3px;border-radius:999px;background:var(--line-2);color:var(--ink-2);max-width:100%}
+.mark{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;padding:2px 8px 2px 3px;border-radius:999px;background:var(--line-2);color:var(--ink-2)}
 .mark img{width:16px;height:16px;border-radius:50%}
 .mark.ok{background:var(--ok-soft);color:var(--ok)} .mark.q{background:var(--q-soft);color:var(--q)} .mark.x{background:var(--bad-soft);color:var(--bad)}
 .note{font-size:.78rem;color:var(--ink-2);padding:4px 8px;border-left:2px solid var(--line);white-space:pre-wrap;overflow-wrap:anywhere}
 .note b{color:var(--ink);font-weight:600}
+.rvlabel{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:600}
+td.rvcell{width:230px;min-width:200px}
 .savestate{font-size:.72rem;color:var(--ink-3)}
-td.rvcell{width:240px;min-width:200px}
-/* balance */
-.stack{display:flex;height:26px;border-radius:5px;overflow:hidden;gap:2px;background:var(--line-2)}
+.stack{display:flex;height:24px;border-radius:5px;overflow:hidden;gap:2px;background:var(--line-2)}
 .stack span{display:block;height:100%}
 .k-electricity{background:var(--elec)} .k-steam{background:var(--steam)} .k-water{background:var(--water)} .k-residual{background:var(--resid)} .k-useful{background:var(--useful)}
-.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:baseline}
-.closure{font-size:.82rem;font-family:var(--f-mono)}
-.closure.good{color:var(--ok)} .closure.bad{color:var(--bad)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.closure{font-size:.82rem;font-family:var(--f-mono);color:var(--ok)}
 figure{margin:0;display:grid;gap:8px}
 figure .imgbox{background:#fff;border-radius:8px;padding:8px;border:1px solid var(--line);overflow-x:auto}
 figure img{display:block;width:100%;min-width:640px;height:auto}
-figcaption{font-size:.82rem;color:var(--ink-2)}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
-.kpi{padding:12px 14px;border-radius:8px;background:var(--panel);border:1px solid var(--line);display:grid;gap:2px}
-.kpi .v{font-family:var(--f-mono);font-size:1.25rem;font-weight:500}
-.kpi .l{font-size:.78rem;color:var(--ink-2)}
-.diffbar{display:inline-block;height:8px;border-radius:2px;vertical-align:middle;margin-left:6px}
-.tmpfig{display:grid;gap:8px}
-.tmprow{display:grid;grid-template-columns:minmax(0,1fr) 70px;gap:10px;align-items:center;font-size:.84rem}
+figcaption{font-size:.84rem;color:var(--ink-2);max-width:84ch}
+.tmprow{display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:10px;align-items:center;font-size:.84rem}
 .tmprow .bar{height:14px;border-radius:3px;margin-top:4px}
-.copybox{font-size:.9rem;background:var(--line-2);border-radius:8px;padding:12px 14px;max-width:80ch}
-button.btn{font:inherit;font-size:.82rem;padding:6px 12px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.85rem;color:var(--ink-2)}
 select{font:inherit;font-size:.85rem;padding:4px 8px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
-.steps{display:grid;gap:14px;max-width:78ch}
-.steps h3{margin-bottom:3px}
-@media (max-width:640px){td.rvcell{min-width:170px} .wrap{padding-inline:16px}}
+.edit{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,250px);gap:14px;padding:14px 0;border-top:1px solid var(--line-2)}
+.edit .ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-top:6px}
+.edit .ba div{background:var(--line-2);border-radius:7px;padding:8px 10px;font-size:.85rem;min-width:0;overflow-wrap:anywhere}
+.edit .ba .lbl{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:600}
+.pager{display:flex;justify-content:space-between;gap:10px}
+button:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:900px){.layout{grid-template-columns:1fr} nav.steps{position:static;display:flex;overflow-x:auto;gap:4px;padding-bottom:4px} nav.steps button{grid-template-columns:auto auto;white-space:nowrap} nav.steps .prog{display:none} .check,.edit{grid-template-columns:1fr}}
+@media (max-width:640px){.wrap{padding-inline:16px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
 <div class="wrap">
   <header class="top">
     <span class="eyebrow">AL2144 · Group 2 · Holmen Hallsta paper mill, 2023</span>
-    <h1>Energy &amp; exergy model review</h1>
-    <p class="lede">Every number the report will quote, the source it comes from, and each change from the 12 October draft with the reasoning behind it. Mark each item <b>OK</b>, <b>Question</b> or <b>Wrong</b> and add a note. Everyone in the group sees each other's marks, and Claude reads them back to make the fixes.</p>
-    <div class="statusbar" id="statusbar"><span class="pill" id="who">Loading reviewer…</span><span id="progress"></span><span id="savestate" class="savestate"></span></div>
+    <h1>Review of the report draft</h1>
+    <div class="statusbar"><span class="pill" id="who">Loading reviewer…</span><span id="progress"></span><span id="savestate" class="savestate"></span></div>
     <div class="banner" id="banner" hidden></div>
   </header>
-
-  <nav class="tabs" aria-label="Review sections"><div class="row" role="tablist" id="tablist"></div></nav>
-
-  <section class="tab" id="t-summary" data-title="Summary"></section>
-  <section class="tab" id="t-changes" data-title="Judgement calls" hidden></section>
-  <section class="tab" id="t-tmp" data-title="TMP question" hidden></section>
-  <section class="tab" id="t-balance" data-title="Energy balance" hidden></section>
-  <section class="tab" id="t-inputs" data-title="Inputs &amp; sources" hidden></section>
-  <section class="tab" id="t-checks" data-title="Cross-checks" hidden></section>
-  <section class="tab" id="t-conflicts" data-title="Source conflicts" hidden></section>
-  <section class="tab" id="t-questions" data-title="Open questions" hidden></section>
+  <div class="layout">
+    <nav class="steps" id="nav" aria-label="Review steps"></nav>
+    <main id="main"></main>
+  </div>
 </div>
 
 <script type="application/json" id="data">/*__DATA__*/</script>
@@ -137,225 +131,158 @@ const D = JSON.parse(document.getElementById('data').textContent);
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = (v, nd = 0) => typeof v === 'number' ? v.toLocaleString('en-US', {minimumFractionDigits: nd, maximumFractionDigits: nd}) : esc(v);
-const fmtAuto = v => typeof v !== 'number' ? esc(v) : Math.abs(v) >= 100 ? fmt(v, 0) : Math.abs(v) >= 10 ? fmt(v, 1) : fmt(v, 2);
+const auto = v => typeof v !== 'number' ? esc(v) : Math.abs(v) >= 100 ? fmt(v, 0) : Math.abs(v) >= 10 ? fmt(v, 1) : fmt(v, 2);
 const STATUS = {ok: 'OK', q: 'Question', x: 'Wrong'};
-
-/* ---------- review state ---------- */
-const S = {db: null, user: null, me: null, canWrite: false, all: {}, mine: {items: {}}, profiles: {}, queue: Promise.resolve(), timers: {}};
-const allItemIds = new Set();
+const S = {db: null, user: null, me: null, canWrite: false, all: {}, mine: {items: {}}, profiles: {}, queue: Promise.resolve(), timer: null, loaded: false};
+const stepItems = {};   // step id -> [item ids]
+let curStep = null;
 
 function cites(list) {
-  if (!list || !list.length) return '<span class="faint" style="font-size:.8rem">Assumption, no source row</span>';
-  return `<details class="cites"><summary>${list.length} source${list.length > 1 ? 's' : ''}: ${esc(list.map(c => c.id).join(', '))}</summary>` +
-    list.map(c => `<div class="cite"><span><b>${esc(c.file)}</b> · ${esc(c.loc)} · ${esc(c.year)}</span><span class="mono">${esc(c.value)} ${esc(c.unit)}</span>${c.quote ? `<q>${esc(c.quote)}</q>` : ''}</div>`).join('') + '</details>';
+  if (!list || !list.length) return '';
+  return `<details class="cites"><summary>${list.length} source${list.length > 1 ? 's' : ''}</summary>` + list.map(c =>
+    `<div class="cite"><span><b>${esc(c.file)}</b> · ${esc(c.loc)} · ${esc(c.year)}</span>${c.value ? `<span class="mono">${esc(c.value)} ${esc(c.unit)}</span>` : ''}${c.quote ? `<q>${esc(c.quote)}</q>` : ''}</div>`).join('') + '</details>';
 }
-
-function rv(id) {
-  allItemIds.add(id);
-  return `<div class="rv" data-item="${esc(id)}"><div class="btns">${Object.entries(STATUS).map(([k, l]) =>
-    `<button class="s" data-s="${k}" aria-pressed="false" type="button">${l}</button>`).join('')}</div>
-    <textarea id="c-${esc(id)}" aria-label="Note" placeholder="Note (optional)" hidden></textarea><div class="marks"></div><div class="notes"></div></div>`;
+function rv(id, stepId, label) {
+  (stepItems[stepId] ??= []).push(id);
+  return `<div class="rv" data-item="${esc(id)}">${label ? `<span class="rvlabel">${esc(label)}</span>` : ''}<div class="btns">${Object.entries(STATUS).map(([k, l]) =>
+    `<button class="s" data-s="${k}" aria-pressed="false" type="button">${l}</button>`).join('')}</div><textarea id="c-${esc(id)}" aria-label="Note" placeholder="Why? (note)" hidden></textarea><div class="marks"></div><div class="notes"></div></div>`;
 }
+const verdictCls = v => /^fix/i.test(v) ? 'v-fix' : /^add/i.test(v) ? 'v-add' : /support/i.test(v) ? 'v-support' : 'v-keep';
 
-/* ---------- tabs ---------- */
-const tabs = [...document.querySelectorAll('section.tab')];
-function showTab(id) {
-  tabs.forEach(t => t.hidden = t.id !== id);
-  document.querySelectorAll('#tablist button').forEach(b => b.setAttribute('aria-selected', b.dataset.t === id));
-  try { localStorage.setItem('hallsta-tab', id); } catch (e) {}
-  if (location.hash.slice(1) !== id.slice(2)) history.replaceState(null, '', '#' + id.slice(2));
+/* ---------- block renderers ---------- */
+const R = {
+  p: bl => `<p>${esc(bl.text)}</p>`,
+  h: bl => `<h3>${esc(bl.text)}</h3>`,
+  list: bl => `<ul>${bl.items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>`,
+  table: bl => `<div class="tablewrap"><table><thead><tr>${bl.cols.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${bl.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`,
+  calc: bl => {
+    const rows = bl.rows4 ? bl.rows4.map(([a, f, v, u]) => `<tr><td>${esc(a)}</td><td class="f">${esc(f)}</td><td class="v">${auto(v)}</td><td class="faint">${esc(u)}</td></tr>`)
+                          : bl.rows.map(([a, f, v]) => `<tr><td>${esc(a)}</td><td class="f">${esc(f)}</td><td class="v">${auto(v)}</td></tr>`);
+    return `<div class="tablewrap calc"><table><caption class="eyebrow" style="text-align:left;padding-bottom:6px">${esc(bl.title)}</caption><tbody>${rows.join('')}</tbody></table></div>`;
+  },
+  checks: (bl, st) => `<div><span class="eyebrow">Checks for this step</span>${bl.items.map(c => `<div class="check"><div><b>${esc(c.text)}</b><p class="muted" style="font-size:.88rem;margin-top:3px">How: ${esc(c.how)}</p></div>${rv(c.id, st)}</div>`).join('')}</div>`,
+  decision: (bl, st) => { const d = D.decisions[bl.id]; if (!d) return '';
+    const kind = /^fix/i.test(d.verdict) ? 'fix' : /^add/i.test(d.verdict) ? 'add' : '';
+    return `<div class="panel decision ${kind}" id="${esc(d.id)}"><div class="head"><h3>${esc(d.title)}</h3><span class="badge ${verdictCls(d.verdict)}">${esc(d.verdict)}</span></div>
+      <div class="kv"><span class="k">What the draft says</span><p>${esc(d.draft)}</p></div>
+      <div class="kv"><span class="k">What we checked</span><p>${esc(d.check)}</p></div>
+      <div class="kv"><span class="k">Reasoning</span><ul>${d.why.map(w => `<li>${esc(w)}</li>`).join('')}</ul></div>
+      <div class="kv"><span class="k">Text for the report</span><div class="copybox">${esc(d.report)}</div></div>
+      ${cites(d.cites)}${rv(d.id, st, 'Your verdict on this decision')}</div>`; },
+  layer: (bl, st) => { const L = D.layers[bl.id];
+    return `<div class="panel"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px"><h3>${esc(L.title)}</h3><span class="closure">Adds up: difference ${fmt(L.closure, 2)} GWh</span></div>
+      <div class="stack" role="img" aria-label="${esc(L.title)}">${L.rows.map(r => `<span class="k-${r.kind}" style="flex:${Math.max(r.value, 0)}" title="${esc(r.label)} ${fmt(r.value, 1)} GWh"></span>`).join('')}</div>
+      <div class="tablewrap"><table><tbody>${L.rows.map(r => `<tr><td><span class="sw k-${r.kind}"></span>${esc(r.label)}</td><td class="r num">${fmt(r.value, 1)}</td><td class="r num faint">${fmt(r.value / L.total * 100, 1)} %</td></tr>`).join('')}
+      <tr><td><b>${esc(L.total_label)}</b></td><td class="r num"><b>${fmt(L.total, 1)}</b></td><td class="r num faint">100 %</td></tr></tbody></table></div></div>`; },
+  headline: () => `<div class="tablewrap"><table><thead><tr><th>Result</th><th class="r">Base</th><th class="r">P5–P95</th><th>Unit</th></tr></thead><tbody>${D.headline.map(h => `<tr><td>${esc(h.metric)}</td><td class="r num">${auto(h.base)}</td><td class="r num faint">${auto(h.p5)}–${auto(h.p95)}</td><td class="faint">${esc(h.unit)}</td></tr>`).join('')}</tbody></table></div>`,
+  inputs: (bl, st) => `<div class="filters"><label for="clsf">Data class</label><select id="clsf"><option value="">All</option><option value="A">A · official 2023 report</option><option value="B">B · Holmen answer</option><option value="C">C · older or derived</option><option value="D">D · assumption</option></select></div>
+    <div class="tablewrap"><table id="intable"><thead><tr><th>Input</th><th class="r">Value</th><th>Range</th><th>Class</th><th>Why this value and range</th><th>Review</th></tr></thead><tbody>
+    ${D.inputs.map(i => `<tr data-cls="${esc(i.cls)}"><td><span class="mono" style="font-size:.76rem">${esc(i.param)}</span><br>${esc(i.desc)}</td><td class="r num">${auto(i.value)} <span class="faint">${esc(i.unit)}</span></td><td class="faint" style="font-size:.8rem;min-width:140px">${esc(i.dist)}</td><td><span class="cls ${esc(i.cls)}">${esc(i.cls)}</span></td><td style="font-size:.84rem;min-width:220px">${esc(i.why)}${cites(i.cites)}</td><td class="rvcell">${rv(i.id, st)}</td></tr>`).join('')}</tbody></table></div>`,
+  conflicts: (bl, st) => { const g = {}; D.recon.forEach(r => (g[r.input] ??= []).push(r));
+    return `<h3>All flagged source values</h3><p class="muted" style="font-size:.88rem">Every source value that carries a flag in the reconciliation table (reports/tables/eda_reconciliation.csv), grouped by model input.</p>` +
+      Object.entries(g).map(([inp, rs]) => `<div class="panel"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px"><b>${esc(inp)}</b><span class="faint" style="font-size:.84rem">Model uses <span class="mono">${esc(rs[0].used)}</span></span></div>
+      <div class="tablewrap"><table><tbody>${rs.map(r => `<tr><td class="mono" style="font-size:.8rem;min-width:110px">${esc(r.value)}</td><td style="font-size:.82rem">${esc(r.source)}<br><span class="faint">${esc(r.year)}</span>${cites(r.cites)}</td><td style="font-size:.82rem;min-width:200px">${esc(r.flag)}</td><td class="rvcell">${rv(r.id, st)}</td></tr>`).join('')}</tbody></table></div></div>`).join(''); },
+  exergy: () => `<div class="tablewrap"><table><thead><tr><th>Process</th><th class="r">Exergy in</th><th class="r">Useful out</th><th class="r">Waste out</th><th class="r">Destroyed</th><th class="r">ψ</th><th class="r">IP</th></tr></thead><tbody>${D.exergy.map(x => `<tr><td>${esc(x.process)}</td><td class="r num">${fmt(x.xin, 0)}</td><td class="r num">${fmt(x.useful, 0)}</td><td class="r num">${fmt(x.waste, 0)}</td><td class="r num"><b>${fmt(x.destroyed, 0)}</b></td><td class="r num">${fmt(x.psi, 0)} %</td><td class="r num faint">${fmt(x.ip, 0)}</td></tr>`).join('')}</tbody></table></div>`,
+  tmpfig: () => { const mx = Math.max(...D.tmp.map(f => f.value)), col = {model: 'var(--elec)', independent: 'var(--water)', claim: 'var(--resid)'};
+    return `<div class="panel" role="img" aria-label="TMP electricity per tonne of pulp by source">${D.tmp.map(f => `<div class="tmprow"><div>${esc(f.label)}<div class="bar" style="width:${(f.value / mx * 100).toFixed(1)}%;background:${col[f.kind]}"></div></div><span class="num" style="text-align:right">${fmt(f.value)}</span></div>`).join('')}
+      <p class="faint" style="font-size:.78rem"><span class="sw" style="background:var(--elec)"></span>model · <span class="sw" style="background:var(--water)"></span>independent plant-level figure · <span class="sw" style="background:var(--resid)"></span>Holmen's "normal" refining range. kWh per tonne of TMP pulp.</p></div>`; },
+  copy: (bl, st) => `<div class="copybox" id="cp-${esc(bl.id)}">${esc(bl.text)}</div><div class="copyrow"><button class="btn" type="button" data-copy="${esc(bl.id)}">Copy text</button><span class="savestate" data-copied="${esc(bl.id)}"></span></div>${rv(bl.id, st, 'Your verdict on this text')}`,
+  fig: (bl, st) => `<figure><div class="imgbox"><img src="${D.figs[bl.src]}" alt="${esc(bl.caption)}"></div><figcaption>${esc(bl.caption)}</figcaption></figure>${bl.id ? rv(bl.id, st) : ''}`,
+  scenarios: bl => `<div class="tablewrap"><table><thead><tr><th>Case</th><th class="r">TMP el.</th><th class="r">Boiler el.</th><th class="r">TMP share of steam</th><th class="r">Other heat uses</th><th class="r">Exergy destroyed</th><th class="r">Combined measures</th><th>What it shows</th></tr></thead><tbody>${bl.rows.map(r => `<tr><td>${esc(r.name)}</td><td class="r num">${fmt(r.el_TMP, 0)}</td><td class="r num">${fmt(r.el_EB, 0)}</td><td class="r num">${fmt(r.rec, 0)} %</td><td class="r num">${fmt(r.stHW, 0)}</td><td class="r num">${fmt(r.xd, 0)}</td><td class="r num">${fmt(r.m4, 0)}</td><td style="font-size:.82rem;min-width:240px">${esc(r.expl)}</td></tr>`).join('')}</tbody></table></div>`,
+  measures: (bl, st) => `<div class="tablewrap"><table><thead><tr><th>Measure</th><th class="r">Full year</th><th class="r">P5–P95</th><th class="r">Seasonal lower bound</th><th class="r">MWh/t</th><th>Review</th></tr></thead><tbody>${bl.rows.map(r => `<tr><td>${esc(r.desc)}</td><td class="r num"><b>${fmt(r.base, 0)}</b></td><td class="r num faint">${fmt(r.p5, 0)}–${fmt(r.p95, 0)}</td><td class="r num">${fmt(r.season, 0)}</td><td class="r num">${fmt(r.mwh_t, 3)}</td><td class="rvcell">${rv(r.id, st)}</td></tr>`).join('')}</tbody></table></div><p class="faint" style="font-size:.8rem">GWh/y of electricity saved. Seasonal lower bound = 75 % of the full-year value (no saving in June–August).</p>`,
+  limits: (bl, st) => bl.items.map(l => `<div class="check"><div><b>${esc(l.title)}</b><p class="muted" style="font-size:.9rem;margin-top:3px">${esc(l.text)}</p></div>${rv(l.id, st)}</div>`).join(''),
+  edits: (bl, st) => `<div class="filters"><label for="edf">Show</label><select id="edf"><option value="">All edits</option><option value="Fix">Fixes only</option><option value="Add">Additions only</option></select></div>` +
+    D.edits.map(e => `<div class="edit" data-type="${esc(e.type)}"><div><div style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><span class="badge ${e.type === 'Fix' ? 'v-fix' : 'v-add'}">${esc(e.type)}</span><b>${esc(e.section)}</b></div>
+      <div class="ba"><div><span class="lbl">Now in the draft</span>${esc(e.current)}</div><div><span class="lbl">Change to</span>${esc(e.new)}</div></div>
+      <p class="muted" style="font-size:.84rem;margin-top:6px">Why: ${esc(e.why)}</p></div>${rv(e.id, st)}</div>`).join(''),
+};
+
+/* ---------- build steps ---------- */
+const main = $('#main');
+main.innerHTML = D.steps.map(s => `<section class="stepsec" id="s-${esc(s.id)}" hidden>
+  <div class="panel stephead"><span class="eyebrow">Step ${s.n} of ${D.steps.length - 1}</span><h2>${esc(s.title)}</h2></div>
+  <div class="panel">${s.blocks.map(bl => (R[bl.t] || (() => ''))(bl, s.id)).join('')}</div>
+  <div class="pager">${s.n > 0 ? `<button class="btn" type="button" data-go="${esc(D.steps[s.n - 1].id)}">← ${esc(D.steps[s.n - 1].title)}</button>` : '<span></span>'}${s.n < D.steps.length - 1 ? `<button class="btn" type="button" data-go="${esc(D.steps[s.n + 1].id)}">${esc(D.steps[s.n + 1].title)} →</button>` : ''}</div>
+</section>`).join('');
+$('#nav').innerHTML = D.steps.map(s => `<button type="button" data-go="${esc(s.id)}"><span class="n">${s.n}</span><span>${esc(s.title)}</span><span class="prog" data-prog="${esc(s.id)}"></span></button>`).join('');
+
+function showStep(id) {
+  curStep = id;
+  document.querySelectorAll('.stepsec').forEach(s => s.hidden = s.id !== 's-' + id);
+  document.querySelectorAll('#nav button').forEach(b => b.setAttribute('aria-current', b.dataset.go === id));
+  try { localStorage.setItem('hallsta-step', id); } catch (e) {}
+  if (location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
 }
-$('#tablist').innerHTML = tabs.map(t => `<button role="tab" type="button" data-t="${t.id}" aria-selected="false">${t.dataset.title}<span class="count" data-count="${t.id}"></span></button>`).join('');
-$('#tablist').addEventListener('click', e => { const b = e.target.closest('button'); if (b) showTab(b.dataset.t); });
-
-/* ---------- Summary ---------- */
-const H = Object.fromEntries(D.headline.map(h => [h.metric, h]));
-const kpi = (m, label, unit) => { const h = H[m]; return h ? `<div class="kpi"><span class="v">${fmtAuto(h.base)}<span class="faint" style="font-size:.8rem"> ${esc(unit ?? h.unit)}</span></span><span class="l">${esc(label)}</span><span class="faint mono" style="font-size:.74rem">P5–P95 ${fmtAuto(h.p5)}–${fmtAuto(h.p95)}</span></div>` : ''; };
-$('#t-summary').innerHTML = `
-  <div class="panel"><h2>How to review</h2>
-    <ul class="args">
-      <li><b>Judgement calls</b> are the 11 places where the rebuilt model differs from the draft. Each one shows the draft value, the new value, my verdict and the argument. These need the most attention.</li>
-      <li><b>Energy balance</b> shows each layer adding up, and <b>Inputs &amp; sources</b> shows every model input with the exact quote it came from. Open a source to check the number against the document.</li>
-      <li>Mark <b>Wrong</b> only when you can say what is wrong in the note. Use <b>Question</b> when you are unsure. Your marks save as you click.</li>
-    </ul></div>
-  <div class="kpis">
-    ${kpi('Electricity to TMP plant', 'Electricity to TMP plant')}
-    ${kpi('Share of steam from TMP', 'Share of steam from TMP')}
-    ${kpi('Heat to air', 'Heat leaving with air (residual)')}
-    ${kpi('Heat to effluent water', 'Heat leaving with effluent')}
-    ${kpi('Exergy destroyed, total', 'Exergy destroyed')}
-    ${kpi('M4 combined', 'Combined measures, upper bound')}
-  </div>
-  <div class="panel"><h2>Headline numbers</h2><p class="muted" style="font-size:.86rem">Base case with the constrained Monte Carlo range (10,000 runs, 99.2 % accepted). These are the numbers the report will quote.</p>
-    <div class="tablewrap"><table><thead><tr><th>Metric</th><th class="r">Base</th><th class="r">P5</th><th class="r">P95</th><th>Unit</th></tr></thead><tbody>
-    ${D.headline.map(h => `<tr><td>${esc(h.metric)}</td><td class="r num">${fmtAuto(h.base)}</td><td class="r num faint">${fmtAuto(h.p5)}</td><td class="r num faint">${fmtAuto(h.p95)}</td><td class="faint">${esc(h.unit)}</td></tr>`).join('')}
-    </tbody></table></div></div>
-  <div class="panel"><h2>Improvement measures</h2>
-    <figure><div class="imgbox"><img src="${D.figs.model_measures}" alt="Bar chart of electricity saved per measure with P5–P95 whiskers"></div>
-    <figcaption>Full-year upper bounds: they assume the electric boilers run all year. Base case with P5–P95 whiskers.</figcaption></figure>
-    <div class="tablewrap"><table><thead><tr><th>Measure</th><th class="r">GWh/y</th><th class="r">P5–P95</th><th class="r">MWh/t</th><th class="r">New SEC</th><th>Review</th></tr></thead><tbody>
-    ${D.measures.map(m => `<tr><td>${esc(m.desc)}</td><td class="r num">${fmt(m.base, 0)}</td><td class="r num faint">${fmt(m.p5, 0)}–${fmt(m.p95, 0)}</td><td class="r num">${fmt(m.mwh_t, 3)}</td><td class="r num">${fmt(m.sec, 2)}</td><td class="rvcell">${rv(m.id)}</td></tr>`).join('')}
-    </tbody></table></div></div>`;
-
-/* ---------- Judgement calls ---------- */
-$('#t-changes').innerHTML = `<div class="panel"><h2>Changes from the 12 October draft</h2><p class="muted">Each change states what the draft had, what the model has now, my verdict, and why. "Adopt, flagged" means the change is right but rests on an assumption the report must name.</p></div>` +
-  D.changes.map(c => `<article class="panel change" id="${esc(c.id)}">
-    <div class="head"><h2>${esc(c.title)}</h2><span class="verdict ${/flag|finding/i.test(c.verdict) ? 'flag' : ''}">${esc(c.verdict)}</span></div>
-    <div class="ba"><div><span class="lbl">Draft</span>${esc(c.draft)}</div><div><span class="lbl">Now</span>${esc(c.now)}</div></div>
-    <ul class="args">${c.argument.map(a => `<li>${esc(a)}</li>`).join('')}</ul>
-    <p class="risk"><b>Risk:</b> ${esc(c.risk)}</p>
-    ${cites(c.cites)}
-    ${rv(c.id)}
-  </article>`).join('');
-
-/* ---------- TMP ---------- */
-const T = D.tmp, tmax = Math.max(...T.figures.map(f => f.value));
-const tcol = {model: 'var(--elec)', independent: 'var(--water)', claim: 'var(--resid)'};
-$('#t-tmp').innerHTML = `
-  <div class="panel"><span class="eyebrow">Recommendation</span><h2>${esc(T.summary)}</h2>
-    <div class="tmpfig" role="img" aria-label="TMP specific electricity in kWh per tonne of pulp from each source">
-      ${T.figures.map(f => `<div class="tmprow"><div>${esc(f.label)}<div class="bar" style="width:${(f.value / tmax * 100).toFixed(1)}%;background:${tcol[f.kind]}"></div></div><span class="num r" style="text-align:right">${fmt(f.value)}</span></div>`).join('')}
-      <p class="faint" style="font-size:.78rem"><span class="sw" style="background:var(--elec)"></span>model · <span class="sw" style="background:var(--water)"></span>independent plant-level figure · <span class="sw" style="background:var(--resid)"></span>Holmen's stated normal range. kWh per tonne of TMP pulp.</p>
-    </div>
-    ${rv('tmp:recommendation')}
-  </div>
-  <div class="panel"><div class="steps">${T.steps.map(s => `<div><h3>${esc(s.h)}</h3><p>${esc(s.p)}</p></div>`).join('')}</div></div>
-  <div class="panel"><h2>Suggested text for the report</h2><div class="copybox" id="tmptext">${esc(T.report_text)}</div>
-    <div><button class="btn" type="button" id="copytmp">Copy text</button> <span id="copystate" class="savestate"></span></div>
-    ${rv('tmp:report-text')}</div>`;
-$('#copytmp').addEventListener('click', () => {
-  navigator.clipboard.writeText(T.report_text).then(() => $('#copystate').textContent = 'Copied.')
-    .catch(() => { const r = document.createRange(); r.selectNodeContents($('#tmptext')); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); $('#copystate').textContent = 'Text selected. Press Ctrl/Cmd+C.'; });
+document.addEventListener('click', e => {
+  const go = e.target.closest('[data-go]'); if (go) { showStep(go.dataset.go); window.scrollTo({top: 0}); return; }
+  const cp = e.target.closest('[data-copy]'); if (cp) { const id = cp.dataset.copy, el = document.getElementById('cp-' + id), st = document.querySelector(`[data-copied="${id}"]`);
+    navigator.clipboard.writeText(el.textContent).then(() => st.textContent = 'Copied.').catch(() => { const r = document.createRange(); r.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); st.textContent = 'Selected. Press Ctrl/Cmd+C.'; }); }
 });
+document.addEventListener('change', e => {
+  if (e.target.id === 'clsf') document.querySelectorAll('#intable tbody tr').forEach(tr => tr.hidden = !!e.target.value && tr.dataset.cls !== e.target.value);
+  if (e.target.id === 'edf') document.querySelectorAll('.edit').forEach(el => el.hidden = !!e.target.value && el.dataset.type !== e.target.value);
+});
+const ids = D.steps.map(s => s.id);
+const start = ids.includes(location.hash.slice(1)) ? location.hash.slice(1) : (() => { try { const v = localStorage.getItem('hallsta-step'); return ids.includes(v) ? v : null; } catch (e) { return null; } })();
+showStep(start || ids[0]);
 
-/* ---------- Balance ---------- */
-const kindLabel = {electricity: 'electricity', steam: 'steam', water: 'heat to water', residual: 'residual (by difference)', useful: 'useful export'};
-$('#t-balance').innerHTML = D.layers.map(L => `<div class="panel" id="${esc(L.id)}">
-    <div class="change"><div class="head"><h2>${esc(L.title)}</h2><span class="closure ${Math.abs(L.closure) < 0.5 ? 'good' : 'bad'}">Closes to ${fmt(L.closure, 2)} GWh</span></div>
-    <p class="muted" style="font-size:.88rem">${esc(L.note)}</p>
-    <div class="stack" role="img" aria-label="${esc(L.title)} shares">${L.rows.map(r => `<span class="k-${r.kind}" style="flex:${Math.max(r.value, 0)}" title="${esc(r.label)}: ${fmt(r.value, 1)} GWh"></span>`).join('')}</div>
-    <div class="tablewrap"><table><thead><tr><th>Flow</th><th class="r">GWh/y</th><th class="r">Share</th></tr></thead><tbody>
-      ${L.rows.map(r => `<tr><td><span class="sw k-${r.kind}"></span>${esc(r.label)} <span class="faint" style="font-size:.76rem">${kindLabel[r.kind]}</span></td><td class="r num">${fmt(r.value, 1)}</td><td class="r num faint">${fmt(r.value / L.total * 100, 1)} %</td></tr>`).join('')}
-      <tr><td><b>${esc(L.total_label)}</b></td><td class="r num"><b>${fmt(L.total, 1)}</b></td><td class="r num faint">100 %</td></tr>
-    </tbody></table></div>${rv(L.id)}</div></div>`).join('') + `
-  <div class="panel"><h2>Energy Sankey</h2><figure><div class="imgbox"><img src="${D.figs.model_sankey_energy}" alt="Sankey diagram of energy flows at Hallsta 2023"></div>
-    <figcaption>Energy flows of electricity and diesel, Hallsta 2023 (GWh/y). Blue electricity, orange steam, grey low-grade heat, green water and district heat.</figcaption></figure>${rv('bal:sankey')}</div>
-  <div class="panel"><h2>Exergy by process</h2><p class="muted" style="font-size:.88rem">Exergy is the part of energy that could still do work. Electricity is all exergy; heat at 50 °C has little. Ranking by exergy destroyed holds in 100 % of accepted Monte Carlo runs.</p>
-    <div class="tablewrap"><table><thead><tr><th>Process</th><th class="r">Exergy in</th><th class="r">Useful out</th><th class="r">Waste out</th><th class="r">Destroyed</th><th class="r">ψ</th><th class="r">Heat lost (energy view)</th></tr></thead><tbody>
-    ${D.exergy.map(x => `<tr><td>${esc(x.process)}</td><td class="r num">${fmt(x.xin, 0)}</td><td class="r num">${fmt(x.useful, 0)}</td><td class="r num">${fmt(x.waste, 0)}</td><td class="r num"><b>${fmt(x.destroyed, 0)}</b></td><td class="r num">${fmt(x.psi, 0)} %</td><td class="r num faint">${fmt(x.heat, 0)}</td></tr>`).join('')}
-    </tbody></table></div>${rv('bal:exergy')}</div>`;
-
-/* ---------- Inputs ---------- */
-const clsText = {A: 'A · official report', B: 'B · Holmen answer', C: 'C · derived or literature', D: 'D · assumption'};
-$('#t-inputs').innerHTML = `<div class="panel"><h2>Model inputs</h2>
-  <p class="muted" style="font-size:.88rem">Every value the model uses, its uncertainty range, data class and source. Class D inputs are assumptions with no source row; they deserve the closest look.</p>
-  <div class="filters"><label for="clsf">Data class</label><select id="clsf"><option value="">All classes</option>${Object.entries(clsText).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select></div>
-  <div class="tablewrap"><table id="intable"><thead><tr><th>Input</th><th class="r">Value</th><th>Range</th><th>Class</th><th>Source</th><th>Review</th></tr></thead><tbody>
-  ${D.inputs.map(i => `<tr data-cls="${esc(i.cls)}"><td><span class="mono" style="font-size:.78rem">${esc(i.param)}</span><br>${esc(i.desc)}</td><td class="r num">${fmtAuto(i.value)} <span class="faint">${esc(i.unit)}</span></td><td class="faint" style="font-size:.8rem">${esc(i.dist)}</td><td><span class="cls ${esc(i.cls)}" title="${esc(clsText[i.cls] || '')}">${esc(i.cls)}</span></td><td style="min-width:200px">${i.cites.length ? cites(i.cites) : `<span class="faint" style="font-size:.8rem">${esc(i.source)}</span>`}</td><td class="rvcell">${rv(i.id)}</td></tr>`).join('')}
-  </tbody></table></div></div>`;
-$('#clsf').addEventListener('change', e => document.querySelectorAll('#intable tbody tr').forEach(tr => tr.hidden = !!e.target.value && tr.dataset.cls !== e.target.value));
-
-/* ---------- Cross-checks ---------- */
-$('#t-checks').innerHTML = `<div class="panel"><h2>Model against independent figures</h2>
-  <p class="muted" style="font-size:.88rem">Each row compares a model value with a figure from a different source or year. Rows marked "NOT independent" are arithmetic checks only.</p>
-  <div class="tablewrap"><table><thead><tr><th>Quantity</th><th class="r">Model</th><th class="r">Independent</th><th class="r">Diff</th><th>Note and source</th><th>Review</th></tr></thead><tbody>
-  ${D.checks.map(c => { const d = Math.abs(c.diff); const col = d <= 5 ? 'var(--ok)' : d <= 20 ? 'var(--q)' : 'var(--bad)';
-    return `<tr><td>${esc(c.quantity)} <span class="faint">${esc(c.unit)}</span></td><td class="r num">${fmtAuto(c.model)}</td><td class="r num">${fmtAuto(c.indep)}</td><td class="r num" style="color:${col}">${c.diff > 0 ? '+' : ''}${fmt(c.diff, 1)} %</td><td style="font-size:.82rem;min-width:220px">${esc(c.note)}${cites(c.cites)}</td><td class="rvcell">${rv(c.id)}</td></tr>`; }).join('')}
-  </tbody></table></div></div>`;
-
-/* ---------- Conflicts ---------- */
-const byInput = {}; D.recon.forEach(r => (byInput[r.input] ??= []).push(r));
-$('#t-conflicts').innerHTML = `<div class="panel"><h2>Where sources disagree or are unclear</h2><p class="muted" style="font-size:.88rem">Source values that carry a flag in the reconciliation table, grouped by model input, with the value the model uses.</p></div>` +
-  Object.entries(byInput).map(([inp, rs]) => `<div class="panel"><div class="head" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px"><h3>${esc(inp)}</h3><span class="faint" style="font-size:.84rem">Model uses <span class="mono">${esc(rs[0].used)}</span></span></div>
-    <div class="tablewrap"><table><thead><tr><th>Source value</th><th>Source, year</th><th>Flag</th><th>Review</th></tr></thead><tbody>
-    ${rs.map(r => `<tr><td class="mono" style="font-size:.82rem">${esc(r.value)}</td><td style="font-size:.82rem">${esc(r.source)}<br><span class="faint">${esc(r.year)}</span>${cites(r.cites)}</td><td style="font-size:.82rem;min-width:200px">${esc(r.flag)}</td><td class="rvcell">${rv(r.id)}</td></tr>`).join('')}
-    </tbody></table></div></div>`).join('');
-
-/* ---------- Questions ---------- */
-$('#t-questions').innerHTML = `<div class="panel"><h2>Decisions and data requests</h2><p class="muted" style="font-size:.88rem">Mark OK if you agree we should do it, Question if unsure, Wrong if we should not. Add a name in the note if you will take it.</p></div>` +
-  D.questions.map(q => `<div class="panel"><h3>${esc(q.q)}</h3><p class="muted" style="font-size:.88rem">${esc(q.why)}</p>${rv(q.id)}</div>`).join('');
-
-/* counts per tab */
-tabs.forEach(t => { const n = t.querySelectorAll('.rv').length; const el = document.querySelector(`[data-count="${t.id}"]`); if (el) el.textContent = n || ''; });
-const start = (location.hash && document.getElementById('t-' + location.hash.slice(1))) ? 't-' + location.hash.slice(1) : (() => { try { return localStorage.getItem('hallsta-tab'); } catch (e) { return null; } })();
-showTab(start && document.getElementById(start) ? start : 't-summary');
-
-/* ---------- rendering marks ---------- */
+/* ---------- marks ---------- */
 function renderMarks() {
-  const ids = Object.keys(S.all);
-  const P = S.profiles;
-  const name = uid => (P[uid] && P[uid].name) || (uid === S.me ? 'You' : 'Someone');
-  let mineCount = 0, flagged = 0;
+  const uids = Object.keys(S.all), P = S.profiles;
+  const name = u => (P[u] && P[u].name) || 'Someone';
   document.querySelectorAll('.rv').forEach(box => {
-    const item = box.dataset.item;
-    const my = S.mine.items[item];
+    const item = box.dataset.item, my = S.mine.items[item];
     box.querySelectorAll('button.s').forEach(b => { b.setAttribute('aria-pressed', my && my.s === b.dataset.s ? 'true' : 'false'); b.disabled = !S.canWrite; });
-    const ta = box.querySelector('textarea');
-    ta.hidden = !S.canWrite || !my;
+    const ta = box.querySelector('textarea'); ta.hidden = !S.canWrite || !my;
     if (document.activeElement !== ta) ta.value = (my && my.c) || '';
     const marks = [], notes = [];
-    ids.forEach(uid => { const it = (S.all[uid].items || {})[item]; if (!it || !it.s) return;
-      if (uid !== S.me) { marks.push(`<span class="mark ${it.s}"><img alt="" src="${(P[uid] && P[uid].avatarUrl) || ''}">${esc(name(uid))} · ${STATUS[it.s]}</span>`);
-        if (it.c) notes.push(`<div class="note"><b>${esc(name(uid))}:</b> ${esc(it.c)}</div>`); }
-    });
-    box.querySelector('.marks').innerHTML = marks.join('');
-    box.querySelector('.notes').innerHTML = notes.join('');
+    uids.forEach(u => { if (u === S.me) return; const it = (S.all[u].items || {})[item]; if (!it || !it.s) return;
+      marks.push(`<span class="mark ${it.s}"><img alt="" src="${(P[u] && P[u].avatarUrl) || ''}">${esc(name(u))} · ${STATUS[it.s]}</span>`);
+      if (it.c) notes.push(`<div class="note"><b>${esc(name(u))}:</b> ${esc(it.c)}</div>`); });
+    box.querySelector('.marks').innerHTML = marks.join(''); box.querySelector('.notes').innerHTML = notes.join('');
   });
-  allItemIds.forEach(i => { if (S.mine.items[i] && S.mine.items[i].s) mineCount++; if (ids.some(u => { const s = ((S.all[u].items || {})[i] || {}).s; return s === 'q' || s === 'x'; })) flagged++; });
-  $('#progress').textContent = S.me ? `You reviewed ${mineCount} of ${allItemIds.size} items · ${ids.length} reviewer${ids.length === 1 ? '' : 's'} · ${flagged} item${flagged === 1 ? '' : 's'} with a question or "wrong" mark` : '';
+  let total = 0, done = 0, flagged = 0;
+  Object.entries(stepItems).forEach(([sid, items]) => { const d = items.filter(i => S.mine.items[i] && S.mine.items[i].s).length; total += items.length; done += d;
+    const el = document.querySelector(`[data-prog="${sid}"]`); if (el) el.textContent = S.me ? `${d}/${items.length}` : items.length; });
+  Object.values(stepItems).flat().forEach(i => { if (uids.some(u => { const s = ((S.all[u].items || {})[i] || {}).s; return s === 'q' || s === 'x'; })) flagged++; });
+  $('#progress').textContent = S.me ? `You reviewed ${done} of ${total} items · ${uids.length} reviewer${uids.length === 1 ? '' : 's'} · ${flagged} item${flagged === 1 ? '' : 's'} with a question or "wrong"` : `${total} items to review`;
 }
-
-async function refreshProfiles() {
-  if (!S.user) return;
-  const ids = Object.keys(S.all); if (S.me && !ids.includes(S.me)) ids.push(S.me);
-  try { S.profiles = await S.user.profiles(ids); } catch (e) {}
-  renderMarks();
-}
-
-/* ---------- writing ---------- */
+async function refreshProfiles() { if (S.user) { const u = Object.keys(S.all); if (S.me && !u.includes(S.me)) u.push(S.me); try { S.profiles = await S.user.profiles(u); } catch (e) {} } renderMarks(); }
 function save() {
   if (!S.db || !S.me || !S.canWrite) return;
   const body = JSON.parse(JSON.stringify(S.mine)); body.updated = new Date().toISOString();
   $('#savestate').textContent = 'Saving…';
-  S.queue = S.queue.then(() => S.db.doc('reviews/' + S.me).set(body))
-    .then(() => { $('#savestate').textContent = 'Saved'; })
-    .catch(e => { if (e && e.code === 'invalid_argument') { S.canWrite = false; showBanner('You can read this review but not mark items. Ask the owner for Contributor access.'); renderMarks(); }
+  S.queue = S.queue.then(() => S.db.doc('reviews/' + S.me).set(body)).then(() => { $('#savestate').textContent = 'Saved'; })
+    .catch(e => { if (e && e.code === 'invalid_argument') { S.canWrite = false; banner('You can read this review but not mark items. Ask the owner for Contributor access.'); renderMarks(); }
       else $('#savestate').textContent = 'Not saved: ' + ((e && e.message) || 'try again'); });
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('.rv button.s'); if (!b || !S.canWrite) return;
-  const item = b.closest('.rv').dataset.item, s = b.dataset.s;
-  const cur = S.mine.items[item] || {};
+  const box = b.closest('.rv'), item = box.dataset.item, s = b.dataset.s, cur = S.mine.items[item] || {};
   if (cur.s === s) delete S.mine.items[item]; else S.mine.items[item] = {...cur, s, t: new Date().toISOString()};
-  renderMarks(); save();
-  if (S.mine.items[item]) { const ta = b.closest('.rv').querySelector('textarea'); ta.hidden = false; }
+  renderMarks(); save(); if (S.mine.items[item]) box.querySelector('textarea').hidden = false;
 });
 document.addEventListener('input', e => {
   const ta = e.target.closest('.rv textarea'); if (!ta) return;
   const item = ta.closest('.rv').dataset.item; if (!S.mine.items[item]) return;
-  S.mine.items[item].c = ta.value.slice(0, 2000);
-  clearTimeout(S.timers.c); $('#savestate').textContent = 'Editing…';
-  S.timers.c = setTimeout(save, 900);
+  S.mine.items[item].c = ta.value.slice(0, 2000); clearTimeout(S.timer); $('#savestate').textContent = 'Editing…'; S.timer = setTimeout(save, 900);
 });
-
-function showBanner(t) { const b = $('#banner'); b.textContent = t; b.hidden = false; }
-
-/* ---------- capabilities ---------- */
+function banner(t) { const b = $('#banner'); b.textContent = t; b.hidden = false; }
+renderMarks();
 (async () => {
   const cl = window.claude;
-  if (!cl || !cl.use) { $('#who').textContent = 'Read-only copy'; showBanner('Marks cannot be saved in this copy. Open the shared link to review.'); renderMarks(); return; }
+  if (!cl || !cl.use) { $('#who').textContent = 'Read-only copy'; banner('Marks cannot be saved in this copy. Open the shared link to review.'); return; }
   const [db, user] = await Promise.all([cl.use('db'), cl.use('user')]);
   S.db = db; S.user = user;
   if (user) { try { S.me = await user.id(); const me = await user.me(); $('#who').innerHTML = `<span class="dot" style="background:${esc(me.color)}"></span>Reviewing as ${esc(me.name || 'you')}`; } catch (e) {} }
-  if (!db || !S.me) { $('#who').textContent = 'Read-only'; showBanner('Sign in to claude.ai to mark items. You can still read everything here.'); renderMarks(); return; }
+  if (!db || !S.me) { $('#who').textContent = 'Read-only'; banner('Sign in to claude.ai to mark items. You can still read everything.'); renderMarks(); return; }
   let can = null; try { can = await user.can('data.write'); } catch (e) {}
-  S.canWrite = can !== false;
-  if (can === false) showBanner('You can read this review but not mark items. Ask the owner for Contributor access.');
+  S.canWrite = can !== false; if (can === false) banner('You can read this review but not mark items. Ask the owner for Contributor access.');
   db.collection('reviews').onSnapshot(snap => {
     S.all = {}; snap.docs.forEach(d => { if (d.exists) S.all[d.id] = d.data(); });
-    if (S.all[S.me] && !S.dirtyLoaded) { S.mine = JSON.parse(JSON.stringify(S.all[S.me])); S.mine.items ??= {}; S.dirtyLoaded = true; }
+    if (S.all[S.me] && !S.loaded) { S.mine = JSON.parse(JSON.stringify(S.all[S.me])); S.mine.items ??= {}; S.loaded = true; }
     refreshProfiles();
-  }, err => { showBanner('Live updates stopped (' + err.code + '). Reload the page to see new marks.'); });
+  }, err => banner('Live updates stopped (' + err.code + '). Reload to see new marks.'));
   renderMarks();
 })();
 </script>

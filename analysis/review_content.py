@@ -380,7 +380,7 @@ STEPS.append(dict(id='exergy', n=6, title='Exergy: where the ability to do work 
     {'id': 'chk:x-factor', 'text': 'One steam factor (0.344) should replace 0.315 and 0.318.', 'how': 'Check that 430 × 0.344 = 148 and 130 × 0.344 = 45, as in the draft hotspot table.'},
     {'id': 'chk:x-ip', 'text': 'The improvement-potential formula should be stated.', 'how': 'TMP: (1 − 0.146) × (1,015 − 148) = 740, as in the draft.'},
     {'id': 'chk:x-fig2', 'text': 'Figure 2 must be redrawn so it agrees with the text.', 'how': 'Draft figure: 1,324.8 destroyed, 123.2 waste. Text: 1,329 and 119.'}]},
- {'t': 'fig', 'src': 'model_sankey_exergy', 'caption': 'Exergy flows at Hallsta 2023 (GWh/y), drawn by the model with the 0.344 steam factor. Replacement for draft Figure 2.', 'id': 'fig:exergy'},
+ {'t': 'fig', 'src': 'model_sankey_exergy', 'caption': f'Exergy flows at Hallsta 2023 (GWh/y), drawn by the model with the {b["fx_steam"]:.3f} steam factor. Replacement for draft Figure 2. "Useful hot water" ({g(b["Xuse|Hot water & heating"],0)} GWh) is used in the mill and for district heat ({g(b["X_DH"],0)} GWh); apart from the district heat it ends as waste heat, which is why the text gives {g(X_air + b["X_eff"],0)} GWh of waste heat in total.', 'id': 'fig:exergy'},
 ]))
 
 scen = table('model_scenarios.csv')
@@ -485,7 +485,7 @@ REPORT_EDITS = [
  ('5.3 Exergy', 'Add', '(under the exergy table)', DECISIONS['dec:pm-waste']['report'].split(': ', 1)[1], 'The only source value is 50 °C.'),
  ('5.4 Hotspots', 'Add', '(under the hotspot table)', '"Improvement potential IP = (1 − ψ)(Exin − Exuseful); it ranks where exergy is lost, it is not an achievable saving. Units without a useful exergy output (paper machines, bleaching, WWTP, wood handling) have ψ = 0 by convention."', 'States the formula and the convention.'),
  ('5.5 Figure 1', 'Fix', '"The remaining 766 GWh/y (53%)"', '"The remaining 769 GWh/y (53 %)"', 'Same number as Table 2.'),
- ('5.5 Figure 2', 'Fix', 'Figure 2 (1,324.8 destroyed, 123.2 waste) and caption "factor 0.318"', f'Replace with reports/figures/model_sankey_exergy.png; caption factor "{b["fx_steam"]:.3f}"', 'Figure and text must agree.'),
+ ('5.5 Figure 2', 'Fix', 'Figure 2 (1,324.8 destroyed, 123.2 waste) and caption "factor 0.318"', f'Replace with reports/figures/model_sankey_exergy.png; caption: factor "{b["fx_steam"]:.3f}", and add "Useful hot water ({g(b["Xuse|Hot water & heating"],0)} GWh) is used in the mill and for district heat ({g(b["X_DH"],0)} GWh); apart from the district heat it also ends as waste heat."', 'Figure and text must agree.'),
  ('6 Uncertainty', 'Add', '(new subsection 6.5 Results)', DECISIONS['dec:mc']['report'], 'The draft gives no output ranges.'),
  ('6.4 (c)', 'Fix', '"the loss could be anywhere from about 125 to 214 GWh/y"', '"the loss lies between about 123 and 214 GWh/y (P5–P95)"', 'Matches Table 2.'),
  ('7 Measures', 'Fix', 'Measure 2 "93–108 GWh/y (0.21–0.24 MWh/t)" (text, table, 7.1, 8.3)', '"88–104 GWh/y (0.20–0.23 MWh/t)"', DECISIONS['dec:m2']['why'][0]),
