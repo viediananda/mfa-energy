@@ -431,13 +431,24 @@ def fig_mc_hist(mc, b):
     fig.tight_layout(); plotstyle.save(fig, 'model_mc_hist'); return fig
 
 
+NICE = {'sh_EB': 'Boiler share of electricity', 'sh_TMP': 'TMP share of electricity', 'sh_PM': 'PM share of electricity',
+        'sh_OTH': 'Other users share', 'm_rec': 'TMP steam recovered (t/h)', 'm_PM': 'Drying steam (t/h)', 'y_EB': 'Boiler steam yield (t/MWh)',
+        'E_tot': 'Total electricity', 'h_prod': 'Operating hours', 'cop_hp': 'Heat pump COP', 'dh_override': 'Steam latent heat',
+        'T_eff': 'Effluent temperature', 'dT_cool': 'Cooling-water temperature rise', 'V_cool': 'Cooling-water volume', 'T0': 'Reference temperature',
+        'press_dry': 'Press dryness', 'h_evap': 'Evaporation heat', 'f_steamloss': 'Steam network loss', 'f_dist': 'Grid loss',
+        'T_PMwaste': 'PM waste-heat temperature', 'T_TMPwaste': 'TMP waste-heat temperature', 'T_HW': 'Hot-water temperature',
+        'aux_TMP': 'TMP auxiliaries (kWh/t)', 'pulp_t': 'Pulp production', 'paper_t': 'Paper production', 'm_wood': 'Wood-handling steam',
+        'V_wwtp': 'Effluent volume', 'p_steam': 'Steam pressure', 'T_cond': 'Condensate temperature', 'diesel': 'Diesel', 'DH_export': 'District heat'}
+nice = lambda k: NICE.get(k, k)
+
+
 def fig_tornado(T):
     plotstyle.use()
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4))
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4.2))
     for ax, m in zip(axes, ['save_rec90', 'M4']):
         t = T[T.metric == m].nlargest(8, 'swing')[::-1]; base = t.base.iloc[0]
-        ax.barh(t.input, t.at_P5 - base, left=base, color=plotstyle.INK_3, label='input at P5')
-        ax.barh(t.input, t.at_P95 - base, left=base, color=plotstyle.SERIES[0], label='input at P95')
+        ax.barh([nice(k) for k in t.input], t.at_P5 - base, left=base, color=plotstyle.INK_3, label='input at P5')
+        ax.barh([nice(k) for k in t.input], t.at_P95 - base, left=base, color=plotstyle.SERIES[0], label='input at P95')
         ax.axvline(base, color='k', ls='--', lw=1); ax.set_xlabel('GWh/y'); ax.set_title(f'{TORNADO_METRICS[m]}, base {base:.1f}'); ax.grid(axis='y', visible=False)
     axes[0].legend(loc='lower right'); fig.suptitle('One-at-a-time sensitivity: every input moved to its own P5 and P95', x=0.01, ha='left', fontweight='bold')
     fig.tight_layout(); plotstyle.save(fig, 'model_tornado'); return fig
@@ -448,7 +459,7 @@ def fig_spearman(SP):
     S = SP[(SP.abs() >= 0.15).any(axis=1)]
     fig, ax = plt.subplots(figsize=(8, 0.35*len(S) + 1.8))
     im = ax.imshow(S.values, cmap='RdBu_r', vmin=-1, vmax=1, aspect='auto'); ax.grid(False)
-    ax.set_xticks(range(len(S.columns)), [o.replace('Xdest|', 'Ex dest. ') for o in S.columns], rotation=30, ha='right'); ax.set_yticks(range(len(S)), S.index)
+    ax.set_xticks(range(len(S.columns)), [o.replace('Xdest|', 'Ex dest. ') for o in S.columns], rotation=30, ha='right'); ax.set_yticks(range(len(S)), [nice(k) for k in S.index])
     for i in range(S.shape[0]):
         for j in range(S.shape[1]):
             v = S.values[i, j]
