@@ -5,15 +5,15 @@
 """
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
 
 from . import plotstyle
-from .model import BASE, DIST, PROCS, PROPERTY_BASED, TIED, ppf, label
-from .mc import evaluate, derive, run_mc, summary, MCResult
+from .mc import evaluate, run_mc, summary
 from .measures import MEASURES, evaporated_water
+from .model import BASE, DIST, PROCS, PROPERTY_BASED, TIED, label, ppf
 
 ROOT = Path(__file__).resolve().parents[2]
 TAB = ROOT / 'reports' / 'tables'
@@ -89,9 +89,11 @@ def inputs_table():
 
 # ---------------------------------------------------------------- balance, hotspots
 def unit_of(k):
+    if k in ('dh_prop', 'dh'): return 'MWh/t steam'
+    if k in ('fx_steam', 'OTH_negative'): return '-'
+    if k in ('rec_pct', 'air_pct', 'water_pct', 'cool_pct', 'Xdest_pct', 'psi_EB_pct'): return '%'
     if k.startswith(('psi|',)) or k in ('rec_ratio', 'TMP_rec_eff', 'eff_EB', 'k_oth', 'dW_frac') or k.startswith('f_'):
         return '-'
-    if k == 'dh': return 'MWh/t steam'
     if k.startswith('SEC_'): return 'kWh/t'
     if k == 'y_EB_implied': return 't/MWh'
     if k.endswith('_MWh_t'): return 'MWh/t paper'
@@ -100,7 +102,7 @@ def unit_of(k):
 
 
 def balance_table(b):
-    grp = lambda k: ('electricity' if k.startswith('el_') else 'steam' if k.startswith(('st_', 'dh', 'fx', 'eff', 'y_EB', 'rec', 'TMP_rec', 'loss_EB'))
+    grp = lambda k: ('electricity' if k.startswith(('el_', 'SEC_')) else 'waste heat' if k in ('TMP_waste', 'PM_waste') else 'steam' if k.startswith(('st_', 'dh', 'fx', 'eff', 'y_EB', 'rec', 'TMP_rec', 'loss_EB'))
                      else 'sinks' if k.startswith('sink_') or k == 'E_in' else 'exergy' if k[0] in 'XPpIf' and k not in ('paper_t',)
                      else 'measures' if k.startswith(('M', 'save', 'gap')) else 'other')
     return pd.DataFrame([dict(flow=k, group=grp(k), value=v, unit=unit_of(k)) for k, v in b.items() if np.ndim(v) == 0])
@@ -283,7 +285,7 @@ SP_OUT = ['Xdest|TMP plant', 'Xdest|Electric boilers', 'Xdest|Paper machines', '
 
 
 def spearman_table(mc):
-    Y, X, ok = mc.Y[mc.ok], mc.X[mc.ok], mc.ok
+    Y, X = mc.Y[mc.ok], mc.X[mc.ok]
     return pd.DataFrame({o: [spearmanr(X[k], Y[o])[0] for k in DIST] for o in SP_OUT}, index=list(DIST)).rename_axis('input')
 
 
@@ -295,7 +297,7 @@ def tornado_table():
     base = evaluate(dict(BASE)); rows = []
     for k in DIST:
         lo, hi = ppf(k, .05), ppf(k, .95)
-        tie = lambda v: {k: v, **{t: v for t, src in TIED.items() if src == k}}
+        tie = lambda v, k=k: {k: v, **{t: v for t, src in TIED.items() if src == k}}
         rl, rh = evaluate({**BASE, **tie(lo)}), evaluate({**BASE, **tie(hi)})
         for m in TORNADO_METRICS:
             rows.append(dict(metric=m, input=k, P5_value=lo, P95_value=hi, at_P5=rl[m], at_P95=rh[m], base=base[m],
@@ -306,6 +308,7 @@ def tornado_table():
 # ---------------------------------------------------------------- figures
 def _sankey(links, title, color_of, name, node_color):
     import plotly.graph_objects as go
+    from kaleido.errors import ChromeNotFoundError
     nodes = list(dict.fromkeys(list(links.source) + list(links.target))); ix = {n: i for i, n in enumerate(nodes)}
     tot = {n: max(links[links.source == n]['GWh/y'].sum(), links[links.target == n]['GWh/y'].sum()) for n in nodes}
     fig = go.Figure(go.Sankey(valueformat=',.0f', valuesuffix=' GWh/y', arrangement='snap',
@@ -320,7 +323,7 @@ def _sankey(links, title, color_of, name, node_color):
     try:
         fig.write_image(FIG / f'{name}.png', scale=2)
         ok = True
-    except Exception as e:   # no Chrome for kaleido: HTML is still written
+    except ChromeNotFoundError as e:   # no Chrome for kaleido: HTML is still written
         print(f'[warn] static PNG for {name} skipped ({type(e).__name__}); HTML written. Run `uv run plotly_get_chrome` to enable PNG.')
         ok = False
     return fig, ok
@@ -523,5 +526,5 @@ def build_all(N=10_000, seed=2023, mc=None, verbose=True):
     fig_hotspots(HX); fig_mc_hist(mc, b); fig_tornado(T); fig_spearman(SP); fig_measures(MT); fig_rank(st)
     plt.close('all')
     if verbose:
-        print(f'MC: N={mc.N}, accepted {mc.acceptance:.2%}, k-guard binds in {mc.k_binding_rate:.2%}; tables -> {TAB}, figures -> {FIG}')
+        print(f'MC: N={mc.N}, accepted {mc.acceptance:.2%}, k-guard binds in {mc.k_binding_rate:.2%}; tables -> {TAB.relative_to(ROOT)}, figures -> {FIG.relative_to(ROOT)}')
     return out

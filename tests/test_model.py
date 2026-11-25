@@ -173,3 +173,24 @@ def test_scenario_switches(b):
     assert s6["SEC_TMP"] == pytest.approx(2150.0)
     assert sum(s6[k] for k in ELEC) == pytest.approx(BASE["E_tot"])
     assert s6["el_util"] > b["el_util"] + 50
+
+
+def test_large_tmp_override_puts_shortfall_in_util_not_negative_items():
+    r = run({**BASE, "sec_TMP_override": 2600.0})
+    assert all(r[k] >= 0 for k in ELEC if k != "el_util")
+    assert r["OTH_negative"] and r["el_util"] < 0
+    assert sum(r[k] for k in ELEC) == pytest.approx(BASE["E_tot"])
+    assert not run(BASE)["OTH_negative"]
+
+
+def test_unknown_parameter_key_raises():
+    with pytest.raises(KeyError):
+        run({**BASE, "bogus_key": 1})
+    with pytest.raises(KeyError):
+        run({**BASE, "sec_tmp_override": 2150.0})
+
+
+def test_balance_table_units():
+    from hallsta_mfa import outputs
+    u = outputs.balance_table(evaluate(dict(BASE))).set_index("flow")["unit"]
+    assert u["dh_prop"] == "MWh/t steam" and u["rec_pct"] == "%" and u["fx_steam"] == "-"
