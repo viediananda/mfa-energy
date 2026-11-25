@@ -1,5 +1,6 @@
 flow,group,value,unit
 k_oth,other,1.0,-
+OTH_negative,other,0.0,-
 E_tot,other,1450.0,GWh/y
 el_TMP,electricity,1014.9999999999999,GWh/y
 el_TMP_aux,electricity,63.28245,GWh/y
@@ -14,8 +15,8 @@ el_dist,electricity,14.5,GWh/y
 el_PM11line,electricity,138.4090909090909,GWh/y
 el_PM12line,electricity,79.0909090909091,GWh/y
 dh,steam,0.5972222222222222,MWh/t steam
-dh_prop,steam,0.6537173810320119,GWh/y
-fx_steam,steam,0.34442592195009436,GWh/y
+dh_prop,steam,0.6537173810320119,MWh/t steam
+fx_steam,steam,0.34442592195009436,-
 eff_EB,steam,0.8958333333333333,-
 st_rec,steam,430.0,GWh/y
 st_EB,steam,129.89583333333331,GWh/y
@@ -25,14 +26,14 @@ st_PM,steam,408.5,GWh/y
 st_wood,steam,6.45,GWh/y
 st_loss,steam,22.395833333333332,GWh/y
 st_HW,steam,122.54999999999994,GWh/y
-TMP_waste,other,584.9999999999999,GWh/y
-PM_waste,exergy,604.4,GWh/y
+TMP_waste,waste heat,584.9999999999999,GWh/y
+PM_waste,waste heat,604.4,GWh/y
 rec_ratio,steam,0.7680000000000001,-
 y_EB_implied,steam,1.5,t/MWh
 TMP_rec_eff,steam,0.4236453201970444,-
-SEC_mill,other,3262.1362718056935,kWh/t
-SEC_TMP,other,2405.8803033068407,kWh/t
-SEC_PM,other,489.3204407708541,kWh/t
+SEC_mill,electricity,3262.1362718056935,kWh/t
+SEC_TMP,electricity,2405.8803033068407,kWh/t
+SEC_PM,electricity,489.3204407708541,kWh/t
 sink_water,sinks,211.57943736111108,GWh/y
 sink_cool,sinks,46.444444444444436,GWh/y
 sink_DH,sinks,11.877,GWh/y
@@ -131,9 +132,9 @@ M3b_SEC,measures,3.2044618532010425,MWh/t paper
 M4_MWh_t,measures,0.2826044270960661,MWh/t paper
 M4_SEC,measures,2.9795318447096277,MWh/t paper
 dW_frac,other,0.08266666666666675,-
-rec_pct,steam,76.80000000000001,GWh/y
-air_pct,other,81.4222765514272,GWh/y
-water_pct,other,14.563362106875669,GWh/y
-cool_pct,other,3.196847816277614,GWh/y
-Xdest_pct,exergy,91.58863857431933,GWh/y
-psi_EB_pct,exergy,30.854822174695943,GWh/y
+rec_pct,steam,76.80000000000001,%
+air_pct,other,81.4222765514272,%
+water_pct,other,14.563362106875669,%
+cool_pct,other,3.196847816277614,%
+Xdest_pct,exergy,91.58863857431933,%
+psi_EB_pct,exergy,30.854822174695943,%

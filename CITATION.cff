@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "hallsta-mfa: electricity energy and exergy flow analysis of Hallsta paper mill"
+authors:
+  - name: "MFA Group 2"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/viediananda/mfa-energy"

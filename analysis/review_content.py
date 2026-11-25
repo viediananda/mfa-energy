@@ -70,7 +70,7 @@ DECISIONS = {
     title='Steam counted at its latent heat, 2.15 GJ per tonne',
     verdict='Keep + support',
     draft='Section 4.3 and 5.1 convert steam flows with 2.15 GJ/t, "the useful latent thermal energy released when the steam condenses". TMP steam 430 GWh, boiler steam 130, drying 408.',
-    check=f'The model uses the same convention and reproduces 430.0, 129.9 and 408.5 GWh. We also ran the alternative convention (full heat from 138 °C steam down to 90 °C condensate, 2.35 GJ/t) as sensitivity case S5.',
+    check='The model uses the same convention and reproduces 430.0, 129.9 and 408.5 GWh. We also ran the alternative convention (full heat from 138 °C steam down to 90 °C condensate, 2.35 GJ/t) as sensitivity case S5.',
     why=[
       'When steam heats something it first condenses and releases its latent heat, 2.15 GJ per tonne at 2.4 bar(g). The condensed water is still at 138 °C and can give off a further ~0.2 GJ/t if it cools to the 90 °C that Holmen reports for condensate. Counting only the latent part is a common convention for steam balances, because the condensate heat mostly returns to the steam system with the condensate. The draft states this convention clearly in section 5.1.',
       'Both conventions are valid as long as the report uses one consistently. The latent convention keeps all the draft\'s steam numbers.',
@@ -172,11 +172,11 @@ DECISIONS = {
     title='The savings assume the boilers run all year',
     verdict='Add',
     draft='Section 7 notes for Measure 1 that "the saving is smaller in summer, when steam is already in surplus and vented". Section 8.2 says the same. The table and conclusions give single values.',
-    check=f'Holmen says recovered steam covers 70–90 % of need "depending on what products are being produced, maintenance shut downs...", and that surplus steam is vented "sometimes during summer months but normally not or very rarely during winter". When steam is vented, the boilers are off and no measure saves anything.',
+    check='Holmen says recovered steam covers 70–90 % of need "depending on what products are being produced, maintenance shut downs...", and that surplus steam is vented "sometimes during summer months but normally not or very rarely during winter". When steam is vented, the boilers are off and no measure saves anything.',
     why=['Without monthly data we take the worst case consistent with "sometimes during summer months": three months (June–August) with no saving. That gives a lower bound of 75 % of the full-year value. The true value lies between the two.',
          f'This turns each saving into a range: M1 {g(m["M1"]*SEASON,0)}–{g(m["M1"],0)}, M2 {g(m["M2"]*SEASON,0)}–{g(m["M2"],0)}, M3 {g(m["M3"]*SEASON,0)}–{g(m["M3"],0)}, combined {g(m["M4"]*SEASON,0)}–{g(m["M4"],0)} GWh/y. The specific electricity after all measures is {(P["E_tot"]-m["M4"])/P["paper_t"]*1000:.2f}–{(P["E_tot"]-m["M4"]*SEASON)/P["paper_t"]*1000:.2f} MWh/t.',
          'The draft already names the issue for Measure 1. Applying it to all measures and putting it in the table makes the comparison fair and protects the conclusions from an obvious objection.'],
-    report=f'Section 7 table: add a column "Seasonal lower bound (75 %)" next to each saving. Text: "Savings assume the electric boilers would otherwise run all year. Holmen reports occasional summer steam surplus, so a lower bound with no saving in June–August is also given." Conclusions: "about 2.98 MWh/t" → "2.98–3.05 MWh/t".',
+    report='Section 7 table: add a column "Seasonal lower bound (75 %)" next to each saving. Text: "Savings assume the electric boilers would otherwise run all year. Holmen reports occasional summer steam surplus, so a lower bound with no saving in June–August is also given." Conclusions: "about 2.98 MWh/t" → "2.98–3.05 MWh/t".',
     sources=['steam_recovery_rate_2025']),
 }
 
@@ -300,7 +300,7 @@ STEPS.append(dict(id='electricity', n=3, title='Layer 1: where the electricity g
 
 steam_rows = [
  ('Latent heat per tonne', '2.15 GJ/t ÷ 3.6', dh*1000, 'kWh/t'),
- ('TMP recovered steam', f'100 t/h × 7,200 h × 2.15 GJ/t ÷ 3,600', b['st_rec'], 'GWh/y'),
+ ('TMP recovered steam', '100 t/h × 7,200 h × 2.15 GJ/t ÷ 3,600', b['st_rec'], 'GWh/y'),
  ('Boiler steam', f'{g(b["el_EB"],0)} GWh × 1.5 t/MWh × 2.15 GJ/t ÷ 3.6', b['st_EB'], 'GWh/y'),
  ('Electric boiler residual (condensate heat)', f'{g(b["el_EB"],0)} − {g(b["st_EB"],1)}', b['loss_EB'], 'GWh/y'),
  ('Steam supply', f'{g(b["st_rec"],1)} + {g(b["st_EB"],1)}', b['st_supply'], 'GWh/y'),
@@ -380,7 +380,7 @@ STEPS.append(dict(id='exergy', n=6, title='Exergy: where the ability to do work 
     {'id': 'chk:x-factor', 'text': 'One steam factor (0.344) should replace 0.315 and 0.318.', 'how': 'Check that 430 × 0.344 = 148 and 130 × 0.344 = 45, as in the draft hotspot table.'},
     {'id': 'chk:x-ip', 'text': 'The improvement-potential formula should be stated.', 'how': 'TMP: (1 − 0.146) × (1,015 − 148) = 740, as in the draft.'},
     {'id': 'chk:x-fig2', 'text': 'Figure 2 must be redrawn so it agrees with the text.', 'how': 'Draft figure: 1,324.8 destroyed, 123.2 waste. Text: 1,329 and 119.'}]},
- {'t': 'fig', 'src': 'model_sankey_exergy', 'caption': 'Exergy flows at Hallsta 2023 (GWh/y), drawn by the model with the 0.344 steam factor. Replacement for draft Figure 2.', 'id': 'fig:exergy'},
+ {'t': 'fig', 'src': 'model_sankey_exergy', 'caption': f'Exergy flows at Hallsta 2023 (GWh/y), drawn by the model with the {b["fx_steam"]:.3f} steam factor. Replacement for draft Figure 2. "Useful hot water" ({g(b["Xuse|Hot water & heating"],0)} GWh) is used in the mill and for district heat ({g(b["X_DH"],0)} GWh); apart from the district heat it ends as waste heat, which is why the text gives {g(X_air + b["X_eff"],0)} GWh of waste heat in total.', 'id': 'fig:exergy'},
 ]))
 
 scen = table('model_scenarios.csv')
@@ -419,7 +419,7 @@ STEPS.append(dict(id='uncertainty', n=7, title='Uncertainty (draft section 6)', 
 
 ms = 7200*dh/1000
 meas_rows = [
- ('1 t/h of boiler steam avoided', f'7,200 h × 1 t/h ÷ 1.5 t/MWh ÷ 1,000', per_tph),
+ ('1 t/h of boiler steam avoided', '7,200 h × 1 t/h ÷ 1.5 t/MWh ÷ 1,000', per_tph),
  ('M1: TMP steam +10 t/h', f'10 × {per_tph:.2f}', m['M1']),
  ('M1b: TMP to 90 % of steam', f'(0.90 × {g(b["st_supply"],1)} − {g(b["st_rec"],1)}) GWh steam ÷ {g(b["st_EB"]/b["el_EB"],3)}', m['M1b']),
  ('M2: heat pump, COP 3', f'145 − 130 × (2.35/2.15) ÷ 3 = 145 − {g(b["st_EB"]*dhp/dh,1)} ÷ 3', m['M2']),
@@ -485,7 +485,7 @@ REPORT_EDITS = [
  ('5.3 Exergy', 'Add', '(under the exergy table)', DECISIONS['dec:pm-waste']['report'].split(': ', 1)[1], 'The only source value is 50 °C.'),
  ('5.4 Hotspots', 'Add', '(under the hotspot table)', '"Improvement potential IP = (1 − ψ)(Exin − Exuseful); it ranks where exergy is lost, it is not an achievable saving. Units without a useful exergy output (paper machines, bleaching, WWTP, wood handling) have ψ = 0 by convention."', 'States the formula and the convention.'),
  ('5.5 Figure 1', 'Fix', '"The remaining 766 GWh/y (53%)"', '"The remaining 769 GWh/y (53 %)"', 'Same number as Table 2.'),
- ('5.5 Figure 2', 'Fix', 'Figure 2 (1,324.8 destroyed, 123.2 waste) and caption "factor 0.318"', f'Replace with reports/figures/model_sankey_exergy.png; caption factor "{b["fx_steam"]:.3f}"', 'Figure and text must agree.'),
+ ('5.5 Figure 2', 'Fix', 'Figure 2 (1,324.8 destroyed, 123.2 waste) and caption "factor 0.318"', f'Replace with reports/figures/model_sankey_exergy.png; caption: factor "{b["fx_steam"]:.3f}", and add "Useful hot water ({g(b["Xuse|Hot water & heating"],0)} GWh) is used in the mill and for district heat ({g(b["X_DH"],0)} GWh); apart from the district heat it also ends as waste heat."', 'Figure and text must agree.'),
  ('6 Uncertainty', 'Add', '(new subsection 6.5 Results)', DECISIONS['dec:mc']['report'], 'The draft gives no output ranges.'),
  ('6.4 (c)', 'Fix', '"the loss could be anywhere from about 125 to 214 GWh/y"', '"the loss lies between about 123 and 214 GWh/y (P5–P95)"', 'Matches Table 2.'),
  ('7 Measures', 'Fix', 'Measure 2 "93–108 GWh/y (0.21–0.24 MWh/t)" (text, table, 7.1, 8.3)', '"88–104 GWh/y (0.20–0.23 MWh/t)"', DECISIONS['dec:m2']['why'][0]),

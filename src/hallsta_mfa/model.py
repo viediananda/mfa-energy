@@ -3,8 +3,8 @@
 All flows are in GWh/y. `run(params)` is a pure function: give it a dict of inputs
 (single numbers or NumPy arrays) and it returns every flow of the balance.
 """
-import numpy as np
 import CoolProp.CoolProp as CP
+import numpy as np
 
 # Base-case inputs, aligned with the group report draft (12 Oct 2026): steam counted at its latent
 # heat (2.15 GJ/t), boiler steam from Holmen's 1.5 t/MWh, effluent 32 C, PM waste heat 55 C.
@@ -47,7 +47,11 @@ def steam_v(p, Tc, T0):
     d = hg - hf
     return d/3.6e6, 1 - (np.asarray(T0)+273.15)*(sg-sf)/d
 
+SWITCHES = {'sec_TMP_override', 'dh_override', 'y_EB'}                       # optional keys read with p.get()
+
 def run(p):
+    unknown = set(p) - set(BASE) - SWITCHES - set(TIED)
+    if unknown: raise KeyError(f'unknown parameter(s): {sorted(unknown)}')
     r = {}; E = p['E_tot']
     tot = p['sh_TMP'] + p['sh_PM'] + p['sh_EB'] + p['sh_OTH']               # rescale shares to 100 %
     TMP, PMtot, EB, OTH = (E*p[k]/tot for k in ['sh_TMP','sh_PM','sh_EB','sh_OTH'])
@@ -57,10 +61,11 @@ def run(p):
     # ---- layer 1: electricity end uses
     bleach = p['P_bleach']*p['h_prod']/1000; PM = PMtot - bleach
     wood = p['P_wood']*p['h_prod']/1000; wwtp = p['P_wwtp']*p['h_wwtp']/1000; dist = p['f_dist']*E
-    k = np.minimum(1.0, OTH/(wood + wwtp + dist))                           # named items must fit in bucket
+    k = np.clip(OTH/(wood + wwtp + dist), 0.0, 1.0)                         # named items must fit in bucket (>= 0)
     wood, wwtp, dist = wood*k, wwtp*k, dist*k
     util = OTH - wood - wwtp - dist                                         # GAP 1 (residual)
     r['k_oth'] = k                                                          # < 1 when the guard binds
+    r['OTH_negative'] = OTH < 0                                             # TMP override exceeds the bucket; shortfall sits in el_util
     aux = p['aux_TMP']*p['pulp_t']/1e6
     r.update(E_tot=E, el_TMP=TMP, el_TMP_aux=aux, el_TMP_ref=TMP-aux, el_PM=PM, el_bleach=bleach, el_EB=EB,
              el_wood=wood, el_wwtp=wwtp, el_util=util, el_dist=dist,

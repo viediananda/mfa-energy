@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: uv sync --locked
+      - run: uv run ruff check src tests analysis
+      - run: uv run pytest -q
+      # Smoke run: execute both notebooks without writing them back.
+      # nbconvert runs each notebook with its own directory as cwd.
+      - run: uv run jupyter nbconvert --to notebook --execute --output-dir /tmp/nb notebooks/01_eda.ipynb notebooks/02_model.ipynb
