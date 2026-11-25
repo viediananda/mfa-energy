@@ -4,22 +4,37 @@ version = "0.1.0"
 description = "Electricity energy and exergy flow analysis (MFA) of Holmen Hallsta paper mill, 2023, with Monte Carlo uncertainty"
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
+license = "MIT"
+license-files = ["LICENSE", "LICENSE-DATA"]
+authors = [{ name = "MFA Group 2" }]
+keywords = ["material flow analysis", "exergy", "energy", "monte carlo", "paper mill", "sankey"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+]
 dependencies = [
-    "numpy",
-    "pandas",
-    "matplotlib",
-    "scipy",
-    "plotly",
-    "CoolProp",
-    "jinja2",
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "matplotlib>=3.8",
+    "scipy>=1.11",
+    "plotly>=5.18",
+    "CoolProp>=6.6",
+    "jinja2>=3.1",
     "kaleido>=1.4.0",
 ]
 
+[project.urls]
+Repository = "https://github.com/viediananda/mfa-energy"
+
 [dependency-groups]
-dev = ["jupyterlab", "nbconvert", "nbformat", "ipykernel", "pytest"]
+dev = ["jupyterlab", "nbconvert", "nbformat", "ipykernel", "pytest", "ruff>=0.6"]
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
@@ -27,3 +42,14 @@ packages = ["src/hallsta_mfa"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 140
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "UP", "I"]
+ignore = [
+    "E501", "E701", "E702", "E731", "E741",  # compact one-liners are intentional
+    "B905",  # zip() without strict=; all zips are over equal-length lists
+]

@@ -1,0 +1,19 @@
+Data and documentation licence
+
+Copyright (c) 2026 MFA Group 2 contributors
+
+The following are licensed under the Creative Commons Attribution 4.0
+International licence (CC-BY-4.0), https://creativecommons.org/licenses/by/4.0/ :
+
+- data/
+- docs/
+- generated model outputs in reports/tables/ and reports/figures/
+
+Not covered by this licence or by the MIT licence in LICENSE:
+
+- resources/ : documents by Holmen Paper AB and course question-and-answer
+  material. Included for reference only. Rights stay with their owners.
+- reports/*.docx and reports/*.pdf : group coursework documents. Rights stay
+  with their owners.
+
+The source code is licensed separately under the MIT licence, see LICENSE.
